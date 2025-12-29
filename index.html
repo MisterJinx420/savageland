@@ -101,6 +101,15 @@
         .faq-item {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* Cart Drawer Styles */
+        #cart-drawer {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #cart-drawer.cart-open {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body>
@@ -119,7 +128,7 @@
             </div>
 
             <!-- Desktop Nav -->
-            <div class="hidden lg:flex space-x-6 text-sm font-semibold uppercase tracking-widest text-white">
+            <div class="hidden lg:flex items-center space-x-6 text-sm font-semibold uppercase tracking-widest text-white">
                 <button onclick="showPage('home')" class="hover:text-green-400 transition">Home</button>
                 <button onclick="showPage('regular')" class="hover:text-green-400 transition">Regular</button>
                 <button onclick="showPage('feminized')" class="hover:text-green-400 transition">Feminized</button>
@@ -130,11 +139,23 @@
                 <button onclick="showPage('wholesale')" class="hover:text-green-400 transition">Wholesale</button>
                 <button onclick="showPage('faq')" class="hover:text-green-400 transition">FAQ</button>
                 <button onclick="showPage('contact')" class="hover:text-green-400 transition">Contact</button>
+                
+                <!-- Cart Trigger -->
+                <button onclick="toggleCart()" class="relative ml-4 p-2 text-white hover:text-green-400 transition">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-green-500 text-black text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full scale-0 transition-transform">0</span>
+                </button>
             </div>
 
-            <button class="lg:hidden text-2xl" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div class="lg:hidden flex items-center gap-4">
+                <button onclick="toggleCart()" class="relative p-2 text-white">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cart-badge-mobile" class="absolute -top-1 -right-1 bg-green-500 text-black text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full scale-0 transition-transform">0</span>
+                </button>
+                <button class="text-2xl" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
         
         <!-- Mobile Menu -->
@@ -151,6 +172,29 @@
             <button onclick="showPage('contact'); toggleMobileMenu()">Contact</button>
         </div>
     </nav>
+
+    <!-- Shopping Cart Drawer -->
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/60 z-[60] hidden backdrop-blur-sm"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#0a0a0a] border-l border-zinc-800 z-[70] shadow-2xl flex flex-col">
+        <div class="p-6 border-b border-zinc-800 flex justify-between items-center">
+            <h2 class="text-2xl font-black uppercase italic tracking-tighter">Your Bag</h2>
+            <button onclick="toggleCart()" class="w-10 h-10 flex items-center justify-center text-zinc-500 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+        </div>
+        
+        <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-6">
+            <!-- Items injected here -->
+        </div>
+
+        <div class="p-8 bg-zinc-900/50 border-t border-zinc-800">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-zinc-500 font-bold uppercase tracking-widest text-xs">Total Amount</span>
+                <span id="cart-total" class="text-2xl font-black text-white">$0.00</span>
+            </div>
+            <button onclick="checkout()" class="btn-primary w-full py-5 rounded-full font-black uppercase tracking-[0.2em] text-white shadow-xl">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
 
     <!-- Search Bar (Under Nav) -->
     <div class="search-container fixed w-full z-40 top-[81px] px-6 py-3">
@@ -435,6 +479,7 @@
                         <option value="" disabled selected>Reason for Messaging...</option>
                         <option value="General">General Questions</option>
                         <option value="Wholesale">Wholesale Inquiry</option>
+                        <option value="Order Inquiry">Order Inquiry</option>
                     </select>
                     <textarea id="message" required rows="5" placeholder="Your Message..." class="w-full px-6 py-4 rounded-xl text-white"></textarea>
                     <button type="submit" class="btn-primary w-full py-5 rounded-xl font-black uppercase tracking-[0.2em] text-white text-lg">Send Message</button>
@@ -476,8 +521,10 @@
     </footer>
 
     <script>
+        // 1. STATE & DATA
         let currentCategory = '';
         let currentProduct = null;
+        let cart = JSON.parse(localStorage.getItem('sle_cart')) || [];
 
         const categories = {
             'regular': { title: 'Regular Photoperiod', desc: 'Breeder genetics for pheno hunting.' },
@@ -634,7 +681,7 @@
             ]
         };
 
-        // Search Logic
+        // 2. SEARCH LOGIC
         const searchInput = document.getElementById('global-search');
         const searchResults = document.getElementById('search-results');
 
@@ -676,13 +723,148 @@
             searchResults.classList.add('hidden');
         }
 
-        // Close search results when clicking outside
         document.addEventListener('click', (e) => {
             if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
                 searchResults.classList.add('hidden');
             }
         });
 
+        // 3. CART LOGIC
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            drawer.classList.toggle('cart-open');
+            overlay.classList.toggle('hidden');
+            document.body.style.overflow = drawer.classList.contains('cart-open') ? 'hidden' : '';
+        }
+
+        function addToCart() {
+            const qty = parseInt(document.getElementById('qty-input').value);
+            const productId = currentProduct.name;
+            
+            const existing = cart.find(item => item.name === productId);
+            if (existing) {
+                existing.quantity += qty;
+            } else {
+                cart.push({
+                    name: currentProduct.name,
+                    price: 50.00,
+                    img: currentProduct.img,
+                    category: currentCategory,
+                    quantity: qty
+                });
+            }
+
+            saveCart();
+            updateCartUI();
+            
+            // Visual feedback
+            const btn = document.querySelector('.btn-primary');
+            const originalText = btn.innerText;
+            btn.innerText = `Added ${qty} to Bag!`;
+            btn.classList.add('bg-zinc-800');
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('bg-zinc-800');
+            }, 2000);
+        }
+
+        function updateCartQty(name, delta) {
+            const item = cart.find(i => i.name === name);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+                saveCart();
+                updateCartUI();
+            }
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(i => i.name !== name);
+            saveCart();
+            updateCartUI();
+        }
+
+        function saveCart() {
+            localStorage.setItem('sle_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const badge = document.getElementById('cart-badge');
+            const badgeMobile = document.getElementById('cart-badge-mobile');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+            const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+            // Update Badges
+            [badge, badgeMobile].forEach(b => {
+                b.innerText = totalItems;
+                b.style.transform = totalItems > 0 ? 'scale(1)' : 'scale(0)';
+            });
+
+            // Update Total
+            totalEl.innerText = `$${totalPrice.toFixed(2)}`;
+
+            // Update Items
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full text-center space-y-4 py-20">
+                        <i class="fas fa-shopping-bag text-5xl text-zinc-800"></i>
+                        <p class="text-zinc-500 uppercase font-bold tracking-widest text-xs">Your bag is currently empty</p>
+                        <button onclick="toggleCart(); showPage('feminized')" class="text-green-500 font-bold hover:underline uppercase text-xs">Browse Collections</button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = cart.map(item => `
+                <div class="flex gap-4 group">
+                    <div class="w-20 h-20 bg-zinc-900 rounded-2xl flex-shrink-0 border border-zinc-800 p-2 overflow-hidden">
+                        <img src="${item.img}" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="text-sm font-bold uppercase italic tracking-tighter leading-tight pr-4">${item.name}</h4>
+                            <button onclick="removeFromCart('${item.name}')" class="text-zinc-600 hover:text-red-500 transition"><i class="fas fa-trash-alt text-xs"></i></button>
+                        </div>
+                        <p class="text-green-500 text-xs font-black mb-3">$${(item.price * item.quantity).toFixed(2)}</p>
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center bg-zinc-900 rounded-full border border-zinc-800 p-1 scale-90 -ml-2">
+                                <button onclick="updateCartQty('${item.name}', -1)" class="w-8 h-8 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fas fa-minus text-[10px]"></i></button>
+                                <span class="w-6 text-center text-xs font-bold">${item.quantity}</span>
+                                <button onclick="updateCartQty('${item.name}', 1)" class="w-8 h-8 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fas fa-plus text-[10px]"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            const orderDetails = cart.map(i => `${i.name} (${i.quantity}x)`).join('\n');
+            const total = document.getElementById('cart-total').innerText;
+            
+            const subject = encodeURIComponent(`New Order Request - ${total}`);
+            const body = encodeURIComponent(`I would like to place an order for the following items:\n\n${orderDetails}\n\nTotal: ${total}\n\nPlease let me know the available payment methods.`);
+            
+            window.location.href = `mailto:Smoking.legal.va@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Suggest the user that the email has been prepared
+            const checkoutBtn = event.target;
+            checkoutBtn.innerText = "Email Prepared!";
+            setTimeout(() => {
+                checkoutBtn.innerText = "Proceed to Checkout";
+                toggleCart();
+            }, 3000);
+        }
+
+        // 4. NAVIGATION & RENDERING
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         }
@@ -747,7 +929,7 @@
                                 <input type="number" id="qty-input" value="1" min="1" class="w-12 bg-transparent text-center font-bold !border-none !p-0">
                                 <button onclick="updateQty(1)" class="w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-white transition"><i class="fas fa-plus"></i></button>
                             </div>
-                            <button onclick="addToCart()" class="btn-primary flex-1 py-5 rounded-full font-black uppercase tracking-[0.2em] shadow-xl text-white">Add to Cart</button>
+                            <button onclick="addToCart()" class="btn-primary flex-1 py-5 rounded-full font-black uppercase tracking-[0.2em] shadow-xl text-white">Add to Bag</button>
                         </div>
                     </div>
                 </div>
@@ -760,18 +942,6 @@
             const input = document.getElementById('qty-input');
             let current = parseInt(input.value);
             if (current + val >= 1) input.value = current + val;
-        }
-
-        function addToCart() {
-            const qty = document.getElementById('qty-input').value;
-            const btn = document.querySelector('.btn-primary');
-            const originalText = btn.innerText;
-            btn.innerText = `Added ${qty} to Cart!`;
-            btn.style.background = 'linear-gradient(135deg, #8e44ad, #1abc9c)';
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.style.background = '';
-            }, 2000);
         }
 
         function updateListingUI() {
@@ -823,6 +993,9 @@
             document.getElementById('contactForm').classList.remove('hidden');
             document.getElementById('formSuccess').classList.add('hidden');
         }
+
+        // INIT
+        updateCartUI();
     </script>
 </body>
 </html>
