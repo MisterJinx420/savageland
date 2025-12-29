@@ -97,6 +97,10 @@
             outline: none !important;
             border-color: var(--cannabis-green) !important;
         }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -124,6 +128,7 @@
                 <button onclick="showPage('promos')" class="text-yellow-500 hover:text-yellow-400 transition">Promos</button>
                 <button onclick="showPage('rainbow')" class="hover:text-green-400 transition">Rainbow Road</button>
                 <button onclick="showPage('wholesale')" class="hover:text-green-400 transition">Wholesale</button>
+                <button onclick="showPage('faq')" class="hover:text-green-400 transition">FAQ</button>
                 <button onclick="showPage('contact')" class="hover:text-green-400 transition">Contact</button>
             </div>
 
@@ -142,6 +147,7 @@
             <button onclick="showPage('promos'); toggleMobileMenu()" class="text-yellow-500">Promos</button>
             <button onclick="showPage('rainbow'); toggleMobileMenu()">Rainbow Road</button>
             <button onclick="showPage('wholesale'); toggleMobileMenu()">Wholesale</button>
+            <button onclick="showPage('faq'); toggleMobileMenu()">FAQ</button>
             <button onclick="showPage('contact'); toggleMobileMenu()">Contact</button>
         </div>
     </nav>
@@ -168,7 +174,7 @@
             <div class="relative h-[80vh] flex items-center justify-center overflow-hidden">
                 <div class="absolute inset-0 z-0">
                     <div class="absolute inset-0 bg-black/70 z-10"></div>
-                    <img src="CannabisPlant.jpg" class="w-full h-full object-cover" alt="Hero Background">
+                    <img src="SouthernCutSkunk.jpg" class="w-full h-full object-cover" alt="Hero Background">
                 </div>
                 
                 <div class="relative z-20 text-center px-6 max-w-4xl" id="hero-content">
@@ -184,6 +190,45 @@
                 </div>
             </div>
 
+            <!-- Home: Featured Strains Section -->
+            <div class="bg-zinc-900/50 py-24 px-6 border-b border-zinc-800">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-5xl md:text-6xl font-black uppercase mb-8">Featured Strains</h2>
+                        <div class="w-24 h-1 bg-green-500 mx-auto rounded-full"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Featured Strain 1: Puppy Breath Fem Photo -->
+                        <div class="seed-card rounded-3xl overflow-hidden p-8 text-center" onclick="viewProduct('feminized', 52)">
+                            <div class="h-48 flex items-center justify-center mb-6">
+                                <img src="PuppyBreath.jpg" class="max-h-full object-contain" alt="Strain">
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 italic">Puppy Breath S1</h3>
+                            <p class="text-green-500 font-bold uppercase text-xs tracking-widest mb-4">Feminized Photo</p>
+                            <button class="w-full py-3 bg-zinc-800 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-green-500 transition-colors">View Details</button>
+                        </div>
+                        <!-- Featured Strain 2: Bubba Berry Ku$h Auto -->
+                        <div class="seed-card rounded-3xl overflow-hidden p-8 text-center" onclick="viewProduct('auto', 21)">
+                            <div class="h-48 flex items-center justify-center mb-6">
+                                <img src="CannabisPlant.jpg" class="max-h-full object-contain" alt="Strain">
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 italic">Bubba Berry Ku$h</h3>
+                            <p class="text-green-500 font-bold uppercase text-xs tracking-widest mb-4">Autoflower</p>
+                            <button class="w-full py-3 bg-zinc-800 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-green-500 transition-colors">View Details</button>
+                        </div>
+                        <!-- Featured Strain 3: Southern Cut Skunk Reg Photo -->
+                        <div class="seed-card rounded-3xl overflow-hidden p-8 text-center" onclick="viewProduct('regular', 3)">
+                            <div class="h-48 flex items-center justify-center mb-6">
+                                <img src="SouthernCutSkunk.jpg" class="max-h-full object-contain" alt="Strain">
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 italic">Southern Cut Skunk</h3>
+                            <p class="text-green-500 font-bold uppercase text-xs tracking-widest mb-4">Regular Photo</p>
+                            <button class="w-full py-3 bg-zinc-800 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-green-500 transition-colors">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Home: About Us Section -->
             <div class="bg-zinc-900/10 py-24 px-6 border-b border-zinc-900">
                 <div class="max-w-5xl mx-auto">
@@ -194,6 +239,14 @@
                     
                     <div class="grid md:grid-cols-1 gap-12 text-gray-300 leading-relaxed text-lg">
                         <div class="space-y-8">
+                            <!-- New Video Spot in About Us -->
+                            <div class="w-full aspect-video md:aspect-auto md:h-[400px] rounded-3xl overflow-hidden bg-black border border-zinc-800 shadow-2xl mb-12">
+                                <video class="w-full h-full object-cover" controls muted loop>
+                                    <source src="AboutVideo.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+
                             <p>
                                 At Savage Land Exotics, we take pride in being Virginia pioneers in craft cannabis genetics. With many years of experience, we have developed a reputation for offering some of the highest quality seeds in the industry. Our products are carefully crafted using selective breeding to create a balanced blend of potency and flavor. We guarantee that our seeds will meet your expectations and provide you with an exceptional growing experience.
                             </p>
@@ -239,6 +292,41 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Page -->
+        <section id="faq" class="page-transition px-6 max-w-4xl mx-auto py-12">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black uppercase mb-4">Frequently Asked Questions</h2>
+                <div class="w-24 h-1 bg-green-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="faq-item py-6">
+                    <h3 class="text-xl font-bold text-white mb-2 uppercase italic">Are these seeds legal to purchase?</h3>
+                    <p class="text-gray-400 leading-relaxed">Yes, our seeds are sold strictly as novelty souvenirs and for genetic preservation purposes. Please check and adhere to your local and state laws regarding cannabis cultivation.</p>
+                </div>
+
+                <div class="faq-item py-6">
+                    <h3 class="text-xl font-bold text-white mb-2 uppercase italic">How long does shipping take?</h3>
+                    <p class="text-gray-400 leading-relaxed">Orders are typically processed within 2-3 business days. Domestic shipping within the US usually takes 3-7 business days depending on your location.</p>
+                </div>
+
+                <div class="faq-item py-6">
+                    <h3 class="text-xl font-bold text-white mb-2 uppercase italic">What payment methods do you accept?</h3>
+                    <p class="text-gray-400 leading-relaxed">We accept various payment methods. Please contact us directly or proceed to checkout to see the currently available options for your region.</p>
+                </div>
+
+                <div class="faq-item py-6">
+                    <h3 class="text-xl font-bold text-white mb-2 uppercase italic">Do you offer a germination guarantee?</h3>
+                    <p class="text-gray-400 leading-relaxed">Because our seeds are sold as novelty items, we do not provide a germination guarantee. However, we take immense pride in our quality control and storage standards to ensure the highest viability possible.</p>
+                </div>
+
+                <div class="faq-item py-6">
+                    <h3 class="text-xl font-bold text-white mb-2 uppercase italic">Can I become a wholesale partner?</h3>
+                    <p class="text-gray-400 leading-relaxed">Absolutely! We have a dedicated wholesale program for retail shops and commercial facilities. Please visit our Wholesale page and fill out the inquiry form to get started.</p>
                 </div>
             </div>
         </section>
@@ -409,7 +497,7 @@
                 { name: 'Local Speedway (Reg)', img: 'SLE.png', ...defaultMetadata },
                 { name: 'Mr. Driscoll (Reg)', img: 'SLE.png', ...defaultMetadata },
                 { name: 'Deebo Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Southern Cut Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Southern Cut Skunk (Reg)', img: 'SouthernCutSkunk.jpg', ...defaultMetadata },
                 { name: 'Outlaw Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
                 { name: '757 Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
                 { name: 'Local Savage (Reg)', img: 'SLE.png', ...defaultMetadata },
@@ -497,7 +585,7 @@
                 { name: 'SaVAge Queen (Fem)', img: 'SLE.png', ...defaultMetadata },
                 { name: 'Neptune Bakery (Fem)', img: 'SLE.png', ...defaultMetadata },
                 { name: 'Hood Cookies (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Puppy Breath S1 (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Puppy Breath S1 (Fem)', img: 'PuppyBreath.jpg', ...defaultMetadata },
                 { name: '90\'s Kid (Fem)', img: 'SLE.png', ...defaultMetadata },
                 { name: 'Royal Bitch (Fem)', img: 'SLE.png', ...defaultMetadata },
                 { name: 'Creamy WAP (Fem)', img: 'SLE.png', ...defaultMetadata },
@@ -536,7 +624,7 @@
                 { name: 'Scout Berries (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
                 { name: 'Gorilla Berries (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
                 { name: 'Widow Berry (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Bubba Berry Ku$h (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Bubba Berry Ku$h (Auto)', img: 'CannabisPlant.jpg', ...defaultMetadata, flowering: "70-80 Days" },
                 { name: 'Something Blue (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
                 { name: 'Stars N Straps (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
                 { name: 'Romulan Ale (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
