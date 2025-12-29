@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savage Land Exotics | Virginia Cannabis Breeder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Lexend:wght@400;700&display=swap');
+
+        :root {
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+            --cannabis-green: #2ecc71;
+            --savage-purple: #8e44ad;
+            --exotic-teal: #1abc9c;
+            --rainbow-grad: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #eeeeee;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .nav-link {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--cannabis-green), var(--exotic-teal), var(--savage-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .rainbow-text {
+            background: var(--rainbow-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: rainbow-flow 4s linear infinite;
+        }
+
+        @keyframes rainbow-flow {
+            to { background-position: 200% center; }
+        }
+
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .seed-card {
+            background: var(--card-bg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .seed-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.2);
+            border-color: var(--cannabis-green);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cannabis-green), var(--exotic-teal));
+            transition: all 0.3s ease;
+        }
+
+        .btn-rainbow {
+            background: var(--rainbow-grad);
+            background-size: 200% auto;
+            transition: 0.5s;
+        }
+
+        .btn-rainbow:hover {
+            background-position: right center;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(139, 0, 255, 0.4);
+        }
+
+        .page-transition {
+            display: none;
+        }
+
+        .page-active {
+            display: block;
+        }
+
+        input, select, textarea {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none !important;
+            border-color: var(--cannabis-green) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="showPage('home')">
+                <div class="w-12 h-12 overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center p-1 group-hover:border-green-500 transition-colors">
+                    <img src="SLE.png" alt="SLE Logo" class="w-full h-full object-contain" onerror="this.src='https://via.placeholder.com/150?text=SLE'">
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl font-extrabold tracking-tighter uppercase">Savage <span class="text-green-500">Land</span></span>
+                    <span class="text-[10px] tracking-[0.2em] uppercase text-zinc-500 font-bold">Exotics</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden lg:flex space-x-6 text-sm font-semibold uppercase tracking-widest text-white">
+                <button onclick="showPage('home')" class="hover:text-green-400 transition">Home</button>
+                <button onclick="showPage('regular')" class="hover:text-green-400 transition">Regular</button>
+                <button onclick="showPage('feminized')" class="hover:text-green-400 transition">Feminized</button>
+                <button onclick="showPage('auto')" class="hover:text-green-400 transition">Autoflower</button>
+                <a href="https://nanny-rootz.creator-spring.com/" target="_blank" class="hover:text-green-400 transition flex items-center">Merch</a>
+                <button onclick="showPage('promos')" class="text-yellow-500 hover:text-yellow-400 transition">Promos</button>
+                <button onclick="showPage('rainbow')" class="hover:text-green-400 transition">Rainbow Road</button>
+                <button onclick="showPage('wholesale')" class="hover:text-green-400 transition">Wholesale</button>
+                <button onclick="showPage('contact')" class="hover:text-green-400 transition">Contact</button>
+            </div>
+
+            <button class="lg:hidden text-2xl" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-black flex flex-col p-6 space-y-4 border-b border-gray-800 text-white text-center uppercase tracking-widest font-bold text-sm">
+            <button onclick="showPage('home'); toggleMobileMenu()">Home</button>
+            <button onclick="showPage('regular'); toggleMobileMenu()">Regular Photoperiod</button>
+            <button onclick="showPage('feminized'); toggleMobileMenu()">Feminized Photoperiod</button>
+            <button onclick="showPage('auto'); toggleMobileMenu()">Feminized Autoflower</button>
+            <a href="https://nanny-rootz.creator-spring.com/" target="_blank" onclick="toggleMobileMenu()">Merch</a>
+            <button onclick="showPage('promos'); toggleMobileMenu()" class="text-yellow-500">Promos</button>
+            <button onclick="showPage('rainbow'); toggleMobileMenu()">Rainbow Road</button>
+            <button onclick="showPage('wholesale'); toggleMobileMenu()">Wholesale</button>
+            <button onclick="showPage('contact'); toggleMobileMenu()">Contact</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        
+        <!-- Home Page -->
+        <section id="home" class="page-transition page-active">
+            <div class="relative h-[80vh] flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <div class="absolute inset-0 bg-black/70 z-10"></div>
+                    <img src="CannabisPlant.jpg" class="w-full h-full object-cover" alt="Hero Background">
+                </div>
+                
+                <div class="relative z-20 text-center px-6 max-w-4xl" id="hero-content">
+                    <div class="flex justify-center mb-8">
+                        <div class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-zinc-900/50 backdrop-blur-md p-4 border border-white/10 shadow-2xl">
+                            <img src="SLE.png" alt="Logo" class="w-full h-full object-contain" onerror="this.src='https://via.placeholder.com/150?text=SLE'">
+                        </div>
+                    </div>
+                    <h1 class="text-4xl md:text-7xl font-black mb-6 leading-none">VIRGINIA'S FINEST <span class="gradient-text">SAVAGE GENETICS</span></h1>
+                    <div class="flex justify-center">
+                        <button onclick="showPage('feminized')" class="btn-primary px-12 py-4 rounded-full font-bold uppercase tracking-widest text-sm">Shop Genetics</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home: About Us Section -->
+            <div class="bg-zinc-900/10 py-24 px-6 border-b border-zinc-900">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-5xl md:text-6xl font-black uppercase mb-8">About Us</h2>
+                        <div class="w-24 h-1 bg-green-500 mx-auto rounded-full"></div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-1 gap-12 text-gray-300 leading-relaxed text-lg">
+                        <div class="space-y-8">
+                            <p>
+                                At Savage Land Exotics, we take pride in being Virginia pioneers in craft cannabis genetics. With many years of experience, we have developed a reputation for offering some of the highest quality seeds in the industry. Our products are carefully crafted using selective breeding to create a balanced blend of potency and flavor. We guarantee that our seeds will meet your expectations and provide you with an exceptional growing experience.
+                            </p>
+                            
+                            <div class="bg-zinc-900/40 p-8 rounded-3xl border border-zinc-800 shadow-xl">
+                                <h3 class="text-2xl font-bold text-white mb-4 uppercase tracking-tight italic">VA Premier Craft Cultivars</h3>
+                                <p>
+                                    When Savage Land Exotics was created, our team decided to focus on three main principles: quality, pricing, and service. We are proud to say that our guiding values remain the same to this day. We provide the same attention to every customer, no matter the size of the contract. Reach out anytime to get some VA Fire in your garden, and build a lasting relationship with the tribe.
+                                </p>
+                            </div>
+
+                            <div class="space-y-4">
+                                <h3 class="text-2xl font-bold text-white uppercase tracking-tight italic">Why Choose Us?</h3>
+                                <p>
+                                    At Savage Land Exotics, our reputation as a trusted seed supplier is of the utmost importance to us. We go above and beyond to ensure that our customers receive only the best quality seeds and support. You can trust that when you choose us as your seed supplier, you're choosing a company with integrity and a commitment to excellence. Thank you for considering Savage Land Exotics for your seed needs!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-20 text-center">
+                        <h4 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter gradient-text">
+                            "Don't grow average, grow savage!"
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home: Rainbow Road Teaser -->
+            <div class="bg-zinc-900/30 py-24 px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="bg-gradient-to-r from-zinc-900 to-black border border-zinc-800 rounded-[3rem] p-8 md:p-16 relative overflow-hidden">
+                        <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-purple-500/10 blur-[120px] rounded-full"></div>
+                        <div class="relative z-10 text-center max-w-4xl mx-auto">
+                            <h2 class="text-5xl md:text-7xl font-black uppercase italic mb-6 rainbow-text leading-tight">Rainbow Road</h2>
+                            <p class="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed font-semibold">
+                                Join us Friday Nights in the Savage Land Playground as racers go down the rainbow road for a chance to win some Savage Gear!
+                            </p>
+                            <div class="flex justify-center">
+                                <button onclick="showPage('rainbow')" class="btn-rainbow px-14 py-5 rounded-full font-black uppercase tracking-widest text-lg text-white shadow-2xl">Enter the Playground</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rainbow Road Page -->
+        <section id="rainbow" class="page-transition px-6 max-w-7xl mx-auto py-12">
+            <div class="text-center mb-16">
+                <h1 class="text-6xl md:text-8xl font-black uppercase italic mb-4 rainbow-text">Rainbow Road</h1>
+                <p class="text-xl text-gray-400 uppercase tracking-[0.5em]">The Savage Land Playground</p>
+            </div>
+            
+            <!-- Video Section -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
+                <div class="rounded-3xl overflow-hidden border-4 border-zinc-800 shadow-2xl bg-black aspect-video flex items-center justify-center">
+                    <video class="w-full h-full object-cover" controls autoplay muted loop>
+                        <source src="RR Ad.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-white uppercase italic">Friday Night Races</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">
+                        Every Friday night, the community gathers for the ultimate test of speed and luck. We host live races where the top finishers walk away with exclusive Savage Land Exotics gear, unreleased seeds, and limited edition merch.
+                    </p>
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-700">
+                        <h4 class="text-green-500 font-bold mb-2 flex items-center gap-2">
+                            <i class="fas fa-clock"></i> Next Race Starts:
+                        </h4>
+                        <p class="text-2xl font-black text-white">Friday @ 10:00 PM EST</p>
+                    </div>
+                    <a href="https://www.facebook.com/groups/903495464243510" target="_blank" class="btn-rainbow block text-center w-full py-5 rounded-2xl font-black uppercase tracking-widest text-xl text-white">Join the Playground</a>
+                </div>
+            </div>
+
+            <!-- Daily High Box Races -->
+            <div class="bg-zinc-900/50 border border-zinc-800 rounded-[3rem] p-8 md:p-16 mb-24 overflow-hidden relative">
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-green-500/10 blur-[100px] rounded-full"></div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+                    <div class="order-2 md:order-1">
+                        <h2 class="text-4xl md:text-5xl font-black uppercase italic mb-6">
+                            Daily <span class="text-green-500">High Box</span> Races
+                        </h2>
+                        <div class="space-y-6 text-gray-300 text-lg leading-relaxed">
+                            <p class="font-bold text-white">Be on Rainbow Road Early for a chance to win the Daily High Box.</p>
+                            <p>A Race Each week to qualify for the box race, 5 winners will be selected at the end of the month for a chance to go down the Rainbow Road and win!</p>
+                            <p class="bg-black/40 p-4 rounded-xl border border-white/5 inline-block text-sm uppercase tracking-widest font-bold">
+                                Boxes change monthly
+                            </p>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <div class="rounded-3xl overflow-hidden border border-zinc-700 bg-zinc-800 aspect-square shadow-2xl group">
+                            <img src="DHCChristmas.jpg" alt="Daily High Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/600?text=Daily+High+Box+Image'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Merch Page (Hidden default - Link goes external, but kept for UI structure) -->
+        <section id="merch" class="page-transition px-6 max-w-7xl mx-auto py-12">
+            <h2 class="text-5xl font-black uppercase mb-2 text-center">Savage Merch</h2>
+            <div class="text-center mt-12">
+                <a href="https://nanny-rootz.creator-spring.com/" target="_blank" class="btn-primary inline-block px-12 py-4 rounded-full font-bold uppercase tracking-widest text-sm text-white">Visit Shop</a>
+            </div>
+        </section>
+
+        <!-- Promos Page -->
+        <section id="promos" class="page-transition px-6 max-w-7xl mx-auto py-12">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-7xl font-black uppercase mb-4 gradient-text">Current Promos</h2>
+                <p class="text-xl text-gray-500 uppercase tracking-widest font-bold">Exclusive Deals for the Savage Tribe</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-zinc-900 border-2 border-green-500/30 p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-green-500 text-black px-4 py-1 rounded-full text-xs font-black uppercase">Active</div>
+                    <h3 class="text-3xl font-black uppercase italic mb-4">Buy 2 Get 1 Free</h3>
+                    <p class="text-gray-400 text-lg mb-6">Add any 3 seed packs to your cart and the lowest priced pack will be automatically free at checkout. Mix and match across all categories!</p>
+                </div>
+                <div class="bg-zinc-900 border-2 border-zinc-800 p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-yellow-500 text-black px-4 py-1 rounded-full text-xs font-black uppercase">Flash Deal</div>
+                    <h3 class="text-3xl font-black uppercase italic mb-4">Free Shipping</h3>
+                    <p class="text-gray-400 text-lg mb-6">All orders over $100 qualify for free tracked shipping within the continental US. No code required.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Page Template -->
+        <section id="product-listing" class="page-transition px-6 max-w-7xl mx-auto py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+                <div>
+                    <h2 id="listing-title" class="text-4xl font-black uppercase mb-2">Genetics</h2>
+                    <p id="listing-desc" class="text-gray-400">Hand-selected strains for elite growers.</p>
+                </div>
+            </div>
+
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Products injected via JS -->
+            </div>
+        </section>
+
+        <!-- Wholesale Page -->
+        <section id="wholesale" class="page-transition max-w-4xl mx-auto px-6 py-12">
+            <h2 class="text-5xl font-black mb-6 uppercase">Wholesale Program</h2>
+            <div class="bg-zinc-900 border border-zinc-800 p-8 rounded-3xl mb-12">
+                <h3 class="text-2xl font-bold mb-4 text-teal-400 uppercase tracking-tight">Partner with Savage Land Exotics</h3>
+                <p class="text-gray-300 mb-6 leading-relaxed">We offer aggressive pricing for seed banks, retail locations, and commercial cultivation facilities.</p>
+                <div class="flex justify-center mt-8">
+                    <button onclick="showPage('contact')" class="border border-white hover:bg-white hover:text-black transition px-8 py-3 rounded-full font-bold uppercase text-sm text-white">Contact Us</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page-transition max-w-4xl mx-auto px-6 py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-black uppercase mb-4">Get In Touch</h2>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 p-8 md:p-12 rounded-3xl shadow-2xl">
+                <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-6">
+                    <input type="text" id="name" required placeholder="Full Name" class="w-full px-6 py-4 rounded-xl text-white">
+                    <input type="email" id="email" required placeholder="Email Address" class="w-full px-6 py-4 rounded-xl text-white">
+                    <select id="reason" required class="w-full px-6 py-4 rounded-xl text-white appearance-none cursor-pointer">
+                        <option value="" disabled selected>Reason for Messaging...</option>
+                        <option value="General">General Questions</option>
+                        <option value="Wholesale">Wholesale Inquiry</option>
+                    </select>
+                    <textarea id="message" required rows="5" placeholder="Your Message..." class="w-full px-6 py-4 rounded-xl text-white"></textarea>
+                    <button type="submit" class="btn-primary w-full py-5 rounded-xl font-black uppercase tracking-[0.2em] text-white text-lg">Send Message</button>
+                </form>
+                <div id="formSuccess" class="hidden text-center py-12 space-y-4">
+                    <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto text-4xl"><i class="fas fa-check"></i></div>
+                    <h3 class="text-2xl font-bold">Message Sent!</h3>
+                    <button onclick="resetContactForm()" class="text-green-400 font-bold hover:underline">Send another</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-zinc-800 py-16 px-6 mt-24">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center p-1">
+                        <img src="SLE.png" alt="SLE Logo" class="w-full h-full object-contain" onerror="this.src='https://via.placeholder.com/150?text=SLE'">
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="text-xl font-extrabold tracking-tighter uppercase">Savage <span class="text-green-500">Land</span></span>
+                        <span class="text-[10px] tracking-[0.2em] uppercase text-zinc-500 font-bold">Exotics</span>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm max-w-xs uppercase font-bold tracking-tighter">Premium genetics bred in the heart of Virginia.</p>
+            </div>
+            <div class="flex gap-8 text-2xl text-white">
+                <a href="https://www.instagram.com/savage_land_exotics757/" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100087970806429" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-facebook"></i></a>
+            </div>
+            <div class="text-right">
+                <p class="text-[10px] text-gray-700 max-w-sm leading-tight uppercase">Seeds are sold strictly for novelty and preservation purposes. Please follow local regulations.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentCategory = '';
+
+        const categories = {
+            'regular': { title: 'Regular Photoperiod', desc: 'Breeder genetics for pheno hunting.' },
+            'feminized': { title: 'Feminized Photoperiod', desc: 'Elite genetics for simplified growing.' },
+            'auto': { title: 'Feminized Autoflower', desc: 'Fast turnaround, exotic results.' }
+        };
+
+        const productData = {
+            'regular': [
+                { name: 'Local Speedway (Reg)', img: 'SLE.png' },
+                { name: 'Mr. Driscoll (Reg)', img: 'SLE.png' },
+				{ name: 'Deebo Skunk (Reg)', img: 'SLE.png' },
+				{ name: 'Southern Cut Skunk (Reg)', img: 'SLE.png' },
+				{ name: 'Outlaw Skunk (Reg)', img: 'SLE.png' },
+				{ name: '757 Skunk (Reg)', img: 'SLE.png' },
+				{ name: 'Local Savage (Reg)', img: 'SLE.png' },
+				{ name: 'Stankalicious (Reg)', img: 'SLE.png' },
+				{ name: 'Diabolic Tutor (Reg)', img: 'SLE.png' },
+				{ name: 'Totally Pucked (Reg)', img: 'SLE.png' },
+				{ name: 'Dirty South Diesel (Reg)', img: 'SLE.png' },
+				{ name: 'Badd Applez (Reg)', img: 'SLE.png' }
+            ],
+            'feminized': [
+                { name: 'Virginia Cake (Fem)', img: 'https://images.unsplash.com/photo-1599395171120-1a6176378e90?auto=format&fit=crop&q=80&w=400' },
+                { name: 'Exotic Punch (Fem)', img: 'https://images.unsplash.com/photo-1533604195573-05973950268e?auto=format&fit=crop&get=80&w=400' }
+            ],
+            'auto': [
+                { name: 'Turbo Savage (Auto)', img: 'https://images.unsplash.com/photo-1598516087515-585a975612c9?auto=format&fit=crop&q=80&w=400' },
+                { name: 'Blue Dream (Auto)', img: 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?auto=format&fit=crop&q=80&w=400' }
+            ]
+        };
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function showPage(pageId) {
+            window.scrollTo(0,0);
+            document.querySelectorAll('.page-transition').forEach(p => p.classList.remove('page-active'));
+
+            if (['regular', 'feminized', 'auto'].includes(pageId)) {
+                currentCategory = pageId;
+                document.getElementById('product-listing').classList.add('page-active');
+                updateListingUI();
+                renderProducts();
+            } else {
+                document.getElementById(pageId).classList.add('page-active');
+            }
+            gsap.from(".page-active", { duration: 0.5, opacity: 0, y: 15 });
+        }
+
+        function updateListingUI() {
+            const cat = categories[currentCategory];
+            const titleEl = document.getElementById('listing-title');
+            const descEl = document.getElementById('listing-desc');
+            if(titleEl) titleEl.innerText = cat.title;
+            if(descEl) descEl.innerText = cat.desc;
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            const data = productData[currentCategory] || [];
+            grid.innerHTML = data.map(strain => `
+                <div class="seed-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative bg-zinc-800">
+                        <img src="${strain.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="${strain.name}">
+                    </div>
+                    <div class="p-6 text-white">
+                        <h4 class="font-bold text-lg mb-4 uppercase italic tracking-tighter">${strain.name}</h4>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-black text-green-500">$50.00</span>
+                            <button class="px-4 py-2 rounded-lg bg-zinc-800 hover:bg-green-600 transition text-xs font-bold uppercase">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            gsap.from(".seed-card", { duration: 0.6, opacity: 0, y: 30, stagger: 0.05 });
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contactForm').classList.add('hidden');
+            document.getElementById('formSuccess').classList.remove('hidden');
+        }
+
+        function resetContactForm() {
+            document.getElementById('contactForm').reset();
+            document.getElementById('contactForm').classList.remove('hidden');
+            document.getElementById('formSuccess').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
