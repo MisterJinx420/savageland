@@ -16,11 +16,7 @@
             --cannabis-green: #2ecc71;
             --savage-purple: #8e44ad;
             --exotic-teal: #1abc9c;
-            /* Added high-contrast rainbow for better rendering on hosted sites */
-            --rainbow-grad: linear-gradient(
-                to right, 
-                #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff, #ff0000
-            );
+            --rainbow-grad: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
         }
 
         body {
@@ -34,34 +30,18 @@
             font-family: 'Lexend', sans-serif;
         }
 
-        /* Improved Gradient Text with Fail-safes */
         .gradient-text {
             background: linear-gradient(135deg, var(--cannabis-green), var(--exotic-teal), var(--savage-purple));
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
-            color: var(--cannabis-green); /* Fallback for older browsers */
         }
 
-        /* Optimized Rainbow Flow for GitHub Pages / Hosted Environments */
         .rainbow-text {
-            display: inline-block;
-            background-image: var(--rainbow-grad);
-            background-size: 200% auto;
-            background-clip: text;
+            background: var(--rainbow-grad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* Added specific color fallback if clip fails */
-            color: transparent;
-            animation: rainbow-flow 3s linear infinite;
-            /* Force GPU acceleration to prevent flickering on live servers */
-            transform: translateZ(0);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        @keyframes rainbow-flow {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
+            /* Animation removed as requested */
+            display: inline-block;
         }
 
         .glass-nav {
@@ -91,9 +71,6 @@
             background: var(--rainbow-grad);
             background-size: 200% auto;
             transition: 0.5s;
-            color: white;
-            font-weight: 900;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .btn-rainbow:hover {
@@ -237,9 +214,7 @@
                     <div class="bg-gradient-to-r from-zinc-900 to-black border border-zinc-800 rounded-[3rem] p-8 md:p-16 relative overflow-hidden">
                         <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-purple-500/10 blur-[120px] rounded-full"></div>
                         <div class="relative z-10 text-center max-w-4xl mx-auto">
-                            <h2 class="text-5xl md:text-7xl font-black uppercase italic mb-6 leading-tight">
-                                <span class="rainbow-text">Rainbow Road</span>
-                            </h2>
+                            <h2 class="text-5xl md:text-7xl font-black uppercase italic mb-6 rainbow-text leading-tight">Rainbow Road</h2>
                             <p class="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed font-semibold">
                                 Join us Friday Nights in the Savage Land Playground as racers go down the rainbow road for a chance to win some Savage Gear!
                             </p>
@@ -255,9 +230,7 @@
         <!-- Rainbow Road Page -->
         <section id="rainbow" class="page-transition px-6 max-w-7xl mx-auto py-12">
             <div class="text-center mb-16">
-                <h1 class="text-6xl md:text-8xl font-black uppercase italic mb-4">
-                    <span class="rainbow-text">Rainbow Road</span>
-                </h1>
+                <h1 class="text-6xl md:text-8xl font-black uppercase italic mb-4 rainbow-text">Rainbow Road</h1>
                 <p class="text-xl text-gray-400 uppercase tracking-[0.5em]">The Savage Land Playground</p>
             </div>
             
@@ -303,7 +276,7 @@
                     </div>
                     <div class="order-1 md:order-2">
                         <div class="rounded-3xl overflow-hidden border border-zinc-700 bg-zinc-800 aspect-square shadow-2xl group">
-                            <img src="high_box_placeholder.jpg" alt="Daily High Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/600?text=Daily+High+Box+Image'">
+                            <img src="DHCChristmas.jpg" alt="Daily High Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/600?text=Daily+High+Box+Image'">
                         </div>
                     </div>
                 </div>
@@ -321,26 +294,6 @@
 
             <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <!-- Products injected via JS -->
-            </div>
-        </section>
-
-        <!-- Promos Page -->
-        <section id="promos" class="page-transition px-6 max-w-7xl mx-auto py-12">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl md:text-7xl font-black uppercase mb-4 gradient-text">Current Promos</h2>
-                <p class="text-xl text-gray-500 uppercase tracking-widest font-bold">Exclusive Deals for the Savage Tribe</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-zinc-900 border-2 border-green-500/30 p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
-                    <div class="absolute top-4 right-4 bg-green-500 text-black px-4 py-1 rounded-full text-xs font-black uppercase">Active</div>
-                    <h3 class="text-3xl font-black uppercase italic mb-4">Buy 2 Get 1 Free</h3>
-                    <p class="text-gray-400 text-lg mb-6">Add any 3 seed packs to your cart and the lowest priced pack will be automatically free at checkout. Mix and match across all categories!</p>
-                </div>
-                <div class="bg-zinc-900 border-2 border-zinc-800 p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
-                    <div class="absolute top-4 right-4 bg-yellow-500 text-black px-4 py-1 rounded-full text-xs font-black uppercase">Flash Deal</div>
-                    <h3 class="text-3xl font-black uppercase italic mb-4">Free Shipping</h3>
-                    <p class="text-gray-400 text-lg mb-6">All orders over $100 qualify for free tracked shipping within the continental US. No code required.</p>
-                </div>
             </div>
         </section>
 
@@ -389,7 +342,7 @@
             <div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-12 h-12 overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center p-1">
-                        <img src="SLE.png" alt="SLE Logo" class="w-full h-full object-contain" onerror="this.src='https://via.placeholder.com/150?text=SLE'">
+                        <img src="SLE.png" alt="SLE Logo" class="w-full h-full object-contain" onerror="this.src='SLE.png'">
                     </div>
                     <div class="flex flex-col leading-none">
                         <span class="text-xl font-extrabold tracking-tighter uppercase">Savage <span class="text-green-500">Land</span></span>
