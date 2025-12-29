@@ -16,7 +16,11 @@
             --cannabis-green: #2ecc71;
             --savage-purple: #8e44ad;
             --exotic-teal: #1abc9c;
-            --rainbow-grad: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+            /* Added high-contrast rainbow for better rendering on hosted sites */
+            --rainbow-grad: linear-gradient(
+                to right, 
+                #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff, #ff0000
+            );
         }
 
         body {
@@ -30,22 +34,34 @@
             font-family: 'Lexend', sans-serif;
         }
 
+        /* Improved Gradient Text with Fail-safes */
         .gradient-text {
             background: linear-gradient(135deg, var(--cannabis-green), var(--exotic-teal), var(--savage-purple));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            color: var(--cannabis-green); /* Fallback for older browsers */
         }
 
+        /* Optimized Rainbow Flow for GitHub Pages / Hosted Environments */
         .rainbow-text {
-            background: var(--rainbow-grad);
+            display: inline-block;
+            background-image: var(--rainbow-grad);
+            background-size: 200% auto;
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: rainbow-flow 4s linear infinite;
+            /* Added specific color fallback if clip fails */
+            color: transparent;
+            animation: rainbow-flow 3s linear infinite;
+            /* Force GPU acceleration to prevent flickering on live servers */
+            transform: translateZ(0);
+            -webkit-font-smoothing: antialiased;
         }
 
         @keyframes rainbow-flow {
-            to { background-position: 200% center; }
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
         .glass-nav {
@@ -75,6 +91,9 @@
             background: var(--rainbow-grad);
             background-size: 200% auto;
             transition: 0.5s;
+            color: white;
+            font-weight: 900;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .btn-rainbow:hover {
@@ -218,7 +237,9 @@
                     <div class="bg-gradient-to-r from-zinc-900 to-black border border-zinc-800 rounded-[3rem] p-8 md:p-16 relative overflow-hidden">
                         <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-purple-500/10 blur-[120px] rounded-full"></div>
                         <div class="relative z-10 text-center max-w-4xl mx-auto">
-                            <h2 class="text-5xl md:text-7xl font-black uppercase italic mb-6 rainbow-text leading-tight">Rainbow Road</h2>
+                            <h2 class="text-5xl md:text-7xl font-black uppercase italic mb-6 leading-tight">
+                                <span class="rainbow-text">Rainbow Road</span>
+                            </h2>
                             <p class="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed font-semibold">
                                 Join us Friday Nights in the Savage Land Playground as racers go down the rainbow road for a chance to win some Savage Gear!
                             </p>
@@ -234,7 +255,9 @@
         <!-- Rainbow Road Page -->
         <section id="rainbow" class="page-transition px-6 max-w-7xl mx-auto py-12">
             <div class="text-center mb-16">
-                <h1 class="text-6xl md:text-8xl font-black uppercase italic mb-4 rainbow-text">Rainbow Road</h1>
+                <h1 class="text-6xl md:text-8xl font-black uppercase italic mb-4">
+                    <span class="rainbow-text">Rainbow Road</span>
+                </h1>
                 <p class="text-xl text-gray-400 uppercase tracking-[0.5em]">The Savage Land Playground</p>
             </div>
             
@@ -280,18 +303,24 @@
                     </div>
                     <div class="order-1 md:order-2">
                         <div class="rounded-3xl overflow-hidden border border-zinc-700 bg-zinc-800 aspect-square shadow-2xl group">
-                            <img src="DHCChristmas.jpg" alt="Daily High Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/600?text=Daily+High+Box+Image'">
+                            <img src="high_box_placeholder.jpg" alt="Daily High Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/600?text=Daily+High+Box+Image'">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Merch Page (Hidden default - Link goes external, but kept for UI structure) -->
-        <section id="merch" class="page-transition px-6 max-w-7xl mx-auto py-12">
-            <h2 class="text-5xl font-black uppercase mb-2 text-center">Savage Merch</h2>
-            <div class="text-center mt-12">
-                <a href="https://nanny-rootz.creator-spring.com/" target="_blank" class="btn-primary inline-block px-12 py-4 rounded-full font-bold uppercase tracking-widest text-sm text-white">Visit Shop</a>
+        <!-- Product Page Template -->
+        <section id="product-listing" class="page-transition px-6 max-w-7xl mx-auto py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+                <div>
+                    <h2 id="listing-title" class="text-4xl font-black uppercase mb-2">Genetics</h2>
+                    <p id="listing-desc" class="text-gray-400">Hand-selected strains for elite growers.</p>
+                </div>
+            </div>
+
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Products injected via JS -->
             </div>
         </section>
 
@@ -312,20 +341,6 @@
                     <h3 class="text-3xl font-black uppercase italic mb-4">Free Shipping</h3>
                     <p class="text-gray-400 text-lg mb-6">All orders over $100 qualify for free tracked shipping within the continental US. No code required.</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Product Page Template -->
-        <section id="product-listing" class="page-transition px-6 max-w-7xl mx-auto py-12">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
-                <div>
-                    <h2 id="listing-title" class="text-4xl font-black uppercase mb-2">Genetics</h2>
-                    <p id="listing-desc" class="text-gray-400">Hand-selected strains for elite growers.</p>
-                </div>
-            </div>
-
-            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Products injected via JS -->
             </div>
         </section>
 
@@ -374,7 +389,7 @@
             <div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-12 h-12 overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center p-1">
-                        <img src="SLE.png" alt="SLE Logo" class="w-full h-full object-contain" onerror="this.src='SLE.png'">
+                        <img src="SLE.png" alt="SLE Logo" class="w-full h-full object-contain" onerror="this.src='https://via.placeholder.com/150?text=SLE'">
                     </div>
                     <div class="flex flex-col leading-none">
                         <span class="text-xl font-extrabold tracking-tighter uppercase">Savage <span class="text-green-500">Land</span></span>
@@ -406,16 +421,16 @@
             'regular': [
                 { name: 'Local Speedway (Reg)', img: 'SLE.png' },
                 { name: 'Mr. Driscoll (Reg)', img: 'SLE.png' },
-				{ name: 'Deebo Skunk (Reg)', img: 'SLE.png' },
-				{ name: 'Southern Cut Skunk (Reg)', img: 'SLE.png' },
-				{ name: 'Outlaw Skunk (Reg)', img: 'SLE.png' },
-				{ name: '757 Skunk (Reg)', img: 'SLE.png' },
-				{ name: 'Local Savage (Reg)', img: 'SLE.png' },
-				{ name: 'Stankalicious (Reg)', img: 'SLE.png' },
-				{ name: 'Diabolic Tutor (Reg)', img: 'SLE.png' },
-				{ name: 'Totally Pucked (Reg)', img: 'SLE.png' },
-				{ name: 'Dirty South Diesel (Reg)', img: 'SLE.png' },
-				{ name: 'Badd Applez (Reg)', img: 'SLE.png' }
+                { name: 'Deebo Skunk (Reg)', img: 'SLE.png' },
+                { name: 'Southern Cut Skunk (Reg)', img: 'SLE.png' },
+                { name: 'Outlaw Skunk (Reg)', img: 'SLE.png' },
+                { name: '757 Skunk (Reg)', img: 'SLE.png' },
+                { name: 'Local Savage (Reg)', img: 'SLE.png' },
+                { name: 'Stankalicious (Reg)', img: 'SLE.png' },
+                { name: 'Diabolic Tutor (Reg)', img: 'SLE.png' },
+                { name: 'Totally Pucked (Reg)', img: 'SLE.png' },
+                { name: 'Dirty South Diesel (Reg)', img: 'SLE.png' },
+                { name: 'Badd Applez (Reg)', img: 'SLE.png' }
             ],
             'feminized': [
                 { name: 'Virginia Cake (Fem)', img: 'https://images.unsplash.com/photo-1599395171120-1a6176378e90?auto=format&fit=crop&q=80&w=400' },
