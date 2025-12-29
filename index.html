@@ -38,17 +38,6 @@
             color: transparent;
         }
 
-        .rainbow-text {
-            background: var(--rainbow-grad);
-            background-image: var(--rainbow-grad);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            /* Ensuring no fallback color interferes with the clip */
-            color: rgba(255, 255, 255, 0); 
-            display: inline-block;
-        }
-
         .glass-nav {
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(10px);
@@ -219,7 +208,10 @@
                     <div class="bg-gradient-to-r from-zinc-900 to-black border border-zinc-800 rounded-[3rem] p-8 md:p-16 relative overflow-hidden">
                         <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-purple-500/10 blur-[120px] rounded-full"></div>
                         <div class="relative z-10 text-center max-w-4xl mx-auto">
-                            <h2 class="text-5xl md:text-7xl font-black uppercase italic mb-6 rainbow-text leading-tight">Rainbow Road</h2>
+                            <!-- Image Spot Replacing Rainbow Text -->
+                            <div class="mb-8 flex justify-center">
+                                <img src="RainbowRoadLogo.png" alt="Rainbow Road" class="max-w-full h-auto max-h-[120px] object-contain" onerror="this.src='https://via.placeholder.com/600x150?text=RAINBOW+ROAD+LOGO'">
+                            </div>
                             <p class="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed font-semibold">
                                 Join us Friday Nights in the Savage Land Playground as racers go down the rainbow road for a chance to win some Savage Gear!
                             </p>
@@ -235,7 +227,10 @@
         <!-- Rainbow Road Page -->
         <section id="rainbow" class="page-transition px-6 max-w-7xl mx-auto py-12">
             <div class="text-center mb-16">
-                <h1 class="text-6xl md:text-8xl font-black uppercase italic mb-4 rainbow-text">Rainbow Road</h1>
+                <!-- Image Spot Replacing Rainbow Text Header -->
+                <div class="flex justify-center mb-6">
+                    <img src="RainbowRoadHeader.png" alt="Rainbow Road" class="max-w-full h-auto max-h-[200px] object-contain" onerror="this.src='https://via.placeholder.com/800x250?text=RAINBOW+ROAD'">
+                </div>
                 <p class="text-xl text-gray-400 uppercase tracking-[0.5em]">The Savage Land Playground</p>
             </div>
             
