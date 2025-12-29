@@ -35,14 +35,17 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            color: transparent;
         }
 
         .rainbow-text {
             background: var(--rainbow-grad);
+            background-image: var(--rainbow-grad);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            color: transparent;
+            /* Ensuring no fallback color interferes with the clip */
+            color: rgba(255, 255, 255, 0); 
             display: inline-block;
         }
 
