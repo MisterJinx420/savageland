@@ -48,6 +48,7 @@
             background: var(--card-bg);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
         }
 
         .seed-card:hover {
@@ -297,6 +298,16 @@
             </div>
         </section>
 
+        <!-- Product Detail Page (Dynamic) -->
+        <section id="product-detail" class="page-transition px-6 max-w-7xl mx-auto py-12">
+            <button onclick="showPage(currentCategory)" class="text-zinc-500 hover:text-white transition mb-8 flex items-center gap-2 uppercase text-xs font-bold tracking-widest">
+                <i class="fas fa-arrow-left"></i> Back to ${currentCategory}
+            </button>
+            <div id="detail-content">
+                <!-- Detail content injected via JS -->
+            </div>
+        </section>
+
         <!-- Wholesale Page -->
         <section id="wholesale" class="page-transition max-w-4xl mx-auto px-6 py-12">
             <h2 class="text-5xl font-black mb-6 uppercase">Wholesale Program</h2>
@@ -363,6 +374,7 @@
 
     <script>
         let currentCategory = '';
+        let currentProduct = null;
 
         const categories = {
             'regular': { title: 'Regular Photoperiod', desc: 'Breeder genetics for pheno hunting.' },
@@ -370,145 +382,152 @@
             'auto': { title: 'Feminized Autoflower', desc: 'Fast turnaround, exotic results.' }
         };
 
+        const defaultMetadata = {
+            genetics: "Savage Land Proprietary Cross",
+            terpenes: "Myrcene, Limonene, Caryophyllene",
+            flowering: "8-9 Weeks",
+            description: "A premium selection from the Savage Land vault. Bred for high resin production, complex terpene profiles, and heavy yields."
+        };
+
         const productData = {
             'regular': [
-                { name: 'Local Speedway (Reg)', img: 'SLE.png' },
-                { name: 'Mr. Driscoll (Reg)', img: 'SLE.png' },
-                { name: 'Deebo Skunk (Reg)', img: 'SLE.png' },
-                { name: 'Southern Cut Skunk (Reg)', img: 'SLE.png' },
-                { name: 'Outlaw Skunk (Reg)', img: 'SLE.png' },
-                { name: '757 Skunk (Reg)', img: 'SLE.png' },
-                { name: 'Local Savage (Reg)', img: 'SLE.png' },
-                { name: 'Stankalicious (Reg)', img: 'SLE.png' },
-                { name: 'Diabolic Tutor (Reg)', img: 'SLE.png' },
-                { name: 'Totally Pucked (Reg)', img: 'SLE.png' },
-                { name: 'Dirty South Diesel (Reg)', img: 'SLE.png' },
-                { name: 'Badd Applez (Reg)', img: 'SLE.png' },
-                { name: 'Local Skunk (Reg)', img: 'SLE.png' },
-                { name: 'Gorilla Nutz (Reg)', img: 'SLE.png' },
-                { name: 'Freak N Fluff (Reg)', img: 'SLE.png' },
-                { name: 'Toasty Marshmallows (Reg)', img: 'SLE.png' },
-                { name: 'Death By Chocolate (Reg)', img: 'SLE.png' },
-                { name: 'Sinful Cookies (Reg)', img: 'SLE.png' },
-                { name: 'Strawberry Gorilla Cookies (Reg)', img: 'SLE.png' },
-                { name: 'Blue Tootsie Popz (Reg)', img: 'SLE.png' },
-                { name: 'Hott Mamba (Reg)', img: 'SLE.png' },
-                { name: 'Chocolate Marshmallow F2 (Reg)', img: 'SLE.png' },
-                { name: 'Stanky Yankee (Reg)', img: 'SLE.png' },
-                { name: 'Stay Puft MF (Reg)', img: 'SLE.png' },
-                { name: 'Chocolate Pineapples (Reg)', img: 'SLE.png' },
-                { name: 'Krazy Glue (Reg)', img: 'SLE.png' },
-                { name: 'Banana Super Glue (Reg)', img: 'SLE.png' },
-                { name: 'Bussin Grapes (Reg)', img: 'SLE.png' },
-                { name: 'Zen Gorilla (Reg)', img: 'SLE.png' },
-                { name: 'Concrete Jungle (Reg)', img: 'SLE.png' },
-                { name: 'GMO Future (Reg)', img: 'SLE.png' },
-                { name: 'Drunken Space Monkey (Reg)', img: 'SLE.png' },
-                { name: 'Great Dismal Skunk (Reg)', img: 'SLE.png' },
-                { name: 'Cane Corso F2 (Reg)', img: 'SLE.png' },
-                { name: 'Purple Gorilla Warfare (Reg)', img: 'SLE.png' },
-                { name: 'Event Horizon (Reg)', img: 'SLE.png' },
-                { name: 'Blueberry Starfighter Cookies (Reg)', img: 'SLE.png' }
+                { name: 'Local Speedway (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Mr. Driscoll (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Deebo Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Southern Cut Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Outlaw Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: '757 Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Local Savage (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Stankalicious (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Diabolic Tutor (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Totally Pucked (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Dirty South Diesel (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Badd Applez (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Local Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Gorilla Nutz (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Freak N Fluff (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Toasty Marshmallows (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Death By Chocolate (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Sinful Cookies (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Strawberry Gorilla Cookies (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Blue Tootsie Popz (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Hott Mamba (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Chocolate Marshmallow F2 (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Stanky Yankee (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Stay Puft MF (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Chocolate Pineapples (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Krazy Glue (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Banana Super Glue (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Bussin Grapes (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Zen Gorilla (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Concrete Jungle (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'GMO Future (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Drunken Space Monkey (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Great Dismal Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Cane Corso F2 (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Purple Gorilla Warfare (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Event Horizon (Reg)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Blueberry Starfighter Cookies (Reg)', img: 'SLE.png', ...defaultMetadata }
             ],
             'feminized': [
-                { name: 'Cohoke Crossing (Fem)', img: 'SLE.png' },
-                { name: 'Local Legend (Fem)', img: 'SLE.png' },
-                { name: 'Terminal Lucidity (Fem)', img: 'SLE.png' },
-                { name: 'Boardwalk Carrion (Fem)', img: 'SLE.png' },
-                { name: 'Virginia Roadkill (Fem)', img: 'SLE.png' },
-                { name: 'SaVAge Skunk (Fem)', img: 'SLE.png' },
-                { name: 'Buckroe Skunk (Fem)', img: 'SLE.png' },
-                { name: 'Killer Haze (Fem)', img: 'SLE.png' },
-                { name: 'Hillbilly Killer (Fem)', img: 'SLE.png' },
-                { name: '4 Banger (Fem)', img: 'SLE.png' },
-                { name: 'Roanoke Stank (Fem)', img: 'SLE.png' },
-                { name: 'Pure Nostalgia (Fem)', img: 'SLE.png' },
-                { name: 'Interstate 264 (Fem)', img: 'SLE.png' },
-                { name: 'Interstate 664 (Fem)', img: 'SLE.png' },
-                { name: 'Hulk Smash Cookies (Fem)', img: 'SLE.png' },
-                { name: 'SaVAge Star (Fem)', img: 'SLE.png' },
-                { name: 'Death Star (Fem)', img: 'SLE.png' },
-                { name: 'Lemon Ku$h Cake Haze (Fem)', img: 'SLE.png' },
-                { name: 'Alien Diesel Cakez (Fem)', img: 'SLE.png' },
-                { name: 'Buckroe Ether (Fem)', img: 'SLE.png' },
-                { name: 'Torpor Skunk (Fem)', img: 'SLE.png' },
-                { name: 'Fatso OG (Fem)', img: 'SLE.png' },
-                { name: 'Jelly Goobers (Fem)', img: 'SLE.png' },
-                { name: 'Cold Feet (Fem)', img: 'SLE.png' },
-                { name: 'Bulletproof Cupp (Fem)', img: 'SLE.png' },
-                { name: 'Whoop Azz (Fem)', img: 'SLE.png' },
-                { name: 'Big Willie Sour (Fem)', img: 'SLE.png' },
-                { name: 'Bossman Special (Fem)', img: 'SLE.png' },
-                { name: 'Tropical Foot Punch (Fem)', img: 'SLE.png' },
-                { name: 'Booty Beach (Fem)', img: 'SLE.png' },
-                { name: 'The Dona (Fem)', img: 'SLE.png' },
-                { name: 'Orange Blossom Special (Fem)', img: 'SLE.png' },
-                { name: 'Stripper Sweat (Fem)', img: 'SLE.png' },
-                { name: 'Fried Oreoz (Fem)', img: 'SLE.png' },
-                { name: 'SaVage Cookies (Fem)', img: 'SLE.png' },
-                { name: 'She-Hulk (Fem)', img: 'SLE.png' },
-                { name: 'Cocoa Pebbles (Fem)', img: 'SLE.png' },
-                { name: 'Milf & Cookies (Fem)', img: 'SLE.png' },
-                { name: 'SaVAge Cream Pie (Fem)', img: 'SLE.png' },
-                { name: 'Virginia Pines (Fem)', img: 'SLE.png' },
-                { name: 'Bananium Slumber (Fem)', img: 'SLE.png' },
-                { name: 'Slumber Cake #22 S1 (Fem)', img: 'SLE.png' },
-                { name: 'Crushed Oreoz (Fem)', img: 'SLE.png' },
-                { name: 'Oreoz S1 (Fem)', img: 'SLE.png' },
-                { name: 'SaVAge Breath (Fem)', img: 'SLE.png' },
-                { name: 'SaVAge King S1 (Fem)', img: 'SLE.png' },
-                { name: 'Royal Gas (Fem)', img: 'SLE.png' },
-                { name: 'Coastal Blizzard (Fem)', img: 'SLE.png' },
-                { name: 'Pop Rox (Fem)', img: 'SLE.png' },
-                { name: 'SaVAge Queen (Fem)', img: 'SLE.png' },
-                { name: 'Neptune Bakery (Fem)', img: 'SLE.png' },
-                { name: 'Hood Cookies (Fem)', img: 'SLE.png' },
-                { name: 'Puppy Breath S1 (Fem)', img: 'SLE.png' },
-                { name: '90\'s Kid (Fem)', img: 'SLE.png' },
-                { name: 'Royal Bitch (Fem)', img: 'SLE.png' },
-                { name: 'Creamy WAP (Fem)', img: 'SLE.png' },
-                { name: 'Puppy Monkey Baby (Fem)', img: 'SLE.png' },
-                { name: 'Southern Baddie (Fem)', img: 'SLE.png' },
-                { name: 'Battle Zaza (Fem)', img: 'SLE.png' },
-                { name: 'Frosted Dawgg (Fem)', img: 'SLE.png' },
-                { name: 'Baked & Beautiful (Fem)', img: 'SLE.png' },
-                { name: 'Badd Dogg (Fem)', img: 'SLE.png' },
-                { name: 'Dirt Bastard (Fem)', img: 'SLE.png' },
-                { name: 'Sunnyvale Slayer (Fem)', img: 'SLE.png' },
-                { name: 'Pinto Breath (Fem)', img: 'SLE.png' },
-                { name: 'Stupid Fuel (Fem)', img: 'SLE.png' },
-                { name: 'Mega Milkerz (Fem)', img: 'SLE.png' },
-                { name: 'Miami Cakez (Fem)', img: 'SLE.png' }
+                { name: 'Cohoke Crossing (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Local Legend (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Terminal Lucidity (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Boardwalk Carrion (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Virginia Roadkill (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'SaVAge Skunk (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Buckroe Skunk (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Killer Haze (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Hillbilly Killer (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: '4 Banger (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Roanoke Stank (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Pure Nostalgia (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Interstate 264 (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Interstate 664 (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Hulk Smash Cookies (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'SaVAge Star (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Death Star (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Lemon Ku$h Cake Haze (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Alien Diesel Cakez (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Buckroe Ether (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Torpor Skunk (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Fatso OG (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Jelly Goobers (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Cold Feet (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Bulletproof Cupp (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Whoop Azz (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Big Willie Sour (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Bossman Special (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Tropical Foot Punch (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Booty Beach (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'The Dona (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Orange Blossom Special (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Stripper Sweat (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Fried Oreoz (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'SaVage Cookies (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'She-Hulk (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Cocoa Pebbles (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Milf & Cookies (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'SaVAge Cream Pie (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Virginia Pines (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Bananium Slumber (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Slumber Cake #22 S1 (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Crushed Oreoz (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Oreoz S1 (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'SaVAge Breath (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'SaVAge King S1 (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Royal Gas (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Coastal Blizzard (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Pop Rox (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'SaVAge Queen (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Neptune Bakery (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Hood Cookies (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Puppy Breath S1 (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: '90\'s Kid (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Royal Bitch (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Creamy WAP (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Puppy Monkey Baby (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Southern Baddie (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Battle Zaza (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Frosted Dawgg (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Baked & Beautiful (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Badd Dogg (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Dirt Bastard (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Sunnyvale Slayer (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Pinto Breath (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Stupid Fuel (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Mega Milkerz (Fem)', img: 'SLE.png', ...defaultMetadata },
+                { name: 'Miami Cakez (Fem)', img: 'SLE.png', ...defaultMetadata }
             ],
             'auto': [
-                { name: 'Planet Pluto (Auto)', img: 'SLE.png' },
-                { name: 'Planet Stuffed (Auto)', img: 'SLE.png' },
-                { name: 'Planet Dankness (Auto)', img: 'SLE.png' },
-                { name: 'Planet Wednesday (Auto)', img: 'SLE.png' },
-                { name: 'Planet Delicious (Auto)', img: 'SLE.png' },
-                { name: 'Think Savage (Auto)', img: 'SLE.png' },
-                { name: 'Drive By (Auto)', img: 'SLE.png' },
-                { name: 'Chocolate Banana Splitz (Auto)', img: 'SLE.png' },
-                { name: 'Banana Clipz (Auto)', img: 'SLE.png' },
-                { name: 'Gas War (Auto)', img: 'SLE.png' },
-                { name: 'Blueberry Hashplant (Auto)', img: 'SLE.png' },
-                { name: 'Mango Berry Sherb (Auto)', img: 'SLE.png' },
-                { name: 'Banana Berry Runtz (Auto)', img: 'SLE.png' },
-                { name: 'Banana Berry Ghani (Auto)', img: 'SLE.png' },
-                { name: 'BOG Berry Pie (Auto)', img: 'SLE.png' },
-                { name: 'Remember Berry Haze (Auto)', img: 'SLE.png' },
-                { name: 'Bigfoot Blues (Auto)', img: 'SLE.png' },
-                { name: 'Blue Angels (Auto)', img: 'SLE.png' },
-                { name: 'Scout Berries (Auto)', img: 'SLE.png' },
-                { name: 'Gorilla Berries (Auto)', img: 'SLE.png' },
-                { name: 'Widow Berry (Auto)', img: 'SLE.png' },
-                { name: 'Bubba Berry Ku$h (Auto)', img: 'SLE.png' },
-                { name: 'Something Blue (Auto)', img: 'SLE.png' },
-                { name: 'Stars N Straps (Auto)', img: 'SLE.png' },
-                { name: 'Romulan Ale (Auto)', img: 'SLE.png' },
-                { name: 'Frozen Neptune (Auto)', img: 'SLE.png' },
-                { name: 'Double Berry MAC (Auto)', img: 'SLE.png' },
-                { name: 'Double Berry Gelato (Auto)', img: 'SLE.png' }
+                { name: 'Planet Pluto (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Planet Stuffed (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Planet Dankness (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Planet Wednesday (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Planet Delicious (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Think Savage (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Drive By (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Chocolate Banana Splitz (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Banana Clipz (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Gas War (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Blueberry Hashplant (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Mango Berry Sherb (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Banana Berry Runtz (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Banana Berry Ghani (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'BOG Berry Pie (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Remember Berry Haze (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Bigfoot Blues (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Blue Angels (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Scout Berries (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Gorilla Berries (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Widow Berry (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Bubba Berry Ku$h (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Something Blue (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Stars N Straps (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Romulan Ale (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Frozen Neptune (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Double Berry MAC (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
+                { name: 'Double Berry Gelato (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" }
             ]
         };
 
@@ -531,6 +550,80 @@
             gsap.from(".page-active", { duration: 0.5, opacity: 0, y: 15 });
         }
 
+        function viewProduct(category, index) {
+            currentCategory = category;
+            currentProduct = productData[category][index];
+            
+            const detailSection = document.getElementById('product-detail');
+            const content = document.getElementById('detail-content');
+            
+            content.innerHTML = `
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    <div class="rounded-[3rem] overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl sticky top-32">
+                        <img src="${currentProduct.img}" class="w-full aspect-square object-contain p-12" alt="${currentProduct.name}">
+                    </div>
+                    <div class="space-y-12">
+                        <div>
+                            <span class="text-green-500 font-bold uppercase tracking-widest text-sm mb-2 block">${currentCategory} Collection</span>
+                            <h2 class="text-5xl md:text-6xl font-black uppercase italic tracking-tighter mb-4">${currentProduct.name}</h2>
+                            <p class="text-3xl font-black text-white">$50.00</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-zinc-900/50 p-6 rounded-3xl border border-zinc-800">
+                                <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-1">Flowering Time</span>
+                                <span class="text-white font-bold">${currentProduct.flowering}</span>
+                            </div>
+                            <div class="bg-zinc-900/50 p-6 rounded-3xl border border-zinc-800">
+                                <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-1">Genetics</span>
+                                <span class="text-white font-bold">${currentProduct.genetics}</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold uppercase italic">Strain Description</h3>
+                            <p class="text-zinc-400 leading-relaxed">${currentProduct.description}</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold uppercase italic">Terpene Profile</h3>
+                            <p class="text-zinc-400 italic">${currentProduct.terpenes}</p>
+                        </div>
+
+                        <div class="pt-8 border-t border-zinc-800 flex flex-wrap items-center gap-6">
+                            <div class="flex items-center bg-zinc-900 rounded-full border border-zinc-800 p-1">
+                                <button onclick="updateQty(-1)" class="w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-white transition"><i class="fas fa-minus"></i></button>
+                                <input type="number" id="qty-input" value="1" min="1" class="w-12 bg-transparent text-center font-bold !border-none !p-0">
+                                <button onclick="updateQty(1)" class="w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-white transition"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <button onclick="addToCart()" class="btn-primary flex-1 py-5 rounded-full font-black uppercase tracking-[0.2em] shadow-xl text-white">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            showPage('product-detail');
+        }
+
+        function updateQty(val) {
+            const input = document.getElementById('qty-input');
+            let current = parseInt(input.value);
+            if (current + val >= 1) input.value = current + val;
+        }
+
+        function addToCart() {
+            const qty = document.getElementById('qty-input').value;
+            // Simplified feedback for visual purposes
+            const btn = document.querySelector('.btn-primary');
+            const originalText = btn.innerText;
+            btn.innerText = `Added ${qty} to Cart!`;
+            btn.style.background = 'linear-gradient(135deg, #8e44ad, #1abc9c)';
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = '';
+            }, 2000);
+        }
+
         function updateListingUI() {
             const cat = categories[currentCategory];
             const titleEl = document.getElementById('listing-title');
@@ -542,16 +635,16 @@
         function renderProducts() {
             const grid = document.getElementById('product-grid');
             const data = productData[currentCategory] || [];
-            grid.innerHTML = data.map(strain => `
-                <div class="seed-card rounded-2xl overflow-hidden group">
-                    <div class="h-64 overflow-hidden relative bg-zinc-800">
-                        <img src="${strain.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="${strain.name}">
+            grid.innerHTML = data.map((strain, index) => `
+                <div class="seed-card rounded-2xl overflow-hidden group" onclick="viewProduct('${currentCategory}', ${index})">
+                    <div class="h-64 overflow-hidden relative bg-zinc-800 flex items-center justify-center p-8">
+                        <img src="${strain.img}" class="max-w-full max-h-full object-contain group-hover:scale-110 transition duration-500" alt="${strain.name}">
                     </div>
                     <div class="p-6 text-white">
                         <h4 class="font-bold text-lg mb-4 uppercase italic tracking-tighter">${strain.name}</h4>
                         <div class="flex justify-between items-center">
                             <span class="text-xl font-black text-green-500">$50.00</span>
-                            <button class="px-4 py-2 rounded-lg bg-zinc-800 hover:bg-green-600 transition text-xs font-bold uppercase">Add To Cart</button>
+                            <span class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">View Details</span>
                         </div>
                     </div>
                 </div>
@@ -573,4 +666,3 @@
     </script>
 </body>
 </html>
-
