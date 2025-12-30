@@ -123,13 +123,14 @@
                 </div>
                 <div class="flex flex-col leading-none">
                     <span class="text-xl font-extrabold tracking-tighter uppercase">Savage <span class="text-green-500">Land</span></span>
-                    <span class="text-[10px] tracking-[0.2em] uppercase text-zinc-500 font-bold">Exotics</span>
+                    <span class="text-[9px] tracking-[0.2em] uppercase text-zinc-500 font-bold">Exotics</span>
                 </div>
             </div>
 
             <!-- Desktop Nav -->
-            <div class="hidden lg:flex items-center space-x-6 text-sm font-semibold uppercase tracking-widest text-white">
+            <div class="hidden lg:flex items-center space-x-5 text-sm font-semibold uppercase tracking-widest text-white">
                 <button onclick="showPage('home')" class="hover:text-green-400 transition">Home</button>
+                <button onclick="showPage('lines')" class="text-green-500 hover:text-white transition">Savage Lines</button>
                 <button onclick="showPage('regular')" class="hover:text-green-400 transition">Regular</button>
                 <button onclick="showPage('feminized')" class="hover:text-green-400 transition">Feminized</button>
                 <button onclick="showPage('auto')" class="hover:text-green-400 transition">Autoflower</button>
@@ -161,6 +162,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-black flex flex-col p-6 space-y-4 border-b border-gray-800 text-white text-center uppercase tracking-widest font-bold text-sm">
             <button onclick="showPage('home'); toggleMobileMenu()">Home</button>
+            <button onclick="showPage('lines'); toggleMobileMenu()" class="text-green-500">Savage Lines</button>
             <button onclick="showPage('regular'); toggleMobileMenu()">Regular Photoperiod</button>
             <button onclick="showPage('feminized'); toggleMobileMenu()">Feminized Photoperiod</button>
             <button onclick="showPage('auto'); toggleMobileMenu()">Feminized Autoflower</button>
@@ -251,12 +253,12 @@
                             <p class="text-green-500 font-bold uppercase text-xs tracking-widest mb-4">Feminized Photo</p>
                             <button class="w-full py-3 bg-zinc-800 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-green-500 transition-colors">View Details</button>
                         </div>
-                        <!-- Featured Strain 2: Bubba Berry Ku$h Auto -->
+                        <!-- Featured Strain 2: Bubba Berry Kush Auto -->
                         <div class="seed-card rounded-3xl overflow-hidden p-8 text-center" onclick="viewProduct('auto', 21)">
                             <div class="h-48 flex items-center justify-center mb-6">
-                                <img src="CannabisPlant.jpg" class="max-h-full object-contain" alt="Strain">
+                                <img src="BubbaBerryKush.jpg" class="max-h-full object-contain" alt="Strain">
                             </div>
-                            <h3 class="text-2xl font-bold text-white mb-2 italic">Bubba Berry Ku$h</h3>
+                            <h3 class="text-2xl font-bold text-white mb-2 italic">Bubba Berry Kush</h3>
                             <p class="text-green-500 font-bold uppercase text-xs tracking-widest mb-4">Autoflower</p>
                             <button class="w-full py-3 bg-zinc-800 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-green-500 transition-colors">View Details</button>
                         </div>
@@ -310,12 +312,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="mt-20 text-center">
-                        <h4 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter gradient-text">
-                            "Don't grow average, grow savage!"
-                        </h4>
-                    </div>
                 </div>
             </div>
 
@@ -329,11 +325,131 @@
                                 <img src="RainbowRoadLogo.png" alt="Rainbow Road" class="max-w-full h-auto max-h-[120px] object-contain" onerror="this.src='https://via.placeholder.com/600x150?text=RAINBOW+ROAD+LOGO'">
                             </div>
                             <p class="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed font-semibold">
-                                Join us Friday Nights in the Savage Land Playground as racers go down the rainbow road for a chance to win some Savage Gear!
+                                Join us Friday Nights in the Savage Land Playground as racers go down the rainbow road for a chance to win some Savage gear!
                             </p>
                             <div class="flex justify-center">
                                 <button onclick="showPage('rainbow')" class="btn-rainbow px-14 py-5 rounded-full font-black uppercase tracking-widest text-lg text-white shadow-2xl">Enter the Playground</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="py-12 text-center">
+                <h4 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter gradient-text">
+                    "Don't grow average, grow savage!"
+                </h4>
+            </div>
+        </section>
+
+        <!-- Savage Lines Page -->
+        <section id="lines" class="page-transition px-6 py-12">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-6xl font-black uppercase italic tracking-tighter mb-4">Savage <span class="text-green-500">Lines</span></h2>
+                    <p class="text-zinc-500 uppercase tracking-[0.4em] font-bold text-xs">The Backbone of Our Breeding Program</p>
+                    <div class="w-24 h-1 bg-green-500 mx-auto rounded-full mt-6"></div>
+                </div>
+
+                <!-- 9 Different Items Spot -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+                    <!-- Line Item 1 -->
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
+                            <img src="Oreoz1.jpg" alt="Lineage 1" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                        </div>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Oreoz Fem Photo Line 1</h3>
+                    </div>
+                    <!-- Line Item 2 -->
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
+                            <img src="Oreoz2.jpg" alt="Lineage 2" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                        </div>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Oreoz Fem Photo Line 2</h3>
+                    </div>
+                    <!-- Line Item 3 -->
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
+                            <img src="Line3.jpg" alt="Lineage 3" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                        </div>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Vanilla Future</h3>
+                    </div>
+                    <!-- Line Item 4 -->
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
+                            <img src="Line4.jpg" alt="Lineage 4" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                        </div>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Purple Gorilla</h3>
+                    </div>
+                    <!-- Line Item 5 -->
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
+                            <img src="Line5.jpg" alt="Lineage 5" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                        </div>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Local Legend Cut</h3>
+                    </div>
+                    <!-- Line Item 6 -->
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
+                            <img src="Line6.jpg" alt="Lineage 6" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                        </div>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Southern Baddie</h3>
+                    </div>
+                    <!-- Line Item 7 -->
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
+                            <img src="Line7.jpg" alt="Lineage 7" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                        </div>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Planet Pluto Elite</h3>
+                    </div>
+                    <!-- Line Item 8 -->
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
+                            <img src="Line8.jpg" alt="Lineage 8" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                        </div>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Neptune Bakery</h3>
+                    </div>
+                    <!-- Line Item 9 -->
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
+                            <img src="Line9.jpg" alt="Lineage 9" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                        </div>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Bubba Berry Elite</h3>
+                    </div>
+                </div>
+
+                <!-- Recreated Upcoming Breedings Section -->
+                <div class="bg-black py-24 px-6 border border-zinc-900 rounded-[3rem]">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="text-center mb-16">
+                            <h2 class="text-5xl md:text-6xl font-black uppercase mb-8">Upcoming Breedings</h2>
+                            <div class="w-24 h-1 bg-purple-500 mx-auto rounded-full"></div>
+                            <p class="mt-8 text-zinc-500 uppercase tracking-[0.3em] font-bold text-sm">The Next Generation of Savage Fire</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="group relative rounded-[2rem] overflow-hidden border border-zinc-800 bg-zinc-900 aspect-video md:aspect-auto md:h-[500px]">
+                                <img src="Upcoming1.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" alt="Upcoming Project 1" onerror="this.src='SLE.png'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                                <div class="absolute bottom-10 left-10">
+                                    <span class="bg-purple-500 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest mb-4 inline-block">In Development</span>
+                                    <h3 class="text-3xl font-black uppercase italic tracking-tighter text-white">Project: Twisted Collab</h3>
+                                </div>
+                            </div>
+                            <div class="group relative rounded-[2rem] overflow-hidden border border-zinc-800 bg-zinc-900 aspect-video md:aspect-auto md:h-[500px]">
+                                <img src="Upcoming2.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" alt="Upcoming Project 2" onerror="this.src='SLE.png'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                                <div class="absolute bottom-10 left-10">
+                                    <span class="bg-purple-500 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest mb-4 inline-block">In Development</span>
+                                    <h3 class="text-3xl font-black uppercase italic tracking-tighter text-white">Project: TBA</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 text-center">
+                            <p class="text-gray-400 max-w-2xl mx-auto italic">
+                                We are constantly hunting for the next elite phenotype and crossing legendary lineages. Stay tuned to our social media and the Rainbow Road for official drop dates and testing results.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -374,12 +490,46 @@
                 </div>
             </div>
         </section>
+		
+		<!-- Promos Page -->
+        <section id="promos" class="page-transition px-6 py-12 max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-6xl font-black uppercase italic tracking-tighter mb-4 text-yellow-500">Live <span class="text-white">Promos</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full mt-4"></div>
+            </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+                <!-- Promo Spot 1 -->
+                <div class="bg-zinc-900 border-2 border-green-500/50 rounded-[3rem] p-10 flex flex-col items-center text-center space-y-6 shadow-[0_0_40px_rgba(46,204,113,0.15)]">
+                    <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center text-4xl mb-4">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="text-3xl font-black uppercase italic tracking-tighter text-white">Savage Shipping Deal</h3>
+                    <p class="text-2xl text-zinc-300 font-bold leading-tight">
+                        Free Shipping on orders over <span class="text-green-500">$100</span>. Freebies with every order, the more you order, the more freebies!
+                    </p>
+                </div>
+
+                <!-- Promo Spot 2 -->
+                <div class="bg-zinc-900 border-2 border-yellow-500/50 rounded-[3rem] p-10 flex flex-col items-center text-center space-y-6 shadow-[0_0_40px_rgba(234,179,8,0.15)] relative overflow-hidden">
+                    <div class="absolute top-6 right-6 bg-yellow-500 text-black font-black px-4 py-1 rounded-full text-xs uppercase tracking-widest rotate-3">Grand Opening</div>
+                    <div class="w-20 h-20 bg-yellow-500/20 text-yellow-500 rounded-full flex items-center justify-center text-4xl mb-4">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3 class="text-3xl font-black uppercase italic tracking-tighter text-white">Opening Special</h3>
+                    <p class="text-2xl text-zinc-300 font-bold leading-tight">
+                        Fem Photo S1 6pk <br>
+                        <span class="line-through text-zinc-600">$100</span> marked half off at <span class="text-yellow-500">$50</span> for grand opening sale!
+                    </p>
+                </div>
+            </div>
+        </section>
+		
         <!-- Rainbow Road Page -->
         <section id="rainbow" class="page-transition px-6 max-w-7xl mx-auto py-12">
             <div class="text-center mb-16">
                 <div class="flex justify-center mb-6">
-                    <img src="RainbowRoadLogo.png" alt="Rainbow Road" class="max-w-full h-auto max-h-[200px] object-contain" onerror="this.src='https://via.placeholder.com/800x250?text=RAINBOW+ROAD'">
+                    <img src="RainbowRoadLogo.png" alt="Rainbow Road" class="max-w-full h-auto max-h-[200px] object-contain" onerror="this.src='https://via.placeholder.com/800x250?text=RAINBOW+ROAD+LOGO'">
                 </div>
                 <p class="text-xl text-gray-400 uppercase tracking-[0.5em]">The Savage Land Playground</p>
             </div>
@@ -432,7 +582,7 @@
 
         <!-- Product Page Template -->
         <section id="product-listing" class="page-transition px-6 max-w-7xl mx-auto py-12">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 border-b border-zinc-800 pb-8">
                 <div>
                     <h2 id="listing-title" class="text-4xl font-black uppercase mb-2">Genetics</h2>
                     <p id="listing-desc" class="text-gray-400">Hand-selected strains for elite growers.</p>
@@ -512,7 +662,8 @@
             <div class="flex gap-8 text-2xl text-white">
                 <a href="https://www.instagram.com/savage_land_exotics757/" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/profile.php?id=100087970806429" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.youtube.com/" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-youtube"></i></a>
+                <a href="https://discord.gg/" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-discord"></i></a>
+				<a href="https://www.youtube.com/" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-youtube"></i></a>
             </div>
             <div class="text-right">
                 <p class="text-[10px] text-gray-700 max-w-sm leading-tight uppercase">Seeds are sold strictly for novelty and preservation purposes. Please follow local regulations.</p>
@@ -532,152 +683,145 @@
             'auto': { title: 'Feminized Autoflower', desc: 'Fast turnaround, exotic results.' }
         };
 
-        const defaultMetadata = {
-            genetics: "Savage Land Proprietary Cross",
-            terpenes: "Myrcene, Limonene, Caryophyllene",
-            flowering: "8-9 Weeks",
-            description: "A premium selection from the Savage Land vault. Bred for high resin production, complex terpene profiles, and heavy yields."
-        };
-
         const productData = {
             'regular': [
-                { name: 'Local Speedway (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Mr. Driscoll (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Deebo Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Southern Cut Skunk (Reg)', img: 'SouthernCutSkunk.jpg', ...defaultMetadata },
-                { name: 'Outlaw Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: '757 Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Local Savage (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Stankalicious (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Diabolic Tutor (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Totally Pucked (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Dirty South Diesel (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Badd Applez (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Local Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Gorilla Nutz (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Freak N Fluff (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Toasty Marshmallows (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Death By Chocolate (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Sinful Cookies (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Strawberry Gorilla Cookies (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Blue Tootsie Popz (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Hott Mamba (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Chocolate Marshmallow F2 (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Stanky Yankee (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Stay Puft MF (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Chocolate Pineapples (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Krazy Glue (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Banana Super Glue (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Bussin Grapes (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Zen Gorilla (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Concrete Jungle (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'GMO Future (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Drunken Space Monkey (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Great Dismal Skunk (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Cane Corso F2 (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Purple Gorilla Warfare (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Event Horizon (Reg)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Blueberry Starfighter Cookies (Reg)', img: 'SLE.png', ...defaultMetadata }
+                { name: 'Local Speedway (Reg)', price: 50.00, img: 'LocalSpeedway.jpg', genetics: 'Skunk Og X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Mr. Driscoll (Reg)', price: 50.00, img: 'Mr.Driscoll.jpg', genetics: 'Pinkman Goo X Local Skunk', terpenes: '', flowering: '', description: '' },
+                { name: 'Deebo Skunk (Reg)', price: 50.00, img: 'DeeboSkunk.jpg', genetics: 'Bubba Cheesecake X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Southern Cut Skunk (Reg)', price: 50.00, img: 'SouthernCutSkunk.jpg', genetics: 'Jaxtons Cookies X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Outlaw Skunk (Reg)', price: 50.00, img: 'OutlawSkunk.jpg', genetics: 'Uncle Festers Skunk #18 X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: '757 Skunk (Reg)', price: 50.00, img: '757Skunk.jpg', genetics: 'Great Dismal Skunk X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Local Savage (Reg)', price: 50.00, img: 'LocalSavage.jpg', genetics: 'SaVAge Cream Pie X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Stankalicious (Reg)', price: 50.00, img: 'Stankalicious.jpg', genetics: 'Stanky Panky X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Diabolic Tutor (Reg)', price: 50.00, img: 'DiabolicTutor.jpg', genetics: 'Hoodoo Face Off X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Totally Pucked (Reg)', price: 50.00, img: 'TotallyPucked.jpg', genetics: 'Puck Yes xx X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Dirty South Diesel (Reg)', price: 50.00, img: 'DirtySouthDiesel.jpg', genetics: 'Motorbreath #15 X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Badd Applez (Reg)', price: 50.00, img: 'BaddApplez.jpg', genetics: 'Piss Fritter X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Local Skunk F4 (Reg)', price: 50.00, img: 'LocalSkunkF4.jpg', genetics: 'Local Skunk F3 X Local Skunk F3', terpenes: '', flowering: '', description: '' },
+                { name: 'Gorilla Nutz (Reg)', price: 50.00, img: 'GorillaNutz.jpg', genetics: 'Peanutbutter Breath X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Freak N Fluff (Reg)', price: 50.00, img: 'FreakNFluff.jpg', genetics: 'Freakshow X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Toasty Marshmallows (Reg)', price: 50.00, img: 'ToastyMarshmallows.jpg', genetics: 'Savage Breath X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Death By Chocolate (Reg)', price: 50.00, img: 'DeathByChocolate.jpg', genetics: 'Oreoz X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Sinful Cookies (Reg)', price: 50.00, img: 'SinfulCookies.jpg', genetics: 'Banana Fruit Cake X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Strawberry Gorilla Cookies (Reg)', price: 50.00, img: 'StrawberryGorillaCookies.jpg', genetics: 'Hulk Smash X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Blue Tootsie Popz (Reg)', price: 50.00, img: 'BlueTootsiePopz.jpg', genetics: 'SaVAge King X Gelatti X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Hott Mamba (Reg)', price: 50.00, img: 'HottMamba.jpg', genetics: 'Black Mamba X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Chocolate Marshmallow F2 (Reg)', price: 50.00, img: 'ChocolateMarshmallowF2.jpg', genetics: 'GG#4 X Mint Chocolate Chip', terpenes: '', flowering: '', description: '' },
+                { name: 'Stanky Yankee (Reg)', price: 50.00, img: 'StankyYankee.jpg', genetics: 'Skywalker Diesel X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Stay Puft MF (Reg)', price: 50.00, img: 'StayPuftMF.jpg', genetics: 'Skywalker Diesel X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Chocolate Pineapples (Reg)', price: 50.00, img: 'ChocolatePineapples.jpg', genetics: 'Banana Joe Super Silver Glue X Chocolate Marshmallows', terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
+                { name: 'Krazy Glue (Reg)', price: 50.00, img: 'KrazyGlue.jpg', genetics: 'Gorilla Berry XJellium X Chocolate Marshmallows', terpenes: '', flowering: '', description: 'Indica Dominant Hybrid' },
+                { name: 'Banana Super Glue (Reg)', price: 50.00, img: 'BananaSuperGlue.jpg', genetics: 'Banana Joe Super Sliver Glue X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
+                { name: 'Bussin Grapes (Reg)', price: 50.00, img: 'BussinGrapes.jpg', genetics: 'Planet Of the Grapes X Chocolate Marshmallows', terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
+                { name: 'Zen Gorilla (Reg)', price: 50.00, img: 'ZenGorilla.jpg', genetics: 'Hindu Kush X Purple Gorilla Warfare', terpenes: '', flowering: '7-8 Weeks Flower', description: 'Indica dominant Hybrid' },
+                { name: 'Concrete Jungle (Reg)', price: 50.00, img: 'ConcreteJungle.jpg', genetics: 'NYC Sour D X Purple Gorilla Warfare', terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
+                { name: 'GMO Future (Reg)', price: 50.00, img: 'GMOFuture.jpg', genetics: 'GMO Kush X Vanilla Future', terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
+                { name: 'Drunken Space Monkey (Reg)', price: 50.00, img: 'DrunkenSpaceMonkey.jpg', genetics: 'Gelatti F4 X Vanilla Future', terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
+                { name: 'Great Dismal Skunk (Reg)', price: 50.00, img: 'GreatDismalSkunk.jpg', genetics: 'Swamp Skunk X Cane Corso', terpenes: '', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
+                { name: 'Cane Corso F2 (Reg)', price: 50.00, img: 'CaneCorsoF2.jpg', genetics: 'Gelato 41 X Watchdog', terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
+                { name: 'Purple Gorilla Warfare (Reg)', price: 50.00, img: 'PurpleGorillaWarfare.jpg', genetics: 'Purple Gorilla Glue X Vanilla Future', terpenes: '', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
+                { name: 'Event Horizon (Reg)', price: 50.00, img: 'EventHorizon.jpg', genetics: 'Space Gello X Purple Gorilla Warfare', terpenes: '', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
+                { name: 'Blueberry Starfighter Cookies (Reg)', price: 50.00, img: 'BlueberryStarfighterCookies.jpg', genetics: 'MAC Muffin X Vanilla Future', terpenes: '', flowering: '8-9 Weeks', description: '50/50 Hybrid Very sweet to sour rotten fermented Blueberry, Creamy Vanilla Fuel dipped desert, blueberries & cream, Hints of tart berries and undertons of pungent earth on exhale' }
             ],
             'feminized': [
-                { name: 'Cohoke Crossing (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Local Legend (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Terminal Lucidity (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Boardwalk Carrion (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Virginia Roadkill (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'SaVAge Skunk (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Buckroe Skunk (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Killer Haze (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Hillbilly Killer (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: '4 Banger (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Roanoke Stank (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Pure Nostalgia (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Interstate 264 (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Interstate 664 (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Hulk Smash Cookies (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'SaVAge Star (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Death Star (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Lemon Ku$h Cake Haze (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Alien Diesel Cakez (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Buckroe Ether (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Torpor Skunk (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Fatso OG (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Jelly Goobers (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Cold Feet (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Bulletproof Cupp (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Whoop Azz (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Big Willie Sour (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Bossman Special (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Tropical Foot Punch (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Booty Beach (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'The Dona (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Orange Blossom Special (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Stripper Sweat (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Fried Oreoz (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'SaVage Cookies (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'She-Hulk (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Cocoa Pebbles (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Milf & Cookies (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'SaVAge Cream Pie (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Virginia Pines (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Bananium Slumber (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Slumber Cake #22 S1 (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Crushed Oreoz (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Oreoz S1 (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'SaVAge Breath (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'SaVAge King S1 (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Royal Gas (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Coastal Blizzard (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Pop Rox (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'SaVAge Queen (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Neptune Bakery (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Hood Cookies (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Puppy Breath S1 (Fem)', img: 'PuppyBreath.jpg', ...defaultMetadata },
-                { name: '90\'s Kid (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Royal Bitch (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Creamy WAP (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Puppy Monkey Baby (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Southern Baddie (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Battle Zaza (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Frosted Dawgg (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Baked & Beautiful (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Badd Dogg (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Dirt Bastard (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Sunnyvale Slayer (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Pinto Breath (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Stupid Fuel (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Mega Milkerz (Fem)', img: 'SLE.png', ...defaultMetadata },
-                { name: 'Miami Cakez (Fem)', img: 'SLE.png', ...defaultMetadata }
+                { name: 'Cohoke Crossing (Fem)', price: 50.00, img: 'CohokeCrossing.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Local Legend (Fem)', price: 50.00, img: 'LocalLegend.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Terminal Lucidity (Fem)', price: 50.00, img: 'TerminalLucidity.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Boardwalk Carrion (Fem)', price: 50.00, img: 'BoardwalkCarrion.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Virginia Roadkill (Fem)', price: 50.00, img: 'VirginiaRoadkill.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'SaVAge Skunk (Fem)', price: 50.00, img: 'SaVAgeSkunk.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Buckroe Skunk (Fem)', price: 50.00, img: 'BuckroeSkunk.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Killer Haze (Fem)', price: 50.00, img: 'KillerHaze.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Hillbilly Killer (Fem)', price: 50.00, img: 'HillbillyKiller.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: '4 Banger (Fem)', price: 50.00, img: '4Banger.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Roanoke Stank (Fem)', price: 50.00, img: 'RoanokeStank.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Pure Nostalgia (Fem)', price: 50.00, img: 'PureNostalgia.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Interstate 264 (Fem)', price: 50.00, img: 'Interstate264.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Interstate 664 (Fem)', price: 50.00, img: 'Interstate664.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Hulk Smash Cookies (Fem)', price: 50.00, img: 'HulkSmashCookies.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'SaVAge Star (Fem)', price: 50.00, img: 'SaVAgeStar.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Death Star (Fem)', price: 50.00, img: 'DeathStar.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Lemon Kush Cake Haze (Fem)', price: 50.00, img: 'LemonKushCakeHaze.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Alien Diesel Cakez (Fem)', price: 50.00, img: 'AlienDieselCakez.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Buckroe Ether (Fem)', price: 50.00, img: 'BuckroeEther.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Torpor Skunk (Fem)', price: 50.00, img: 'TorporSkunk.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Fatso OG (Fem)', price: 50.00, img: 'FatsoOG.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Jelly Goobers (Fem)', price: 50.00, img: 'JellyGoobers.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Cold Feet (Fem)', price: 50.00, img: 'ColdFeet.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Bulletproof Cupp (Fem)', price: 50.00, img: 'BulletproofCupp.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Whoop Azz (Fem)', price: 50.00, img: 'WhoopAzz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Big Willie Sour (Fem)', price: 50.00, img: 'BigWillieSour.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Bossman Special (Fem)', price: 50.00, img: 'BossmanSpecial.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Tropical Foot Punch (Fem)', price: 50.00, img: 'TropicalFootPunch.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Booty Beach (Fem)', price: 50.00, img: 'BootyBeach.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'The Dona (Fem)', price: 50.00, img: 'TheDona.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Orange Blossom Special (Fem)', price: 50.00, img: 'OrangeBlossomSpecial.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Stripper Sweat (Fem)', price: 50.00, img: 'StripperSweat.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Fried Oreoz (Fem)', price: 50.00, img: 'FriedOreoz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'SaVage Cookies (Fem)', price: 50.00, img: 'SaVageCookies.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'She-Hulk (Fem)', price: 50.00, img: 'She-Hulk.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Cocoa Pebbles (Fem)', price: 50.00, img: 'CocoaPebbles.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Milf & Cookies (Fem)', price: 50.00, img: 'Milf&Cookies.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'SaVAge Cream Pie (Fem)', price: 50.00, img: 'SaVAgeCreamPie.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Virginia Pines (Fem)', price: 50.00, img: 'VirginiaPines.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Bananium Slumber (Fem)', price: 50.00, img: 'BananiumSlumber.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Slumber Cake #22 S1 (Fem)', price: 50.00, img: 'SlumberCake#22S1.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Crushed Oreoz (Fem)', price: 50.00, img: 'CrushedOreoz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Oreoz S1 (Fem)', price: 50.00, img: 'OreozS1.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'SaVAge Breath (Fem)', price: 50.00, img: 'SaVAgeBreath.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'SaVAge King S1 (Fem)', price: 50.00, img: 'SaVAgeKingS1.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Royal Gas (Fem)', price: 50.00, img: 'RoyalGas.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Coastal Blizzard (Fem)', price: 50.00, img: 'CoastalBlizzard.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Pop Rox (Fem)', price: 50.00, img: 'PopRox.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'SaVAge Queen (Fem)', price: 50.00, img: 'SaVAgeQueen.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Neptune Bakery (Fem)', price: 50.00, img: 'NeptuneBakery.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Hood Cookies (Fem)', price: 50.00, img: 'HoodCookies.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Puppy Breath S1 (Fem)', price: 50.00, img: 'PuppyBreathS1.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: '90\'s Kid (Fem)', price: 50.00, img: '90sKid.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Royal Bitch (Fem)', price: 50.00, img: 'RoyalBitch.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Creamy WAP (Fem)', price: 50.00, img: 'CreamyWAP.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Puppy Monkey Baby (Fem)', price: 50.00, img: 'PuppyMonkeyBaby.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Southern Baddie (Fem)', price: 50.00, img: 'SouthernBaddie.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Battle Zaza (Fem)', price: 50.00, img: 'BattleZaza.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Frosted Dawgg (Fem)', price: 50.00, img: 'FrostedDawgg.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Baked & Beautiful (Fem)', price: 50.00, img: 'Baked&Beautiful.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Badd Dogg (Fem)', price: 50.00, img: 'BaddDogg.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Dirt Bastard (Fem)', price: 50.00, img: 'DirtBastard.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Sunnyvale Slayer (Fem)', price: 50.00, img: 'SunnyvaleSlayer.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Pinto Breath (Fem)', price: 50.00, img: 'PintoBreath.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Stupid Fuel (Fem)', price: 50.00, img: 'StupidFuel.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Mega Milkerz (Fem)', price: 50.00, img: 'MegaMilkerz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Miami Cakez (Fem)', price: 50.00, img: 'MiamiCakez.jpg', genetics: '', terpenes: '', flowering: '', description: '' }
             ],
             'auto': [
-                { name: 'Planet Pluto (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Planet Stuffed (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Planet Dankness (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Planet Wednesday (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Planet Delicious (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Think Savage (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Drive By (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Chocolate Banana Splitz (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Banana Clipz (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Gas War (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Blueberry Hashplant (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Mango Berry Sherb (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Banana Berry Runtz (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Banana Berry Ghani (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'BOG Berry Pie (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Remember Berry Haze (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Bigfoot Blues (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Blue Angels (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Scout Berries (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Gorilla Berries (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Widow Berry (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Bubba Berry Ku$h (Auto)', img: 'CannabisPlant.jpg', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Something Blue (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Stars N Straps (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Romulan Ale (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Frozen Neptune (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Double Berry MAC (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" },
-                { name: 'Double Berry Gelato (Auto)', img: 'SLE.png', ...defaultMetadata, flowering: "70-80 Days" }
+                { name: 'Planet Pluto (Auto)', price: 50.00, img: 'PlanetPluto.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Planet Stuffed (Auto)', price: 50.00, img: 'PlanetStuffed.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Planet Dankness (Auto)', price: 50.00, img: 'PlanetDankness.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Planet Wednesday (Auto)', price: 50.00, img: 'PlanetWednesday.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Planet Delicious (Auto)', price: 50.00, img: 'PlanetDelicious.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Think Savage (Auto)', price: 50.00, img: 'ThinkSavage.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Drive By (Auto)', price: 50.00, img: 'DriveBy.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Chocolate Banana Splitz (Auto)', price: 50.00, img: 'ChocolateBananaSplitz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Banana Clipz (Auto)', price: 50.00, img: 'BananaClipz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Gas War (Auto)', price: 50.00, img: 'GasWar.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Blueberry Hashplant (Auto)', price: 50.00, img: 'BlueberryHashplant.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Mango Berry Sherb (Auto)', price: 50.00, img: 'MangoBerrySherb.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Banana Berry Runtz (Auto)', price: 50.00, img: 'BananaBerryRuntz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Banana Berry Ghani (Auto)', price: 50.00, img: 'BananaBerryGhani.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'BOG Berry Pie (Auto)', price: 50.00, img: 'BOGBerryPie.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Remember Berry Haze (Auto)', price: 50.00, img: 'RememberBerryHaze.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Bigfoot Blues (Auto)', price: 50.00, img: 'BigfootBlues.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Blue Angels (Auto)', price: 50.00, img: 'BlueAngels.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Scout Berries (Auto)', price: 50.00, img: 'ScoutBerries.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Gorilla Berries (Auto)', price: 50.00, img: 'GorillaBerries.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Widow Berry (Auto)', price: 50.00, img: 'WidowBerry.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Bubba Berry Kush (Auto)', price: 50.00, img: 'BubbaBerryKush.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Something Blue (Auto)', price: 50.00, img: 'SomethingBlue.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Stars N Straps (Auto)', price: 50.00, img: 'StarsNStraps.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Romulan Ale (Auto)', price: 50.00, img: 'RomulanAle.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Frozen Neptune (Auto)', price: 50.00, img: 'FrozenNeptune.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Double Berry MAC (Auto)', price: 50.00, img: 'DoubleBerryMAC.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
+                { name: 'Double Berry Gelato (Auto)', price: 50.00, img: 'DoubleBerryGelato.jpg', genetics: '', terpenes: '', flowering: '', description: '' }
             ]
         };
 
@@ -748,7 +892,7 @@
             } else {
                 cart.push({
                     name: currentProduct.name,
-                    price: 50.00,
+                    price: currentProduct.price || 50.00,
                     img: currentProduct.img,
                     category: currentCategory,
                     quantity: qty
@@ -855,7 +999,6 @@
             
             window.location.href = `mailto:Smoking.legal.va@gmail.com?subject=${subject}&body=${body}`;
             
-            // Suggest the user that the email has been prepared
             const checkoutBtn = event.target;
             checkoutBtn.innerText = "Email Prepared!";
             setTimeout(() => {
@@ -879,14 +1022,16 @@
                 updateListingUI();
                 renderProducts();
             } else {
-                document.getElementById(pageId).classList.add('page-active');
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) targetPage.classList.add('page-active');
             }
             gsap.from(".page-active", { duration: 0.5, opacity: 0, y: 15 });
         }
 
         function viewProduct(category, index) {
+            const data = productData[category];
             currentCategory = category;
-            currentProduct = productData[category][index];
+            currentProduct = data[index];
             
             const content = document.getElementById('detail-content');
             
@@ -899,28 +1044,28 @@
                         <div>
                             <span class="text-green-500 font-bold uppercase tracking-widest text-sm mb-2 block">${currentCategory} Collection</span>
                             <h2 class="text-5xl md:text-6xl font-black uppercase italic tracking-tighter mb-4">${currentProduct.name}</h2>
-                            <p class="text-3xl font-black text-white">$50.00</p>
+                            <p class="text-3xl font-black text-white">$${(currentProduct.price || 50.00).toFixed(2)}</p>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div class="bg-zinc-900/50 p-6 rounded-3xl border border-zinc-800">
                                 <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-1">Flowering Time</span>
-                                <span class="text-white font-bold">${currentProduct.flowering}</span>
+                                <span class="text-white font-bold">${currentProduct.flowering || 'N/A'}</span>
                             </div>
                             <div class="bg-zinc-900/50 p-6 rounded-3xl border border-zinc-800">
                                 <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-1">Genetics</span>
-                                <span class="text-white font-bold">${currentProduct.genetics}</span>
+                                <span class="text-white font-bold">${currentProduct.genetics || 'N/A'}</span>
                             </div>
                         </div>
 
                         <div class="space-y-4">
                             <h3 class="text-xl font-bold uppercase italic">Strain Description</h3>
-                            <p class="text-zinc-400 leading-relaxed">${currentProduct.description}</p>
+                            <p class="text-zinc-400 leading-relaxed">${currentProduct.description || 'No description provided.'}</p>
                         </div>
 
                         <div class="space-y-4">
                             <h3 class="text-xl font-bold uppercase italic">Terpene Profile</h3>
-                            <p class="text-zinc-400 italic">${currentProduct.terpenes}</p>
+                            <p class="text-zinc-400 italic">${currentProduct.terpenes || 'N/A'}</p>
                         </div>
 
                         <div class="pt-8 border-t border-zinc-800 flex flex-wrap items-center gap-6">
@@ -963,7 +1108,7 @@
                     <div class="p-6 text-white">
                         <h4 class="font-bold text-lg mb-4 uppercase italic tracking-tighter">${strain.name}</h4>
                         <div class="flex justify-between items-center">
-                            <span class="text-xl font-black text-green-500">$50.00</span>
+                            <span class="text-xl font-black text-green-500">$${(strain.price || 50.00).toFixed(2)}</span>
                             <span class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">View Details</span>
                         </div>
                     </div>
@@ -999,4 +1144,3 @@
     </script>
 </body>
 </html>
-
