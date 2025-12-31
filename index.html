@@ -110,9 +110,37 @@
         #cart-drawer.cart-open {
             transform: translateX(0);
         }
+		
+		/* Zoom Overlay Styles */
+		.zoom-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.95);
+		display: none; /* Hidden by default */
+		justify-content: center;
+		align-items: center;
+		z-index: 1000;
+		cursor: zoom-out;
+}
+
+.zoomed-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 1rem;
+    box-shadow: 0 0 50px rgba(46, 204, 113, 0.3);
+}
     </style>
 </head>
 <body>
+
+	<!-- Zoom Overlay -->
+    <div id="zoomOverlay" class="zoom-overlay" onclick="closeZoom()">
+        <img id="zoomedImage" src="" alt="Zoomed view" class="zoomed-image">
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-zinc-500 text-sm font-bold uppercase tracking-widest">Click anywhere to close</div>
+    </div>
 
     <!-- Navigation -->
     <nav class="glass-nav fixed w-full z-50 px-6 py-4">
@@ -356,65 +384,65 @@
                     <!-- Line Item 1 -->
                     <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
                         <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
-                            <img src="Oreoz1.jpg" alt="Lineage 1" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                           <img src="Oreoz1.jpg" onclick="openZoom(this.src)" alt="Lineage 1" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 cursor-zoom-in" onerror="this.src='SLE.png'">
                         </div>
                         <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Oreoz Fem Photo Line 1</h3>
                     </div>
                     <!-- Line Item 2 -->
                     <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
                         <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
-                            <img src="Oreoz2.jpg" alt="Lineage 2" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                            <img src="Oreoz2.jpg" onclick="openZoom(this.src)" alt="Lineage 2" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 cursor-zoom-in" onerror="this.src='SLE.png'">
                         </div>
                         <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Oreoz Fem Photo Line 2</h3>
                     </div>
                     <!-- Line Item 3 -->
                     <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
                         <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
-                            <img src="Line3.jpg" alt="Lineage 3" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                            <img src="FODWLine.jpg" onclick="openZoom(this.src)" alt="Lineage 3" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 cursor-zoom-in" onerror="this.src='SLE.png'">
                         </div>
-                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Vanilla Future</h3>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Friend Of Da Wae Line</h3>
                     </div>
                     <!-- Line Item 4 -->
                     <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
                         <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
-                            <img src="Line4.jpg" alt="Lineage 4" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                            <img src="OBSLine.jpg" onclick="openZoom(this.src)" alt="Lineage 4" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 cursor-zoom-in" onerror="this.src='SLE.png'">
                         </div>
-                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Purple Gorilla</h3>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Orange Blossom Special Line</h3>
                     </div>
                     <!-- Line Item 5 -->
                     <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
                         <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
-                            <img src="Line5.jpg" alt="Lineage 5" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                            <img src="VirginiaSkunkLine1.jpg" onclick="openZoom(this.src)" alt="Lineage 5" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 cursor-zoom-in" onerror="this.src='SLE.png'">
                         </div>
-                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Local Legend Cut</h3>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Virginia Skunk Reg M/F Line</h3>
                     </div>
                     <!-- Line Item 6 -->
                     <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
                         <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
-                            <img src="Line6.jpg" alt="Lineage 6" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                            <img src="VirginiaSkunkLine2.jpg" onclick="openZoom(this.src)" alt="Lineage 6" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 cursor-zoom-in" onerror="this.src='SLE.png'">
                         </div>
-                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Southern Baddie</h3>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Virginia Skunk Fem Photo Line</h3>
                     </div>
                     <!-- Line Item 7 -->
                     <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
                         <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
-                            <img src="Line7.jpg" alt="Lineage 7" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                            <img src="SlumberCakeLine.jpg" onclick="openZoom(this.src)" alt="Lineage 7" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 cursor-zoom-in" onerror="this.src='SLE.png'">
                         </div>
-                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Planet Pluto Elite</h3>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Slumber Cake Fem PhotoLine</h3>
                     </div>
                     <!-- Line Item 8 -->
                     <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
                         <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
-                            <img src="Line8.jpg" alt="Lineage 8" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                            <img src="PuppyBreathLine.jpg" onclick="openZoom(this.src)" alt="Lineage 8" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 cursor-zoom-in" onerror="this.src='SLE.png'">
                         </div>
-                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Neptune Bakery</h3>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Puppy Breath Fem Photo Line</h3>
                     </div>
                     <!-- Line Item 9 -->
                     <div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-4 group hover:border-green-500 transition-colors">
                         <div class="aspect-square rounded-[2rem] overflow-hidden mb-6 bg-black flex items-center justify-center p-6">
-                            <img src="Line9.jpg" alt="Lineage 9" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" onerror="this.src='SLE.png'">
+                            <img src="BlueberryLine.jpg" onclick="openZoom(this.src)" alt="Lineage 9" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 cursor-zoom-in" onerror="this.src='SLE.png'">
                         </div>
-                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Bubba Berry Elite</h3>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter text-center mb-4">Blueberry Auto Line</h3>
                     </div>
                 </div>
 
@@ -989,23 +1017,47 @@
         }
 
         function checkout() {
-            if (cart.length === 0) return;
-            
-            const orderDetails = cart.map(i => `${i.name} (${i.quantity}x)`).join('\n');
-            const total = document.getElementById('cart-total').innerText;
-            
-            const subject = encodeURIComponent(`New Order Request - ${total}`);
-            const body = encodeURIComponent(`I would like to place an order for the following items:\n\n${orderDetails}\n\nTotal: ${total}\n\nPlease let me know the available payment methods.`);
-            
-            window.location.href = `mailto:Smoking.legal.va@gmail.com?subject=${subject}&body=${body}`;
-            
-            const checkoutBtn = event.target;
-            checkoutBtn.innerText = "Email Prepared!";
-            setTimeout(() => {
-                checkoutBtn.innerText = "Proceed to Checkout";
-                toggleCart();
-            }, 3000);
-        }
+    if (cart.length === 0) {
+        alert("Your bag is empty!");
+        return;
+    }
+
+    // 1. Calculate Costs
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const shippingFee = subtotal >= 100 ? 0 : 8.00; // Free shipping over $100
+    const finalTotal = subtotal + shippingFee;
+
+    // 2. Build the Email Body
+    let cartDetails = "ORDER DETAILS:\n";
+    cart.forEach(item => {
+        cartDetails += `- ${item.name} (${item.quantity}x) @ $${item.price.toFixed(2)}\n`;
+    });
+
+    const emailBody = `I would like to place an order:
+
+${cartDetails}
+Subtotal: $${subtotal.toFixed(2)}
+Shipping: $${shippingFee === 0 ? "FREE" : "$" + shippingFee.toFixed(2)}
+TOTAL: $${finalTotal.toFixed(2)}
+
+SHIPPING ADDRESS:
+[Please enter your full name and address here]
+
+CASH APP TAG:
+[Please enter your Cash App tag for verification]
+
+Please return to the website to finalize payment via Cashapp. You will recieve an email back with shipping info once the order is confirmed and a shipping label has been created. Thank you for your purchase!`;
+
+    // 3. Open Email Client
+    const subject = encodeURIComponent("Savage Land Order Request");
+    const body = encodeURIComponent(emailBody);
+    window.location.href = `mailto:Smoking.legal.va@gmail.com?subject=${subject}&body=${body}`;
+
+    // 4. Show the QR Code Overlay
+    // (Assuming you added the overlay HTML from the previous step)
+    document.getElementById('payment-total-display').innerText = `Total: $${finalTotal.toFixed(2)}`;
+    document.getElementById('paymentOverlay').style.display = 'flex';
+}
 
         // 4. NAVIGATION & RENDERING
         function toggleMobileMenu() {
@@ -1037,9 +1089,12 @@
             
             content.innerHTML = `
                 <div class="grid lg:grid-cols-2 gap-16 items-start">
-                    <div class="rounded-[3rem] overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl sticky top-32">
-                        <img src="${currentProduct.img}" class="w-full aspect-square object-contain p-12" alt="${currentProduct.name}">
-                    </div>
+					<div class="rounded-[3rem] overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl sticky top-32">
+						<img src="${currentProduct.img}" 
+							 onclick="openZoom(this.src)" 
+							 class="w-full aspect-square object-contain p-12 cursor-zoom-in" 
+							 alt="${currentProduct.name}">
+					</div>
                     <div class="space-y-12">
                         <div>
                             <span class="text-green-500 font-bold uppercase tracking-widest text-sm mb-2 block">${currentCategory} Collection</span>
@@ -1139,8 +1194,43 @@
             document.getElementById('formSuccess').classList.add('hidden');
         }
 
+		// Function to open the zoom overlay
+		function openZoom(src) {
+			const overlay = document.getElementById('zoomOverlay');
+			const zoomedImg = document.getElementById('zoomedImage');
+			zoomedImg.src = src;
+			overlay.style.display = 'flex';
+			document.body.style.overflow = 'hidden'; // Stop background scrolling
+		}
+
+		// Function to close the zoom overlay
+		function closeZoom() {
+			const overlay = document.getElementById('zoomOverlay');
+			overlay.style.display = 'none';
+			document.body.style.overflow = 'auto'; // Re-enable scrolling
+		}
+
         // INIT
         updateCartUI();
     </script>
+	<div id="paymentOverlay" style="display:none;" class="fixed inset-0 bg-black/90 z-[100] flex-col items-center justify-center p-6 backdrop-blur-md">
+    <div class="bg-zinc-900 border border-zinc-800 p-8 rounded-[3rem] max-w-sm w-full text-center shadow-2xl">
+        <h2 class="text-3xl font-black uppercase italic tracking-tighter mb-4 text-white">Complete Payment</h2>
+        <p class="text-zinc-400 text-sm mb-6 uppercase tracking-widest font-bold">Scan with Cash App or send the required amount to $DeepRootz757</p>
+        
+        <div class="bg-white p-4 rounded-2xl mb-6 inline-block">
+            <img src="cashapp-qr.png" alt="Cash App QR Code" class="w-64 h-64 object-contain">
+        </div>
+
+        <div class="space-y-4">
+            <p id="payment-total-display" class="text-2xl font-black text-green-500"></p>
+            <p class="text-xs text-red-600 font-bold italic">Order will not be shipped unless payment is received!</p>
+			<p class="text-xs text-green-500 font-bold italic uppercase tracking-widest">Please make sure you sent the order email before closing this window.</p> 
+			<p>You will recieve an email back with shipping info once the order is confirmed and a shipping label has been created.</p> 
+			<p>Thank you for your support!</p>
+            <button onclick="this.parentElement.parentElement.parentElement.style.display='none'" class="w-full py-4 bg-zinc-800 rounded-full font-bold uppercase tracking-widest text-white text-xs hover:bg-zinc-700 transition">Close</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
