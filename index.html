@@ -208,26 +208,30 @@
 
     <!-- Shopping Cart Drawer -->
     <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/60 z-[60] hidden backdrop-blur-sm"></div>
-    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#0a0a0a] border-l border-zinc-800 z-[70] shadow-2xl flex flex-col">
-        <div class="p-6 border-b border-zinc-800 flex justify-between items-center">
-            <h2 class="text-2xl font-black uppercase italic tracking-tighter">Your Bag</h2>
-            <button onclick="toggleCart()" class="w-10 h-10 flex items-center justify-center text-zinc-500 hover:text-white"><i class="fas fa-times text-xl"></i></button>
-        </div>
-        
-        <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-6">
-            <!-- Items injected here -->
+<div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#0a0a0a] border-l border-zinc-800 z-[70] shadow-2xl flex flex-col">
+    <div class="p-6 border-b border-zinc-800 flex justify-between items-center">
+        <h2 class="text-2xl font-black uppercase italic tracking-tighter">Your Cart</h2>
+        <button onclick="toggleCart()" class="w-10 h-10 flex items-center justify-center text-zinc-500 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+    </div>
+    
+    <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-6">
         </div>
 
-        <div class="p-8 bg-zinc-900/50 border-t border-zinc-800">
-            <div class="flex justify-between items-center mb-6">
-                <span class="text-zinc-500 font-bold uppercase tracking-widest text-xs">Total Amount</span>
-                <span id="cart-total" class="text-2xl font-black text-white">$0.00</span>
-            </div>
-            <button onclick="checkout()" class="btn-primary w-full py-5 rounded-full font-black uppercase tracking-[0.2em] text-white shadow-xl">
-                Proceed to Checkout
-            </button>
+    <div class="p-8 bg-zinc-900/50 border-t border-zinc-800">
+        <div class="flex justify-between items-center mb-2">
+            <span class="text-zinc-500 font-bold uppercase tracking-widest text-[10px]">Shipping</span>
+            <span id="cart-shipping" class="text-sm font-bold text-white">$8.00</span>
         </div>
+        
+        <div class="flex justify-between items-center mb-6">
+            <span class="text-zinc-500 font-bold uppercase tracking-widest text-xs">Total Amount</span>
+            <span id="cart-total" class="text-2xl font-black text-white">$0.00</span>
+        </div>
+        <button onclick="checkout()" class="btn-primary w-full py-5 rounded-full font-black uppercase tracking-[0.2em] text-white shadow-xl">
+            Proceed to Checkout
+        </button>
     </div>
+</div> ```
 
     <!-- Search Bar (Under Nav) -->
     <div class="search-container fixed w-full z-40 top-[81px] px-6 py-3">
@@ -716,144 +720,144 @@
 
         const productData = {
             'regular': [
-                { name: 'Local Speedway (Reg)', price: 50.00, img: 'LocalSpeedway.jpg', genetics: 'Skunk Og X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Mr. Driscoll (Reg)', price: 50.00, img: 'Mr.Driscoll.jpg', genetics: 'Pinkman Goo X Local Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Deebo Skunk (Reg)', price: 50.00, img: 'DeeboSkunk.jpg', genetics: 'Bubba Cheesecake X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Southern Cut Skunk (Reg)', price: 50.00, img: 'SouthernCutSkunk.jpg', genetics: 'Jaxtons Cookies X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Outlaw Skunk (Reg)', price: 50.00, img: 'OutlawSkunk.jpg', genetics: 'Uncle Festers Skunk #18 X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: '757 Skunk (Reg)', price: 50.00, img: '757Skunk.jpg', genetics: 'Great Dismal Skunk X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Local Savage (Reg)', price: 50.00, img: 'LocalSavage.jpg', genetics: 'SaVAge Cream Pie X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Stankalicious (Reg)', price: 50.00, img: 'Stankalicious.jpg', genetics: 'Stanky Panky X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Diabolic Tutor (Reg)', price: 50.00, img: 'DiabolicTutor.jpg', genetics: 'Hoodoo Face Off X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Totally Pucked (Reg)', price: 50.00, img: 'TotallyPucked.jpg', genetics: 'Puck Yes xx X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Dirty South Diesel (Reg)', price: 50.00, img: 'DirtySouthDiesel.jpg', genetics: 'Motorbreath #15 X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Badd Applez (Reg)', price: 50.00, img: 'BaddApplez.jpg', genetics: 'Piss Fritter X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Local Skunk F4 (Reg)', price: 50.00, img: 'LocalSkunkF4.jpg', genetics: 'Local Skunk F3 X Local Skunk F3', terpenes: '', flowering: '', description: '' },
-                { name: 'Gorilla Nutz (Reg)', price: 50.00, img: 'GorillaNutz.jpg', genetics: 'Peanutbutter Breath X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Freak N Fluff (Reg)', price: 50.00, img: 'FreakNFluff.jpg', genetics: 'Freakshow X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Toasty Marshmallows (Reg)', price: 50.00, img: 'ToastyMarshmallows.jpg', genetics: 'Savage Breath X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Death By Chocolate (Reg)', price: 50.00, img: 'DeathByChocolate.jpg', genetics: 'Oreoz X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Sinful Cookies (Reg)', price: 50.00, img: 'SinfulCookies.jpg', genetics: 'Banana Fruit Cake X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Strawberry Gorilla Cookies (Reg)', price: 50.00, img: 'StrawberryGorillaCookies.jpg', genetics: 'Hulk Smash X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Blue Tootsie Popz (Reg)', price: 50.00, img: 'BlueTootsiePopz.jpg', genetics: 'SaVAge King X Gelatti X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Hott Mamba (Reg)', price: 50.00, img: 'HottMamba.jpg', genetics: 'Black Mamba X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Chocolate Marshmallow F2 AKA Lil Windex (Reg)', price: 50.00, img: 'ChocolateMarshmallow.jpg', genetics: 'GG#4 X Mint Chocolate Chip', terpenes: '', flowering: '', description: '' },
-                { name: 'Stanky Yankee (Reg)', price: 50.00, img: 'StankyYankee.jpg', genetics: 'Skywalker Diesel X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Stay Puft MF (Reg)', price: 50.00, img: 'StayPuftMF.jpg', genetics: 'Skywalker Diesel X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Chocolate Pineapples (Reg)', price: 50.00, img: 'ChocolatePineapples.jpg', genetics: 'Banana Joe Super Silver Glue X Chocolate Marshmallows', terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
-                { name: 'Krazy Glue (Reg)', price: 50.00, img: 'KrazyGlue.jpg', genetics: 'Gorilla Berry XJellium X Chocolate Marshmallows', terpenes: '', flowering: '', description: 'Indica Dominant Hybrid' },
-                { name: 'Banana Super Glue (Reg)', price: 50.00, img: 'BananaSuperGlue.jpg', genetics: 'Banana Joe Super Sliver Glue X Chocolate Marshmallows', terpenes: '', flowering: '', description: '' },
-                { name: 'Bussin Grapes (Reg)', price: 50.00, img: 'BussinGrapes.jpg', genetics: 'Planet Of the Grapes X Chocolate Marshmallows', terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
-                { name: 'Zen Gorilla (Reg)', price: 50.00, img: 'ZenGorilla.jpg', genetics: 'Hindu Kush X Purple Gorilla Warfare', terpenes: '', flowering: '7-8 Weeks Flower', description: 'Indica dominant Hybrid' },
-                { name: 'Concrete Jungle (Reg)', price: 50.00, img: 'ConcreteJungle.jpg', genetics: 'NYC Sour D X Purple Gorilla Warfare', terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
-                { name: 'GMO Future (Reg)', price: 50.00, img: 'GMOFuture.jpg', genetics: 'GMO Kush X Vanilla Future', terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
-                { name: 'Drunken Space Monkey (Reg)', price: 50.00, img: 'DrunkenSpaceMonkey.jpg', genetics: 'Gelatti F4 X Vanilla Future', terpenes: 'Sweet candied dough, fruit cream with vanilla and gas undertones of red mixed berries', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
-                { name: 'Great Dismal Skunk (Reg)', price: 50.00, img: 'GreatDismalSkunk.jpg', genetics: 'Swamp Skunk X Cane Corso', terpenes: '', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
-                { name: 'Cane Corso F2 (Reg)', price: 50.00, img: 'CaneCorso.jpg', genetics: 'Gelato 41 X Watchdog', terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
-                { name: 'Purple Gorilla Warfare (Reg)', price: 50.00, img: 'PurpleGorillaWarfare.jpg', genetics: 'Purple Gorilla Glue X Vanilla Future', terpenes: 'Mixed citrus berry and chem notes with nutty undertones and cream, fruity, earthy, nutty, creamy', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
-                { name: 'Event Horizon (Reg)', price: 50.00, img: 'EventHorizon.jpg', genetics: 'Space Gello X Purple Gorilla Warfare', terpenes: '', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
-                { name: 'Blueberry Starfighter Cookies (Reg)', price: 50.00, img: 'BlueberryStarfighterCookies.jpg', genetics: 'MAC Muffin X Vanilla Future', terpenes: 'Very sweet to sour rotten fermented Blueberry, Creamy Vanilla Fuel dipped desert, blueberries & cream, Hints of tart berries and undertons of pungent earth on exhale', flowering: '8-9 Weeks', description: '50/50 Hybrid' }
-            ],
+				{ name: 'Local Speedway (Reg)', img: 'LocalSpeedway.jpg', genetics: 'Skunk Og X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Mr. Driscoll (Reg)', img: 'MrDriscoll.jpg', genetics: 'Pinkman Goo X Local Skunk', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Deebo Skunk (Reg)', img: 'DeeboSkunk.jpg', genetics: 'Bubba Cheesecake X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Southern Cut Skunk (Reg)', img: 'SouthernCutSkunk.jpg', genetics: 'Jaxtons Cookies X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Outlaw Skunk (Reg)', img: 'OutlawSkunk.jpg', genetics: 'Uncle Festers Skunk #18 X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: '757 Skunk (Reg)', img: '757Skunk.jpg', genetics: 'Great Dismal Skunk X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Local Savage (Reg)', img: 'LocalSavage.jpg', genetics: 'SaVAge Cream Pie X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Stankalicious (Reg)', img: 'Stankalicious.jpg', genetics: 'Stanky Panky X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Diabolic Tutor (Reg)', img: 'DiabolicTutor.jpg', genetics: 'Hoodoo Face Off X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Totally Pucked (Reg)', img: 'TotallyPucked.jpg', genetics: 'Puck Yes xx X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Dirty South Diesel (Reg)', img: 'DirtySouthDiesel.jpg', genetics: 'Motorbreath #15 X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Badd Applez (Reg)', img: 'BaddApplez.jpg', genetics: 'Piss Fritter X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Local Skunk F4 (Reg)', img: 'LocalSkunk.jpg', genetics: 'Local Skunk F3 X Local Skunk F3', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Gorilla Nutz (Reg)', img: 'GorillaNutz.jpg', genetics: 'Peanutbutter Breath X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Freak N Fluff (Reg)', img: 'FreakNFluff.jpg', genetics: 'Freakshow X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Toasty Marshmallows (Reg)', img: 'ToastyMarshmallows.jpg', genetics: 'Savage Breath X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Death By Chocolate (Reg)', img: 'DeathByChocolate.jpg', genetics: 'Oreoz X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Sinful Cookies (Reg)', img: 'SinfulCookies.jpg', genetics: 'Banana Fruit Cake X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Strawberry Gorilla Cookies (Reg)', img: 'StrawberryGorillaCookies.jpg', genetics: 'Hulk Smash X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Blue Tootsie Popz (Reg)', img: 'BlueTootsiePopz.jpg', genetics: 'SaVAge King X Gelatti X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Hott Mamba (Reg)', img: 'HottMamba.jpg', genetics: 'Black Mamba X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Chocolate Marshmallow F2 AKA Lil Windex (Reg)', img: 'ChocolateMarshmallow.jpg', genetics: 'GG#4 X Mint Chocolate Chip', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Stanky Yankee (Reg)', img: 'StankyYankee.jpg', genetics: 'Skywalker Diesel X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Stay Puft MF (Reg)', img: 'StayPuftMF.jpg', genetics: 'Skywalker Diesel X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Chocolate Pineapples (Reg)', img: 'ChocolatePineapples.jpg', genetics: 'Banana Joe Super Silver Glue X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
+				{ name: 'Krazy Glue (Reg)', img: 'KrazyGlue.jpg', genetics: 'Gorilla Berry X Jellium X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: 'Indica Dominant Hybrid' },
+				{ name: 'Banana Super Glue (Reg)', img: 'BananaSuperGlue.jpg', genetics: 'Banana Joe Super Sliver Glue X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Bussin Grapes (Reg)', img: 'BussinGrapes.jpg', genetics: 'Planet Of the Grapes X Chocolate Marshmallows', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
+				{ name: 'Zen Gorilla (Reg)', img: 'ZenGorilla.jpg', genetics: 'Hindu Kush X Purple Gorilla Warfare', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '7-8 Weeks Flower', description: 'Indica dominant Hybrid' },
+				{ name: 'Concrete Jungle (Reg)', img: 'ConcreteJungle.jpg', genetics: 'NYC Sour D X Purple Gorilla Warfare', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
+				{ name: 'GMO Future (Reg)', img: 'GMOFuture.jpg', genetics: 'GMO Kush X Vanilla Future', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
+				{ name: 'Drunken Space Monkey (Reg)', img: 'DrunkenSpaceMonkey.jpg', genetics: 'Gelatti F4 X Vanilla Future', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: 'Sweet candied dough, fruit cream with vanilla and gas undertones of red mixed berries', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
+				{ name: 'Great Dismal Skunk (Reg)', img: 'GreatDismalSkunk.jpg', genetics: 'Swamp Skunk X Cane Corso', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
+				{ name: 'Cane Corso F2 (Reg)', img: 'CaneCorso.jpg', genetics: 'Gelato 41 X Watchdog', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
+				{ name: 'Purple Gorilla Warfare (Reg)', img: 'PurpleGorillaWarfare.jpg', genetics: 'Purple Gorilla Glue X Vanilla Future', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: 'Mixed citrus berry and chem notes with nutty undertones and cream, fruity, earthy, nutty, creamy', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
+				{ name: 'Event Horizon (Reg)', img: 'EventHorizon.jpg', genetics: 'Space Gello X Purple Gorilla Warfare', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: '', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
+				{ name: 'Blueberry Starfighter Cookies (Reg)', img: 'BlueberryStarfighterCookies.jpg', genetics: 'MAC Muffin X Vanilla Future', options: [{size: '5-Pack', price: 30.00}, {size: '12-Pack', price: 60.00}], terpenes: 'Very sweet to sour rotten fermented Blueberry, Creamy Vanilla Fuel dipped desert, blueberries & cream, Hints of tart berries and undertons of pungent earth on exhale', flowering: '8-9 Weeks', description: '50/50 Hybrid' }
+			],
             'feminized': [
-                { name: 'Cohoke Crossing (Fem)', price: 50.00, img: 'CohokeCrossing.jpg', genetics: 'Gassy Lemons X Slumber Cake', terpenes: '', flowering: '', description: '' },
-                { name: 'Local Legend (Fem)', price: 50.00, img: 'LocalLegend.jpg', genetics: 'Local Skunk F3 X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Terminal Lucidity (Fem)', price: 50.00, img: 'TerminalLucidity.jpg', genetics: 'Euphoria X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Boardwalk Carrion (Fem)', price: 50.00, img: 'BoardwalkCarrion.jpg', genetics: 'Dog Beach X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Virginia Roadkill (Fem)', price: 50.00, img: 'VirginiaRoadkill.jpg', genetics: 'Roadkill (Copy Cat) X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'SaVAge Skunk (Fem)', price: 50.00, img: 'SaVAgeSkunk.jpg', genetics: 'Alpha Skunk X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Buckroe Skunk (Fem)', price: 50.00, img: 'BuckroeSkunk.jpg', genetics: 'Buckroe Ether X Roadkill Skunk', terpenes: 'Extremely gassy, heavy og terps, Piney and earthy with citrus and woodsy tones, hints of paint and ether', flowering: '8-9 Weeks', description: '60/40 Indica Dominant' },
-                { name: 'Killer Haze (Fem)', price: 50.00, img: 'KillerHaze.jpg', genetics: 'Sour Lime Haze X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Hillbilly Killer (Fem)', price: 50.00, img: 'HillbillyKiller.jpg', genetics: 'Sour 98 X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: '4 Banger (Fem)', price: 50.00, img: '4Banger.jpg', genetics: 'Williams Sour Chem X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Roanoke Stank (Fem)', price: 50.00, img: 'RoanokeStank.jpg', genetics: 'Stanky Panky X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Pure Nostalgia (Fem)', price: 50.00, img: 'PureNostalgia.jpg', genetics: 'Puck Yes X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Interstate 264 (Fem)', price: 50.00, img: 'Interstate264.jpg', genetics: 'Tahoe Express X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Interstate 664 (Fem)', price: 50.00, img: 'Interstate664.jpg', genetics: 'Skunk Express X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Hulk Smash Cookies (Fem)', price: 50.00, img: 'HulkSmashCookies.jpg', genetics: 'Strawberry Og Cookies #8 X Oreoz', terpenes: '', flowering: '', description: '' },
-                { name: 'SaVAge Star (Fem)', price: 50.00, img: 'SaVAgeStar.jpg', genetics: 'Black Afghani X Sensi Star', terpenes: '', flowering: '', description: '' },
-                { name: 'Death Star (Fem)', price: 50.00, img: 'DeathStar.jpg', genetics: 'Sour Diesel X Sensi Star', terpenes: '', flowering: '', description: '' },
-                { name: 'Lemon Kush Cake Haze (Fem)', price: 50.00, img: 'LemonKushCakeHaze.jpg', genetics: 'Lemon Og Haze X Slumber Cake #22', terpenes: '', flowering: '', description: '' },
-                { name: 'Alien Diesel Cakez (Fem)', price: 50.00, img: 'AlienDieselCakez.jpg', genetics: 'Candy Diesel X Slumber Cake #22', terpenes: '', flowering: '', description: '' },
-                { name: 'Buckroe Ether (Fem)', price: 50.00, img: 'BuckroeEther.jpg', genetics: 'All Gas Og X Slumber Cake #22', terpenes: '', flowering: '', description: '' },
-                { name: 'Torpor Skunk (Fem)', price: 50.00, img: 'TorporSkunk.jpg', genetics: 'Skunk Berries X Slumber Cake #22', terpenes: 'Sweet and Sour Berry, Funky, Pungent Musk. Nutty and Gassy with Floral Undertones', flowering: '9-10 Weeks', description: '60/40 Sativa Dominant' },
-                { name: 'Fatso OG (Fem)', price: 50.00, img: 'FatsoOG.jpg', genetics: 'Gasper X Slumber Cake #22', terpenes: '', flowering: '', description: '' },
-                { name: 'Jelly Goobers (Fem)', price: 50.00, img: 'JellyGoobers.jpg', genetics: 'Jelly Breath X Slumber Cake #22', terpenes: '', flowering: '', description: '' },
-                { name: 'Cold Feet (Fem)', price: 50.00, img: 'ColdFeet.jpg', genetics: 'Slumber Cake #9 X Slumber Cake #22', terpenes: '', flowering: '', description: '' },
-                { name: 'Bulletproof Cupp (Fem)', price: 50.00, img: 'BulletproofCupp.jpg', genetics: 'Gorilla Berry X PCK X Orange Blossom Special', terpenes: '', flowering: '', description: '' },
-                { name: 'Whoop Azz (Fem)', price: 50.00, img: 'WhoopAzz.jpg', genetics: 'Purple Koolwhip X Orange Blossom Special', terpenes: '', flowering: '', description: '' },
-                { name: 'Big Willie Sour (Fem)', price: 50.00, img: 'BigWillieSour.jpg', genetics: 'Williams Sour Chem X Orange Blossom Special', terpenes: '', flowering: '', description: '' },
-                { name: 'Bossman Special (Fem)', price: 50.00, img: 'BossmanSpecial.jpg', genetics: 'Alpha Skunk X Orange Blossom Special', terpenes: '', flowering: '', description: '' },
-                { name: 'Tropical Foot Punch (Fem)', price: 50.00, img: 'TropicalFootPunch.jpg', genetics: 'Gorilla Berry X Jellium X Orange Blossom Special', terpenes: '', flowering: '', description: '' },
-                { name: 'Booty Beach (Fem)', price: 50.00, img: 'BootyBeach.jpg', genetics: 'Tahoe Express X Orange Blossom Special', terpenes: '', flowering: '', description: '' },
-                { name: 'The Dona (Fem)', price: 50.00, img: 'TheDona.jpg', packSize: '5-Pack', genetics: 'Sour Lime Haze X Orange Blossom Special', terpenes: '', flowering: '', description: '' },
-                { name: 'Orange Blossom Special (Fem)', price: 50.00, img: 'OrangeBlossomSpecial.jpg', genetics: 'Clementine X Stardawg', terpenes: '', flowering: '', description: '' },
-                { name: 'Stripper Sweat (Fem)', price: 50.00, img: 'StripperSweat.jpg', genetics: 'Pole Dog X Roadkill Skunk', terpenes: '', flowering: '', description: '' },
-                { name: 'Fried Oreoz (Fem)', price: 50.00, img: 'FriedOreoz.jpg', genetics: 'LSD X Oreoz', terpenes: '', flowering: '9-10 Weeks Flower', description: 'Sativa Dominant Hybrid' },
-                { name: 'SaVage Cookies (Fem)', price: 50.00, img: 'SaVageCookies.jpg', genetics: 'Lilac Cookies Rbx3 X Oreoz', terpenes: 'Vanilla frosted sugar cookie dough, very sweet undertones of burnt candy, creamy, gas and granola', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
-                { name: 'She-Hulk (Fem)', price: 50.00, img: 'She-Hulk.jpg', genetics: 'Strawberry OG Cookies X Oreoz', terpenes: 'Strawberry jet fuel, cookie dough and vanilla cream, Earthy notes with pungent candied tropical undertones', flowering: '8-9 Weeks', description: '50/50 Balanced Hybrid' },
-                { name: 'Cocoa Pebbles (Fem)', price: 50.00, img: 'CocoaPebbles.jpg', genetics: 'Lilac Fruity Pebbles Og X Oreoz', terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
-                { name: 'Milf & Cookies (Fem)', price: 50.00, img: 'Milf&Cookies.jpg', genetics: 'Cereal Milf X Oreoz', terpenes: '', flowering: '7-8 Weeks', description: 'Indica Dominant Hybrid' },
-                { name: 'SaVAge Cream Pie (Fem)', price: 50.00, img: 'SaVAgeCreamPie.jpg', genetics: 'Farmers Daughter X Oreoz', terpenes: '', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
-                { name: 'Virginia Pines (Fem)', price: 50.00, img: 'VirginiaPines.jpg', genetics: 'Pine Needle X Slumber Cake #22', terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
-                { name: 'Bananium Slumber (Fem)', price: 50.00, img: 'BananiumSlumber.jpg', genetics: 'Bananium X Slumber Cake #22', terpenes: 'Sweet and creamy, banana nut bread, with earthy undertones and gassy vanilla notes', flowering: '8-9 Weeks', description: '50/50 Balanced Hybrid' },
-                { name: 'Slumber Cake #22 S1 (Fem)', price: 50.00, img: 'SlumberCake#22S1.jpg', genetics: 'Ghost Og X Wedding Cake', terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
-                { name: 'Crushed Oreoz (Fem)', price: 50.00, img: 'CrushedOreoz.jpg', genetics: 'Cookie Crumble X Oreoz', terpenes: 'Sweet tropical, creamy hints of citrus and sugar cookies, undertones of earth and cypress', flowering: '8-10 Weeks', description: 'Sativa Dominant Hybrid' },
-                { name: 'Oreoz S1 (Fem)', price: 50.00, img: 'OreozS1.jpg', genetics: 'Cookies & Cream X Secret Weapon', terpenes: '', flowering: '7-8 Weeks', description: 'Indica Dominant Hybrid, Third Coast 1/100 cut Oreoz' },
-                { name: 'SaVAge Breath (Fem)', price: 50.00, img: 'SaVAgeBreath.jpg', genetics: 'Oreoz X SaVAge King', terpenes: '', flowering: '7-8 Weeks', description: 'Indica Dominant Hybrid' },
-                { name: 'SaVAge King S1 (Fem)', price: 50.00, img: 'SaVAgeKingS1.jpg', genetics: 'MAC Daddy x Jelly Breath', terpenes: 'Extreme exotic fermented fruit, caramelized sguar, loads of gas and cream, heavy pungent, pastry dough with undertones of chem and earth', flowering: '8-9 Weeks', description: '60/40 Indica Dominant' },
-                { name: 'Royal Gas (Fem)', price: 50.00, img: 'RoyalGas.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Coastal Blizzard (Fem)', price: 50.00, img: 'CoastalBlizzard.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Pop Rox (Fem)', price: 50.00, img: 'PopRox.jpg', genetics: 'Purple Punch X Oreoz', terpenes: 'Candy, mixed berries, Sweet, Pungent, Earthy, Undertones of Chocolate, and Vanilla Cream Gas', flowering: '8-9 Weeks', description: '60/40 Indica Dominant' },
-                { name: 'SaVAge Queen (Fem)', price: 50.00, img: 'SaVAgeQueen.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Neptune Bakery (Fem)', price: 50.00, img: 'NeptuneBakery.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Hood Cookies (Fem)', price: 50.00, img: 'HoodCookies.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Puppy Breath S1 (Fem)', price: 50.00, img: 'PuppyBreath.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: '90\'s Kid (Fem)', price: 50.00, img: '90sKid.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Royal Bitch (Fem)', price: 50.00, img: 'RoyalBitch.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Creamy WAP (Fem)', price: 50.00, img: 'CreamyWAP.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Puppy Monkey Baby (Fem)', price: 50.00, img: 'PuppyMonkeyBaby.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Southern Baddie (Fem)', price: 50.00, img: 'SouthernBaddie.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Battle Zaza (Fem)', price: 50.00, img: 'BattleZaza.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Frosted Dawgg (Fem)', price: 50.00, img: 'FrostedDawgg.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Baked & Beautiful (Fem)', price: 50.00, img: 'Baked&Beautiful.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Badd Dogg (Fem)', price: 50.00, img: 'BaddDogg.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Dirt Bastard (Fem)', price: 50.00, img: 'DirtBastard.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Sunnyvale Slayer (Fem)', price: 50.00, img: 'SunnyvaleSlayer.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Pinto Breath (Fem)', price: 50.00, img: 'PintoBreath.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Stupid Fuel (Fem)', price: 50.00, img: 'StupidFuel.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Mega Milkerz (Fem)', price: 50.00, img: 'MegaMilkerz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Miami Cakez (Fem)', price: 50.00, img: 'MiamiCakez.jpg', genetics: '', terpenes: '', flowering: '', description: '' }
-            ],
+				{ name: 'Cohoke Crossing (Fem)', img: 'CohokeCrossing.jpg', genetics: 'Gassy Lemons X Slumber Cake', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Local Legend (Fem)', img: 'LocalLegend.jpg', genetics: 'Local Skunk F3 X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Terminal Lucidity (Fem)', img: 'TerminalLucidity.jpg', genetics: 'Euphoria X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Boardwalk Carrion (Fem)', img: 'BoardwalkCarrion.jpg', genetics: 'Dog Beach X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Virginia Roadkill (Fem)', img: 'VirginiaRoadkill.jpg', genetics: 'Roadkill (Copy Cat) X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'SaVAge Skunk (Fem)', img: 'SaVAgeSkunk.jpg', genetics: 'Alpha Skunk X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Buckroe Skunk (Fem)', img: 'BuckroeSkunk.jpg', genetics: 'Buckroe Ether X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: 'Extremely gassy, heavy og terps, Piney and earthy with citrus and woodsy tones, hints of paint and ether', flowering: '8-9 Weeks', description: '60/40 Indica Dominant' },
+				{ name: 'Killer Haze (Fem)', img: 'KillerHaze.jpg', genetics: 'Sour Lime Haze X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Hillbilly Killer (Fem)', img: 'HillbillyKiller.jpg', genetics: 'Sour 98 X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: '4 Banger (Fem)', img: '4Banger.jpg', genetics: 'Williams Sour Chem X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Roanoke Stank (Fem)', img: 'RoanokeStank.jpg', genetics: 'Stanky Panky X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Pure Nostalgia (Fem)', img: 'PureNostalgia.jpg', genetics: 'Puck Yes X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Interstate 264 (Fem)', img: 'Interstate264.jpg', genetics: 'Tahoe Express X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Interstate 664 (Fem)', img: 'Interstate664.jpg', genetics: 'Skunk Express X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Hulk Smash Cookies (Fem)', img: 'HulkSmashCookies.jpg', genetics: 'Strawberry Og Cookies #8 X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'SaVAge Star (Fem)', img: 'SaVAgeStar.jpg', genetics: 'Black Afghani X Sensi Star', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Death Star (Fem)', img: 'DeathStar.jpg', genetics: 'Sour Diesel X Sensi Star', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Lemon Kush Cake Haze (Fem)', img: 'LemonKushCakeHaze.jpg', genetics: 'Lemon Og Haze X Slumber Cake #22', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Alien Diesel Cakez (Fem)', img: 'AlienDieselCakez.jpg', genetics: 'Candy Diesel X Slumber Cake #22', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Buckroe Ether (Fem)', img: 'BuckroeEther.jpg', genetics: 'All Gas Og X Slumber Cake #22', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Torpor Skunk (Fem)', img: 'TorporSkunk.jpg', genetics: 'Skunk Berries X Slumber Cake #22', options: [{size: '5-Pack', price: 50.00}], terpenes: 'Sweet and Sour Berry, Funky, Pungent Musk. Nutty and Gassy with Floral Undertones', flowering: '9-10 Weeks', description: '60/40 Sativa Dominant' },
+				{ name: 'Fatso OG (Fem)', img: 'FatsoOG.jpg', genetics: 'Gasper X Slumber Cake #22', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Jelly Goobers (Fem)', img: 'JellyGoobers.jpg', genetics: 'Jelly Breath X Slumber Cake #22', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Cold Feet (Fem)', img: 'ColdFeet.jpg', genetics: 'Slumber Cake #9 X Slumber Cake #22', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Bulletproof Cupp (Fem)', img: 'BulletproofCupp.jpg', genetics: 'Gorilla Berry X PCK X Orange Blossom Special', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Whoop Azz (Fem)', img: 'WhoopAzz.jpg', genetics: 'Purple Koolwhip X Orange Blossom Special', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Big Willie Sour (Fem)', img: 'BigWillieSour.jpg', genetics: 'Williams Sour Chem X Orange Blossom Special', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Bossman Special (Fem)', img: 'BossmanSpecial.jpg', genetics: 'Alpha Skunk X Orange Blossom Special', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Tropical Foot Punch (Fem)', img: 'TropicalFootPunch.jpg', genetics: 'Gorilla Berry X Jellium X Orange Blossom Special', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Booty Beach (Fem)', img: 'BootyBeach.jpg', genetics: 'Tahoe Express X Orange Blossom Special', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'The Dona (Fem)', img: 'TheDona.jpg', genetics: 'Sour Lime Haze X Orange Blossom Special', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Orange Blossom Special (Fem)', img: 'OrangeBlossomSpecial.jpg', genetics: 'Clementine X Stardawg', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Stripper Sweat (Fem)', img: 'StripperSweat.jpg', genetics: 'Pole Dog X Roadkill Skunk', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Fried Oreoz (Fem)', img: 'FriedOreoz.jpg', genetics: 'LSD X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '9-10 Weeks Flower', description: 'Sativa Dominant Hybrid' },
+				{ name: 'SaVage Cookies (Fem)', img: 'SaVageCookies.jpg', genetics: 'Lilac Cookies Rbx3 X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: 'Vanilla frosted sugar cookie dough, very sweet undertones of burnt candy, creamy, gas and granola', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
+				{ name: 'She-Hulk (Fem)', img: 'SheHulk.jpg', genetics: 'Strawberry OG Cookies X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: 'Strawberry jet fuel, cookie dough and vanilla cream, Earthy notes with pungent candied tropical undertones', flowering: '8-9 Weeks', description: '50/50 Balanced Hybrid' },
+				{ name: 'Cocoa Pebbles (Fem)', img: 'CocoaPebbles.jpg', genetics: 'Lilac Fruity Pebbles Og X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
+				{ name: 'Milf & Cookies (Fem)', img: 'Milf&Cookies.jpg', genetics: 'Cereal Milf X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '7-8 Weeks', description: 'Indica Dominant Hybrid' },
+				{ name: 'SaVAge Cream Pie (Fem)', img: 'SaVAgeCreamPie.jpg', genetics: 'Farmers Daughter X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
+				{ name: 'Virginia Pines (Fem)', img: 'VirginiaPines.jpg', genetics: 'Pine Needle X Slumber Cake #22', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
+				{ name: 'Bananium Slumber (Fem)', img: 'BananiumSlumber.jpg', genetics: 'Bananium X Slumber Cake #22', options: [{size: '5-Pack', price: 50.00}], terpenes: 'Sweet and creamy, banana nut bread, with earthy undertones and gassy vanilla notes', flowering: '8-9 Weeks', description: '50/50 Balanced Hybrid' },
+				{ name: 'Slumber Cake #22 S1 (Fem)', img: 'SlumberCake.jpg', genetics: 'Ghost Og X Wedding Cake', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
+				{ name: 'Crushed Oreoz (Fem)', img: 'CrushedOreoz.jpg', genetics: 'Cookie Crumble X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: 'Sweet tropical, creamy hints of citrus and sugar cookies, undertones of earth and cypress', flowering: '8-10 Weeks', description: 'Sativa Dominant Hybrid' },
+				{ name: 'Oreoz S1 (Fem)', img: 'Oreoz.jpg', genetics: 'Cookies & Cream X Secret Weapon', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '7-8 Weeks', description: 'Indica Dominant Hybrid, Third Coast 1/100 cut Oreoz' },
+				{ name: 'SaVAge Breath (Fem)', img: 'SaVAgeBreath.jpg', genetics: 'Oreoz X SaVAge King', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '7-8 Weeks', description: 'Indica Dominant Hybrid' },
+				{ name: 'SaVAge King S1 (Fem)', img: 'SaVAgeKing.jpg', genetics: 'MAC Daddy x Jelly Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: 'Extreme exotic fermented fruit, caramelized sguar, loads of gas and cream, heavy pungent, pastry dough with undertones of chem and earth', flowering: '8-9 Weeks', description: '60/40 Indica Dominant' },
+				{ name: 'Royal Gas (Fem)', img: 'RoyalGas.jpg', genetics: 'Guava Biscotti X SaVAge King', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '9-10 Weeks', description: 'Sativa Dominant Hybrid' },
+				{ name: 'Coastal Blizzard (Fem)', img: 'CoastalBlizzard.jpg', genetics: 'Ice Cream Cake X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '8-9 Weeks', description: 'Well Balanced Hybrid' },
+				{ name: 'Pop Rox (Fem)', img: 'PopRox.jpg', genetics: 'Purple Punch X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: 'Candy, mixed berries, Sweet, Pungent, Earthy, Undertones of Chocolate, and Vanilla Cream Gas', flowering: '8-9 Weeks', description: '60/40 Indica Dominant' },
+				{ name: 'SaVAge Queen (Fem)', img: 'SaVAgeQueen.jpg', genetics: 'Crazy Bitch X Savage King', options: [{size: '5-Pack', price: 50.00}], terpenes: 'Cherry, Gas, Vanilla, Cream, Menthol', flowering: '9 Weeks', description: '60/40 Sativa Dominant' },
+				{ name: 'Neptune Bakery (Fem)', img: 'NeptuneBakery.jpg', genetics: 'Blueberry Cupcake X Slumber Cake #22', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Hood Cookies (Fem)', img: 'HoodCookies.jpg', genetics: 'Grape Syrup X Oreoz', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '8-9 Weeks', description: 'Indica Dominant Hybrid' },
+				{ name: 'Puppy Breath S1 (Fem)', img: 'PuppyBreath.jpg', genetics: 'Cereal Milk X GG#4 X Thin Mint Cookies', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '9 Weeks', description: '50/50 Balanced Hybrid' },
+				{ name: "90's Kid (Fem)", img: '90sKid.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Royal Bitch (Fem)', img: 'RoyalBitch.jpg', genetics: 'Royal Gas X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Creamy WAP (Fem)', img: 'CreamyWAP.jpg', genetics: 'Litty WAP X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Puppy Monkey Baby (Fem)', img: 'PuppyMonkeyBaby.jpg', genetics: 'Grease Monkey X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Southern Baddie (Fem)', img: 'SouthernBaddie.jpg', genetics: 'Whistlin Dixie X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Battle Zaza (Fem)', img: 'BattleZaza.jpg', genetics: 'Lemon Cherry Gelato X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Frosted Dawgg (Fem)', img: 'FrostedDawgg.jpg', genetics: 'Frosty Kong X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Baked & Beautiful (Fem)', img: 'Baked&Beautiful.jpg', genetics: 'Wedding Cake X BBC X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Badd Dogg (Fem)', img: 'BaddDogg.jpg', genetics: 'Deadhead OG X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Dirty Bastard (Fem)', img: 'DirtyBastard.jpg', genetics: 'Selfish Bastard X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Sunnyvale Slayer (Fem)', img: 'SunnyvaleSlayer.jpg', genetics: 'Rickys Hashplant X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Pinto Breath (Fem)', img: 'PintoBreath.jpg', genetics: 'Schuyler Glue X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Stupid Fuel (Fem)', img: 'StupidFuel.jpg', genetics: 'Lazer Fuel X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Mega Milkerz (Fem)', img: 'MegaMilkerz.jpg', genetics: 'Don Juan De Milko X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Miami Cakez (Fem)', img: 'MiamiCakez.jpg', genetics: 'Pineapple Upside Down Cake X Puppy Breath', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' }
+			],
             'auto': [
-                { name: 'Planet Pluto (Auto)', price: 50.00, img: 'SLE.png', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Planet Stuffed (Auto)', price: 50.00, img: 'PlanetStuffed.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Planet Dankness (Auto)', price: 50.00, img: 'PlanetDankness.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Planet Wednesday (Auto)', price: 50.00, img: 'PlanetWednesday.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Planet Delicious (Auto)', price: 50.00, img: 'PlanetDelicious.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Think Savage (Auto)', price: 50.00, img: 'ThinkSavage.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Drive By (Auto)', price: 50.00, img: 'DriveBy.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Chocolate Banana Splitz (Auto)', price: 50.00, img: 'ChocolateBananaSplitz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Banana Clipz (Auto)', price: 50.00, img: 'BananaClipz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Gas War (Auto)', price: 50.00, img: 'GasWar.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Blueberry Hashplant (Auto)', price: 50.00, img: 'BlueberryHashplant.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Mango Berry Sherb (Auto)', price: 50.00, img: 'MangoBerrySherb.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Banana Berry Runtz (Auto)', price: 50.00, img: 'BananaBerryRuntz.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Banana Berry Ghani (Auto)', price: 50.00, img: 'BananaBerryGhani.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'BOG Berry Pie (Auto)', price: 50.00, img: 'BOGBerryPie.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Remember Berry Haze (Auto)', price: 50.00, img: 'RememberBerryHaze.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Bigfoot Blues (Auto)', price: 50.00, img: 'BigfootBlues.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Blue Angels (Auto)', price: 50.00, img: 'BlueAngels.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Scout Berries (Auto)', price: 50.00, img: 'ScoutBerries.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Gorilla Berries (Auto)', price: 50.00, img: 'GorillaBerries.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Widow Berry (Auto)', price: 50.00, img: 'WidowBerry.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Bubba Berry Kush (Auto)', price: 50.00, img: 'BubbaBerryKush.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Something Blue (Auto)', price: 50.00, img: 'SomethingBlue.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Stars N Straps (Auto)', price: 50.00, img: 'StarsNStraps.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Romulan Ale (Auto)', price: 50.00, img: 'RomulanAle.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Frozen Neptune (Auto)', price: 50.00, img: 'FrozenNeptune.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Double Berry MAC (Auto)', price: 50.00, img: 'DoubleBerryMAC.jpg', genetics: '', terpenes: '', flowering: '', description: '' },
-                { name: 'Double Berry Gelato (Auto)', price: 50.00, img: 'DoubleBerryGelato.jpg', genetics: '', terpenes: '', flowering: '', description: '' }
-            ]
+				{ name: 'Planet Pluto (Auto)', img: 'PlanetPluto.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Planet Stuffed (Auto)', img: 'PlanetStuffed.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Planet Dankness (Auto)', img: 'PlanetDankness.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Planet Wednesday (Auto)', img: 'PlanetWednesday.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Planet Delicious (Auto)', img: 'PlanetDelicious.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Think Savage (Auto)', img: 'ThinkSavage.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Drive By (Auto)', img: 'DriveBy.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Chocolate Banana Splitz (Auto)', img: 'ChocolateBananaSplitz.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Banana Clipz (Auto)', img: 'BananaClipz.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Gas War (Auto)', img: 'GasWar.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Blueberry Hashplant (Auto)', img: 'BlueberryHashplant.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Mango Berry Sherb (Auto)', img: 'MangoBerrySherb.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Banana Berry Runtz (Auto)', img: 'BananaBerryRuntz.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Banana Berry Ghani (Auto)', img: 'BananaBerryGhani.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'BOG Berry Pie (Auto)', img: 'BOGBerryPie.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Remember Berry Haze (Auto)', img: 'RememberBerryHaze.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Bigfoot Blues (Auto)', img: 'BigfootBlues.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Blue Angels (Auto)', img: 'BlueAngels.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Scout Berries (Auto)', img: 'ScoutBerries.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Gorilla Berries (Auto)', img: 'GorillaBerries.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Widow Berry (Auto)', img: 'WidowBerry.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Bubba Berry Kush (Auto)', img: 'BubbaBerryKush.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Something Blue (Auto)', img: 'SomethingBlue.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Stars N Straps (Auto)', img: 'StarsNStraps.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Romulan Ale (Auto)', img: 'RomulanAle.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Frozen Neptune (Auto)', img: 'FrozenNeptune.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Double Berry MAC (Auto)', img: 'DoubleBerryMAC.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' },
+				{ name: 'Double Berry Gelato (Auto)', img: 'DoubleBerryGelato.jpg', genetics: '', options: [{size: '5-Pack', price: 50.00}], terpenes: '', flowering: '', description: '' }
+			]
         };
 
         // 2. SEARCH LOGIC
@@ -914,35 +918,44 @@
         }
 
         function addToCart() {
-            const qty = parseInt(document.getElementById('qty-input').value);
-            const productId = currentProduct.name;
-            
-            const existing = cart.find(item => item.name === productId);
-            if (existing) {
-                existing.quantity += qty;
-            } else {
-                cart.push({
-                    name: currentProduct.name,
-                    price: currentProduct.price || 50.00,
-                    img: currentProduct.img,
-                    category: currentCategory,
-                    quantity: qty
-                });
-            }
+    const qtyInput = document.getElementById('qty-input');
+    const qty = qtyInput ? parseInt(qtyInput.value) : 1;
+    const sizeSelector = document.getElementById('size-selector');
+    
+    let productName = currentProduct.name;
+    let productPrice = currentProduct.price || 50.00;
 
-            saveCart();
-            updateCartUI();
-            
-            // Visual feedback
-            const btn = document.querySelector('.btn-primary');
-            const originalText = btn.innerText;
-            btn.innerText = `Added ${qty} to Bag!`;
-            btn.classList.add('bg-zinc-800');
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.classList.remove('bg-zinc-800');
-            }, 2000);
-        }
+    if (sizeSelector) {
+        const selectedSize = sizeSelector.options[sizeSelector.selectedIndex].text.split(' - ')[0];
+        productName = `${currentProduct.name} (${selectedSize})`;
+        productPrice = parseFloat(sizeSelector.value);
+    } else {
+        productName = `${currentProduct.name} (5-Pack)`;
+    }
+
+    const existing = cart.find(item => item.name === productName);
+    if (existing) {
+        existing.quantity += qty;
+    } else {
+        cart.push({
+            name: productName,
+            price: productPrice,
+            quantity: qty,
+            img: currentProduct.img
+        });
+    }
+
+    saveCart();
+    updateCartUI();
+    
+    // Feedback
+    const btn = document.querySelector('.btn-primary');
+    if (btn) {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check mr-2"></i> Added!';
+        setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+    }
+}
 
         function updateCartQty(name, delta) {
             const item = cart.find(i => i.name === name);
@@ -967,61 +980,66 @@
         }
 
         function updateCartUI() {
-            const container = document.getElementById('cart-items-container');
-            const badge = document.getElementById('cart-badge');
-            const badgeMobile = document.getElementById('cart-badge-mobile');
-            const totalEl = document.getElementById('cart-total');
+    const container = document.getElementById('cart-items-container');
+    const badge = document.getElementById('cart-badge');
+    const badgeMobile = document.getElementById('cart-badge-mobile');
+    const shippingEl = document.getElementById('cart-shipping'); // New
+    const totalEl = document.getElementById('cart-total');
+    
+    const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
-            const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-            const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    // Shipping logic: Free over $100, otherwise $8.00
+    // If cart is empty, shipping should show $0.00
+    const shippingFee = (subtotal >= 100 || subtotal === 0) ? 0 : 8.00;
+    const finalTotal = subtotal + shippingFee;
 
-            // Update Badges
-            [badge, badgeMobile].forEach(b => {
-                b.innerText = totalItems;
-                b.style.transform = totalItems > 0 ? 'scale(1)' : 'scale(0)';
-            });
+    // Update Badge
+    badge.innerText = totalItems;
+    badgeMobile.innerText = totalItems;
+    badge.style.transform = totalItems > 0 ? 'scale(1)' : 'scale(0)';
+    badgeMobile.style.transform = totalItems > 0 ? 'scale(1)' : 'scale(0)';
 
-            // Update Total
-            totalEl.innerText = `$${totalPrice.toFixed(2)}`;
+    // Update Shipping Display
+    if (shippingEl) {
+        shippingEl.innerText = shippingFee === 0 && subtotal >= 100 ? "FREE" : `$${shippingFee.toFixed(2)}`;
+        shippingEl.className = shippingFee === 0 && subtotal >= 100 ? "text-sm font-black text-green-500" : "text-sm font-bold text-white";
+    }
 
-            // Update Items
-            if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="flex flex-col items-center justify-center h-full text-center space-y-4 py-20">
-                        <i class="fas fa-shopping-bag text-5xl text-zinc-800"></i>
-                        <p class="text-zinc-500 uppercase font-bold tracking-widest text-xs">Your bag is currently empty</p>
-                        <button onclick="toggleCart(); showPage('feminized')" class="text-green-500 font-bold hover:underline uppercase text-xs">Browse Collections</button>
-                    </div>
-                `;
-                return;
-            }
+    // Update Total Display
+    totalEl.innerText = `$${finalTotal.toFixed(2)}`;
 
-            container.innerHTML = cart.map(item => `
-                <div class="flex gap-4 group">
-                    <div class="w-20 h-20 bg-zinc-900 rounded-2xl flex-shrink-0 border border-zinc-800 p-2 overflow-hidden">
-                        <img src="${item.img}" class="w-full h-full object-contain">
-                    </div>
-                    <div class="flex-grow">
-                        <div class="flex justify-between items-start mb-1">
-                            <h4 class="text-sm font-bold uppercase italic tracking-tighter leading-tight pr-4">${item.name}</h4>
-                            <button onclick="removeFromCart('${item.name}')" class="text-zinc-600 hover:text-red-500 transition"><i class="fas fa-trash-alt text-xs"></i></button>
-                        </div>
-                        <p class="text-green-500 text-xs font-black mb-3">$${(item.price * item.quantity).toFixed(2)}</p>
-                        <div class="flex items-center gap-4">
-                            <div class="flex items-center bg-zinc-900 rounded-full border border-zinc-800 p-1 scale-90 -ml-2">
-                                <button onclick="updateCartQty('${item.name}', -1)" class="w-8 h-8 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fas fa-minus text-[10px]"></i></button>
-                                <span class="w-6 text-center text-xs font-bold">${item.quantity}</span>
-                                <button onclick="updateCartQty('${item.name}', 1)" class="w-8 h-8 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fas fa-plus text-[10px]"></i></button>
-                            </div>
-                        </div>
+    if (cart.length === 0) {
+        container.innerHTML = `<div class="text-center py-20"><i class="fas fa-shopping-bag text-4xl text-zinc-800 mb-4"></i><p class="text-zinc-500 font-bold uppercase tracking-widest text-xs">Your bag is empty</p></div>`;
+        return;
+    }
+
+    container.innerHTML = cart.map(item => `
+        <div class="flex gap-4 group">
+            <div class="w-20 h-20 bg-zinc-900 rounded-2xl border border-zinc-800 p-2 flex-shrink-0">
+                <img src="${item.img || 'SLE.png'}" class="w-full h-full object-contain">
+            </div>
+            <div class="flex-grow">
+                <div class="flex justify-between items-start mb-1">
+                    <h4 class="text-sm font-black uppercase italic leading-tight">${item.name}</h4>
+                    <button onclick="removeFromCart('${item.name}')" class="text-zinc-600 hover:text-red-500 transition"><i class="fas fa-times text-xs"></i></button>
+                </div>
+                <p class="text-green-500 text-xs font-black mb-3">$${(item.price * item.quantity).toFixed(2)}</p>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center bg-zinc-900 rounded-full border border-zinc-800 p-1 scale-90 -ml-2">
+                        <button onclick="updateCartQty('${item.name}', -1)" class="w-8 h-8 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fas fa-minus text-[10px]"></i></button>
+                        <span class="w-6 text-center text-xs font-bold">${item.quantity}</span>
+                        <button onclick="updateCartQty('${item.name}', 1)" class="w-8 h-8 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fas fa-plus text-[10px]"></i></button>
                     </div>
                 </div>
-            `).join('');
-        }
+            </div>
+        </div>
+    `).join('');
+}
 
         function checkout() {
     if (cart.length === 0) {
-        alert("Your bag is empty!");
+        alert("Your cart is empty!");
         return;
     }
 
@@ -1084,62 +1102,78 @@ Please return to the website to finalize payment via Cashapp. You will recieve a
         }
 
         function viewProduct(category, index) {
-            const data = productData[category];
-            currentCategory = category;
-            currentProduct = data[index];
-            
-            const content = document.getElementById('detail-content');
-            
-            content.innerHTML = `
-                <div class="grid lg:grid-cols-2 gap-16 items-start">
-					<div class="rounded-[3rem] overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl sticky top-32">
-						<img src="${currentProduct.img}" 
-							 onclick="openZoom(this.src)" 
-							 class="w-full aspect-square object-contain p-12 cursor-zoom-in" 
-							 alt="${currentProduct.name}">
-					</div>
-                    <div class="space-y-12">
-                        <div>
-                            <span class="text-green-500 font-bold uppercase tracking-widest text-sm mb-2 block">${currentCategory} Collection</span>
-                            <h2 class="text-5xl md:text-6xl font-black uppercase italic tracking-tighter mb-4">${currentProduct.name}</h2>
-                            <p class="text-3xl font-black text-white">$${(currentProduct.price || 50.00).toFixed(2)}</p>
-                        </div>
+    const data = productData[category];
+    currentCategory = category;
+    currentProduct = data[index];
+    
+    const content = document.getElementById('detail-content');
+    
+    let sizeSelectorHTML = '';
+    if (currentProduct.options) {
+        sizeSelectorHTML = `
+            <div class="mb-6">
+                <label class="block text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-2">Select Pack Size</label>
+                <select id="size-selector" onchange="updateDetailPrice(this)" class="w-full bg-zinc-900 border border-zinc-800 p-4 rounded-2xl text-white font-bold outline-none focus:border-green-500 transition">
+                    ${currentProduct.options.map(opt => `<option value="${opt.price}">${opt.size} - $${opt.price.toFixed(2)}</option>`).join('')}
+                </select>
+            </div>
+        `;
+    }
 
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-zinc-900/50 p-6 rounded-3xl border border-zinc-800">
-                                <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-1">Flowering Time</span>
-                                <span class="text-white font-bold">${currentProduct.flowering || 'N/A'}</span>
-                            </div>
-                            <div class="bg-zinc-900/50 p-6 rounded-3xl border border-zinc-800">
-                                <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-1">Genetics</span>
-                                <span class="text-white font-bold">${currentProduct.genetics || 'N/A'}</span>
-                            </div>
-                        </div>
+    content.innerHTML = `
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+            <div class="rounded-[3rem] overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl sticky top-32">
+                <img src="${currentProduct.img}" onclick="openZoom(this.src)" class="w-full aspect-square object-contain p-12 cursor-zoom-in" alt="${currentProduct.name}">
+            </div>
+            <div class="space-y-12">
+                <div>
+                    <span class="text-green-500 font-bold uppercase tracking-widest text-sm mb-2 block">${currentCategory} Collection</span>
+                    <h2 class="text-5xl md:text-6xl font-black uppercase italic tracking-tighter mb-4">${currentProduct.name}</h2>
+                    <p id="detail-price-display" class="text-3xl font-black text-white">
+                        $${(currentProduct.options ? currentProduct.options[0].price : (currentProduct.price || 50.00)).toFixed(2)}
+                    </p>
+                </div>
 
-                        <div class="space-y-4">
-                            <h3 class="text-xl font-bold uppercase italic">Strain Description</h3>
-                            <p class="text-zinc-400 leading-relaxed">${currentProduct.description || 'No description provided.'}</p>
-                        </div>
-
-                        <div class="space-y-4">
-                            <h3 class="text-xl font-bold uppercase italic">Terpene Profile</h3>
-                            <p class="text-zinc-400 italic">${currentProduct.terpenes || 'N/A'}</p>
-                        </div>
-
-                        <div class="pt-8 border-t border-zinc-800 flex flex-wrap items-center gap-6">
-                            <div class="flex items-center bg-zinc-900 rounded-full border border-zinc-800 p-1">
-                                <button onclick="updateQty(-1)" class="w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-white transition"><i class="fas fa-minus"></i></button>
-                                <input type="number" id="qty-input" value="1" min="1" class="w-12 bg-transparent text-center font-bold !border-none !p-0">
-                                <button onclick="updateQty(1)" class="w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-white transition"><i class="fas fa-plus"></i></button>
-                            </div>
-                            <button onclick="addToCart()" class="btn-primary flex-1 py-5 rounded-full font-black uppercase tracking-[0.2em] shadow-xl text-white">Add to Bag</button>
-                        </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-zinc-900/50 p-6 rounded-3xl border border-zinc-800">
+                        <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-1">Flowering Time</span>
+                        <span class="text-white font-bold">${currentProduct.flowering || 'N/A'}</span>
+                    </div>
+                    <div class="bg-zinc-900/50 p-6 rounded-3xl border border-zinc-800">
+                        <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-1">Genetics</span>
+                        <span class="text-white font-bold">${currentProduct.genetics || 'N/A'}</span>
                     </div>
                 </div>
-            `;
-            
-            showPage('product-detail');
-        }
+
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold uppercase italic">Strain Description</h3>
+                    <p class="text-zinc-400 leading-relaxed">${currentProduct.description || 'Premium Virginia genetics.'}</p>
+                </div>
+
+                <div class="pt-8 border-t border-zinc-800">
+                    ${sizeSelectorHTML}
+                    
+                    <div class="flex flex-wrap items-center gap-6">
+                        <div class="flex items-center bg-zinc-900 rounded-full border border-zinc-800 p-1">
+                            <button onclick="updateQty(-1)" class="w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-white transition"><i class="fas fa-minus"></i></button>
+                            <input type="number" id="qty-input" value="1" min="1" class="w-12 bg-transparent text-center font-bold !border-none !p-0">
+                            <button onclick="updateQty(1)" class="w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-white transition"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <button onclick="addToCart()" class="btn-primary flex-1 py-5 rounded-full font-black uppercase tracking-[0.2em] shadow-xl text-white">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    showPage('product-detail');
+}
+
+function updateDetailPrice(select) {
+    const priceDisplay = document.getElementById('detail-price-display');
+    if (priceDisplay) {
+        priceDisplay.innerText = '$' + parseFloat(select.value).toFixed(2);
+    }
+}
 
         function updateQty(val) {
             const input = document.getElementById('qty-input');
@@ -1156,24 +1190,31 @@ Please return to the website to finalize payment via Cashapp. You will recieve a
         }
 
         function renderProducts() {
-            const grid = document.getElementById('product-grid');
-            const data = productData[currentCategory] || [];
-            grid.innerHTML = data.map((strain, index) => `
-                <div class="seed-card rounded-2xl overflow-hidden group" onclick="viewProduct('${currentCategory}', ${index})">
-                    <div class="h-64 overflow-hidden relative bg-zinc-800 flex items-center justify-center p-8">
-                        <img src="${strain.img}" class="max-w-full max-h-full object-contain group-hover:scale-110 transition duration-500" alt="${strain.name}">
-                    </div>
-                    <div class="p-6 text-white">
-                        <h4 class="font-bold text-lg mb-4 uppercase italic tracking-tighter">${strain.name}</h4>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-black text-green-500">$${(strain.price || 50.00).toFixed(2)}</span>
-                            <span class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">View Details</span>
-                        </div>
+    const grid = document.getElementById('product-grid');
+    const data = productData[currentCategory] || [];
+    grid.innerHTML = data.map((strain, index) => {
+        // Choose price to show on grid
+        const priceDisplay = strain.options 
+            ? `From $${strain.options[0].price.toFixed(2)}` 
+            : `$${(strain.price || 50.00).toFixed(2)}`;
+
+        return `
+            <div class="seed-card rounded-2xl overflow-hidden group" onclick="viewProduct('${currentCategory}', ${index})">
+                <div class="h-64 overflow-hidden relative bg-zinc-800 flex items-center justify-center p-8">
+                    <img src="${strain.img}" class="max-w-full max-h-full object-contain group-hover:scale-110 transition duration-500" alt="${strain.name}">
+                </div>
+                <div class="p-6 text-white">
+                    <h4 class="font-bold text-lg mb-4 uppercase italic tracking-tighter">${strain.name}</h4>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-black text-green-500">${priceDisplay}</span>
+                        <span class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">View Details</span>
                     </div>
                 </div>
-            `).join('');
-            gsap.from(".seed-card", { duration: 0.6, opacity: 0, y: 30, stagger: 0.05 });
-        }
+            </div>
+        `;
+    }).join('');
+    gsap.from(".seed-card", { duration: 0.6, opacity: 0, y: 30, stagger: 0.05 });
+}
 
         function handleContactSubmit(e) {
             e.preventDefault();
