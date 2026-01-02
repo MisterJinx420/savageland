@@ -636,6 +636,27 @@
                 </div>
             </div>
 
+			<!-- Terp Classes -->
+			<div class="flex flex-wrap gap-3 mb-8 justify-center">
+    <button onclick="filterByTrait('all')" class="filter-btn active-filter px-6 py-2 rounded-full border border-zinc-700 text-xs font-bold uppercase tracking-widest hover:border-green-500 transition">All</button>
+    <button onclick="filterByTrait('Gassy')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-xs font-bold uppercase tracking-widest hover:border-green-500 transition">Gassy</button>
+    <button onclick="filterByTrait('Fruit')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-xs font-bold uppercase tracking-widest hover:border-green-500 transition">Fruit</button>
+    <button onclick="filterByTrait('Citrus')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-xs font-bold uppercase tracking-widest hover:border-green-500 transition">Citrus</button>
+    <button onclick="filterByTrait('Skunk')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-xs font-bold uppercase tracking-widest hover:border-green-500 transition">Skunk</button>
+    <button onclick="filterByTrait('Dessert')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-xs font-bold uppercase tracking-widest hover:border-green-500 transition">Dessert</button>
+    <button onclick="filterByTrait('Earthy')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-xs font-bold uppercase tracking-widest hover:border-green-500 transition">Earthy</button>
+    <button onclick="filterByTrait('Tropical')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-xs font-bold uppercase tracking-widest hover:border-green-500 transition">Tropical</button>
+    <button onclick="filterByTrait('Creamy')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-xs font-bold uppercase tracking-widest hover:border-green-500 transition">Creamy</button>
+</div>
+
+<style>
+    .active-filter {
+        background: var(--cannabis-green) !important;
+        border-color: var(--cannabis-green) !important;
+        color: black !important;
+    }
+</style>
+
             <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <!-- Products injected via JS -->
             </div>
@@ -1229,6 +1250,87 @@ function updateDetailPrice(select) {
     }).join('');
     gsap.from(".seed-card", { duration: 0.6, opacity: 0, y: 30, stagger: 0.05 });
 }
+
+			<!-- Terp Class Javascript -->
+			let currentTraitFilter = 'all';
+
+			function filterByTrait(trait) {
+				currentTraitFilter = trait.toLowerCase();
+				document.querySelectorAll('.filter-btn').forEach(btn => {
+					btn.classList.remove('active-filter');
+					if(btn.innerText.toLowerCase() === trait.toLowerCase()) btn.classList.add('active-filter');
+				});
+				renderProducts();
+			}
+
+			function renderProducts() {
+				const grid = document.getElementById('product-grid');
+				let data = productData[currentCategory] || [];
+
+				if (currentTraitFilter !== 'all') {
+					data = data.filter(strain => {
+						const name = (strain.name || "").toLowerCase();
+						const desc = (strain.description || "").toLowerCase();
+						const genetics = (strain.genetics || "").toLowerCase();
+						const terpene = (strain.terpeneProfile || "").toLowerCase(); // Added terpene search
+						
+						let searchTerms = [currentTraitFilter]; 
+						
+						if (currentTraitFilter === "gassy") {
+							searchTerms = ["gas", "gassy", "fuel", "ether", "diesel", "jet fuel"]; 
+						} else if (currentTraitFilter === "fruit") {
+							searchTerms = ["fruit", "frui", "berry", "berries", "strawberry", "grape", "cherry"]; 
+						} else if (currentTraitFilter === "citrus") {
+							searchTerms = ["citrus", "lemon", "lime", "orange", "tangerine", "clementine"];
+						} else if (currentTraitFilter === "skunk") {
+							searchTerms = ["skunk", "skunky", "funk", "roadkill", "stank", "musk"]; 
+						} else if (currentTraitFilter === "dessert") {
+							searchTerms = ["cake", "cookie", "dough", "vanilla", "bread", "pastry", "sugar", "sweet"];
+						} else if (currentTraitFilter === "earthy") {
+							searchTerms = ["earth", "pine", "wood", "kush", "nutty", "hash", "dirt"];
+						} else if (currentTraitFilter === "tropical") {
+							searchTerms = ["tropical", "pineapple", "mango", "guava", "passion"];
+						} else if (currentTraitFilter === "creamy") {
+							searchTerms = ["cream", "creamy", "milk", "milky", "latte", "butter"];
+						}
+						
+						return searchTerms.some(term => 
+							name.includes(term) || desc.includes(term) || genetics.includes(term) || terpene.includes(term)
+						);
+					});
+				}
+
+				grid.innerHTML = data.map((strain, index) => {
+					const priceDisplay = strain.options 
+						? `From $${strain.options[0].price.toFixed(2)}` 
+						: `$${(strain.price || 50.00).toFixed(2)}`;
+
+					return `
+						<div class="seed-card rounded-2xl overflow-hidden group" onclick="viewProduct('${currentCategory}', ${index})">
+							<div class="h-64 overflow-hidden relative bg-zinc-800 flex items-center justify-center p-8">
+								<img src="${strain.img}" 
+									 class="max-w-full max-h-full object-contain group-hover:scale-110 transition duration-500" 
+									 alt="${strain.name}"
+									 onerror="this.src='SLE.png'">
+							</div>
+							<div class="p-6 text-white">
+								<h4 class="font-bold text-lg mb-4 uppercase italic tracking-tighter">${strain.name}</h4>
+								<div class="flex justify-between items-center">
+									<span class="text-xl font-black text-green-500">${priceDisplay}</span>
+									<span class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">View Details</span>
+								</div>
+							</div>
+						</div>
+					`;
+				}).join('');
+				
+				if (data.length === 0 && currentTraitFilter !== 'all') {
+					grid.innerHTML = `<div class="col-span-full text-center py-20 text-zinc-500 uppercase font-bold tracking-widest">No strains found matching the "${currentTraitFilter}" profile.</div>`;
+				}
+
+				gsap.from(".seed-card", { duration: 0.6, opacity: 0, y: 30, stagger: 0.05 });
+			}
+		<!-- Terp Class End -->
 
         function handleContactSubmit(e) {
             e.preventDefault();
