@@ -140,6 +140,38 @@
 <body>
 
 	
+	<!-- Age Verification -->
+	<div id="age-gate" class="fixed inset-0 z-[500] bg-black/60 backdrop-blur-md flex items-center justify-center p-6">
+    <div class="max-w-md w-full bg-zinc-900/90 border border-zinc-800 rounded-[3rem] p-10 text-center shadow-2xl backdrop-blur-xl">
+        <div class="mb-8">
+            <img src="SLE.png" alt="Logo" class="w-24 h-24 mx-auto mb-6">
+            <h2 class="text-4xl font-black uppercase italic tracking-tighter text-white mb-4">Age Restricted</h2>
+            <p class="text-zinc-500 uppercase tracking-widest text-[10px] font-bold leading-relaxed">
+                You must be 21 years of age or older to enter Savage Land Exotics.
+            </p>
+        </div>
+        
+        <div class="space-y-4">
+            <button onclick="verifyAge()" class="w-full py-5 bg-green-500 text-black font-black uppercase tracking-[0.2em] rounded-full hover:bg-white transition-colors duration-300 shadow-lg shadow-green-500/20">
+                I am 21+
+            </button>
+            
+            <div class="flex items-center justify-center gap-2 py-2">
+                <input type="checkbox" id="remember-age" class="w-4 h-4 accent-green-500 bg-zinc-800 border-zinc-700 rounded">
+                <label for="remember-age" class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest cursor-pointer hover:text-zinc-300 transition-colors">Remember me for 30 days</label>
+            </div>
+
+            <button onclick="window.location.href='https://www.google.com'" class="w-full py-5 bg-zinc-800/50 text-zinc-400 font-bold uppercase tracking-[0.2em] rounded-full hover:text-white border border-zinc-700 transition-colors">
+                Exit
+            </button>
+        </div>
+        
+        <p class="mt-8 text-[9px] text-zinc-600 uppercase tracking-widest leading-loose">
+            By entering this site you agree to our terms of service and privacy policy.
+        </p>
+    </div>
+</div>
+	
 	<!-- Zoom Overlay -->
     <div id="zoomOverlay" class="zoom-overlay" onclick="closeZoom()">
         <img id="zoomedImage" src="" alt="Zoomed view" class="zoomed-image">
@@ -738,30 +770,40 @@
 
     <!-- Footer -->
     <footer class="bg-black border-t border-zinc-800 py-16 px-6 mt-24">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-12 mb-12">
             <div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-12 h-12 overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center p-1">
                         <img src="SLE.png" alt="SLE Logo" class="w-full h-full object-contain" onerror="this.src='SLE.png'">
                     </div>
                     <div class="flex flex-col leading-none">
-                        <span class="text-xl font-extrabold tracking-tighter uppercase">Savage <span class="text-green-500">Land</span></span>
+                        <span class="text-xl font-extrabold tracking-tighter uppercase text-white">Savage <span class="text-green-500">Land</span></span>
                         <span class="text-[10px] tracking-[0.2em] uppercase text-zinc-500 font-bold">Exotics</span>
                     </div>
                 </div>
                 <p class="text-gray-500 text-sm max-w-xs uppercase font-bold tracking-tighter">Premium genetics bred in the heart of Virginia.</p>
             </div>
+
             <div class="flex gap-8 text-2xl text-white">
                 <a href="https://www.instagram.com/savage_land_exotics757/" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/profile.php?id=100087970806429" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-facebook"></i></a>
                 <a href="https://discord.gg/" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-discord"></i></a>
-				<a href="https://www.youtube.com/" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.youtube.com/" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-youtube"></i></a>
             </div>
-            <div class="text-right">
+
+            <div class="md:text-right">
                 <p class="text-[10px] text-gray-700 max-w-sm leading-tight uppercase">Seeds are sold strictly for novelty and preservation purposes. Please follow local regulations.</p>
             </div>
         </div>
-    </footer>
+
+        <div class="pt-8 border-t border-zinc-900 text-center">
+            <p class="text-[10px] text-zinc-600 uppercase font-bold tracking-[0.3em]">
+                © Copyright 2025 <span class="text-zinc-400">Savage Land Exotics</span> - All Rights Reserved
+            </p>
+        </div>
+    </div>
+</footer>
 
     <script>
         // 1. STATE & DATA
@@ -1593,6 +1635,40 @@ function openZoom(src) {
     }, 10);
 }
 	
+	<!-- Age Verification Javascript -->
+	function verifyAge() {
+    const ageGate = document.getElementById('age-gate');
+    const rememberMe = document.getElementById('remember-age').checked;
+    
+    // Fade out
+    ageGate.style.opacity = '0';
+    ageGate.style.transition = 'opacity 0.5s ease';
+    
+    setTimeout(() => {
+        ageGate.style.display = 'none';
+        
+        if (rememberMe) {
+            // Save timestamp for 30 days
+            const expiry = new Date().getTime() + (30 * 24 * 60 * 60 * 1000);
+            localStorage.setItem('ageVerifiedUntil', expiry);
+        } else {
+            // Only save for this session
+            sessionStorage.setItem('ageVerifiedSession', 'true');
+        }
+    }, 500);
+}
+
+// Check verification status on load
+window.addEventListener('DOMContentLoaded', () => {
+    const sessionVerify = sessionStorage.getItem('ageVerifiedSession');
+    const longTermVerify = localStorage.getItem('ageVerifiedUntil');
+    const currentTime = new Date().getTime();
+
+    if (sessionVerify === 'true' || (longTermVerify && currentTime < longTermVerify)) {
+        document.getElementById('age-gate').style.display = 'none';
+    }
+});
+	
     </script>
 
     <div id="zoomOverlay" onclick="closeZoom()" style="display:none;" class="fixed inset-0 bg-black/95 z-[200] flex items-center justify-center p-4 cursor-zoom-out backdrop-blur-xl">
@@ -1631,8 +1707,6 @@ function openZoom(src) {
     </div>
 </body>
 </html>
-
-
 
 
 
