@@ -1141,46 +1141,46 @@
 }
 
 				function checkout() {
-			if (cart.length === 0) {
-				alert("Your cart is empty!");
-				return;
-			}
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
 
-			const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-			const shipping = (subtotal >= 100) ? 0 : 8.00;
-			const finalTotal = subtotal + shipping;
+    const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    const shipping = (subtotal >= 100) ? 0 : 8.00;
+    const finalTotal = subtotal + shipping;
 
-			// Format the product list for the email
-			const itemsText = cart.map(item => `- ${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`).join('%0D%0A');
-			
-			// Create the Email Template for the customer to fill out
-			const emailBody = `PLEASE FILL OUT YOUR SHIPPING DETAILS:%0D%0A%0D%0A` +
-							  `FULL NAME: %0D%0A` +
-							  `STREET ADDRESS: %0D%0A` +
-							  `CITY, STATE, ZIP: %0D%0A` +
-							  `CASHAPP NAME (For Payment Verification): %0D%0A%0D%0A` +
-							  `-------------------------------------------%0D%0A` +
-							  `ORDER SUMMARY:%0D%0A${itemsText}%0D%0A%0D%0A` +
-							  `Subtotal: $${subtotal.toFixed(2)}%0D%0A` +
-							  `Shipping: $${shipping === 0 ? "FREE" : "$8.00"}%0D%0A` +
-							  `TOTAL DUE: $${finalTotal.toFixed(2)}`;
+    // Format the product list for the email
+    const itemsText = cart.map(item => `- ${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`).join('%0D%0A');
+    
+    // Updated Email Template with your confirmation message
+    const emailBody = `Please fill out your shipping details, click send, then return to the website to complete payment to $DeepRootz757:%0D%0A` +
+                      `You will receive an email back once payment has been confirmed and a shipping label has been created! Thank you for your support!%0D%0A%0D%0A` +
+                      `FULL NAME: %0D%0A` +
+                      `STREET ADDRESS: %0D%0A` +
+                      `CITY, STATE, ZIP: %0D%0A` +
+                      `CASHAPP NAME (For Payment Verification): %0D%0A%0D%0A` +
+                      `-------------------------------------------%0D%0A` +
+                      `ORDER SUMMARY:%0D%0A${itemsText}%0D%0A%0D%0A` +
+                      `Subtotal: $${subtotal.toFixed(2)}%0D%0A` +
+                      `Shipping: $${shipping === 0 ? "FREE" : "$8.00"}%0D%0A` +
+                      `TOTAL DUE: $${finalTotal.toFixed(2)}`;
 
-			// 1. Open the user's email app
-			window.location.href = `mailto:Savagelandexotics@gmail.com?subject=New Order - Savage Land Exotics&body=${emailBody}`;
+    // 1. Open the user's email app
+    window.location.href = `mailto:Savagelandexotics@gmail.com?subject=New Order - Savage Land Exotics&body=${emailBody}`;
 
-			// 2. Update and show the CashApp Payment Modal
-			const paymentTotalDisplay = document.getElementById('payment-total-display');
-			if (paymentTotalDisplay) {
-				paymentTotalDisplay.innerText = `Total Amount: $${finalTotal.toFixed(2)}`;
-			}
-			
-			// Make sure your payment modal ID matches this
-			const modal = document.getElementById('paymentOverlay');
-			if (modal) {
-				modal.classList.remove('hidden');
-				modal.classList.add('flex');
-			}
-		}
+    // 2. Update and show the CashApp Payment Modal
+    const paymentTotalDisplay = document.getElementById('payment-total-display');
+    if (paymentTotalDisplay) {
+        paymentTotalDisplay.innerHTML = `Total Amount: <span class="text-green-500">$${finalTotal.toFixed(2)}</span>`;
+    }
+    
+    const modal = document.getElementById('paymentOverlay');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+}
 
 // 4. NAVIGATION & RENDERING
         function toggleMobileMenu() {
@@ -1669,7 +1669,25 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 	
-    </script>
+    <!-- Cashtag Copy and Paste Function -->
+	function copyCashtag() {
+    const cashtag = "$DeepRootz757";
+    navigator.clipboard.writeText(cashtag).then(() => {
+        const icon = document.getElementById('copy-icon');
+        // Visual feedback
+        icon.classList.remove('fa-copy');
+        icon.classList.add('fa-check', 'text-white');
+        
+        setTimeout(() => {
+            icon.classList.remove('fa-check', 'text-white');
+            icon.classList.add('fa-copy');
+        }, 2000);
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+    });
+}
+	
+	</script>
 
     <div id="zoomOverlay" onclick="closeZoom()" style="display:none;" class="fixed inset-0 bg-black/95 z-[200] flex items-center justify-center p-4 cursor-zoom-out backdrop-blur-xl">
         <img id="zoomImg" src="" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl">
@@ -1691,20 +1709,69 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     </div>
-
-    <div id="paymentOverlay" style="display:none;" class="fixed inset-0 bg-black/90 z-[190] flex flex-col items-center justify-center p-6 backdrop-blur-md">
-        <div class="bg-zinc-900 border border-zinc-800 p-8 rounded-[3rem] max-w-sm w-full text-center shadow-2xl">
-            <h2 class="text-3xl font-black uppercase italic tracking-tighter mb-4 text-white">Complete Payment</h2>
-            <p class="text-zinc-400 text-sm mb-6 uppercase tracking-widest font-bold">Scan Cash App to <span class="text-white">$DeepRootz757</span></p>
-            <div class="bg-white p-4 rounded-2xl mb-6 inline-block">
-                <img src="CashAppQR.jpg" alt="QR" class="w-64 h-64">
-            </div>
-            <div class="space-y-4">
-                <p id="payment-total-display" class="text-2xl font-black text-green-500"></p>
-                <button onclick="document.getElementById('paymentOverlay').style.display='none'" class="w-full py-4 bg-zinc-800 rounded-full font-bold uppercase text-white text-xs hover:bg-zinc-700">Close</button>
+	
+	<!--Cashapp Payment Overlay -->
+    <div id="paymentOverlay" class="hidden fixed inset-0 bg-black/90 z-[190] flex flex-col items-center justify-center p-6 backdrop-blur-md overflow-y-auto">
+    <div class="bg-zinc-900 border border-zinc-800 p-8 rounded-[3rem] max-w-sm w-full shadow-2xl my-auto">
+        <div class="text-center mb-6">
+            <h2 class="text-3xl font-black uppercase italic tracking-tighter text-white leading-none">Complete Payment</h2>
+            
+            <div class="mt-4 flex items-center justify-center gap-2 bg-black border border-zinc-800 rounded-full py-2 px-4 w-fit mx-auto group">
+                <span class="text-zinc-500 text-[10px] uppercase tracking-widest font-bold">Pay: <span class="text-white">$DeepRootz757</span></span>
+                <button onclick="copyCashtag()" class="text-green-500 hover:text-white transition-colors text-xs" title="Copy Cashtag">
+                    <i class="fas fa-copy" id="copy-icon"></i>
+                </button>
             </div>
         </div>
+
+        <div class="mb-6 p-4 bg-black border border-zinc-800 rounded-2xl">
+            <h5 class="text-[10px] font-black uppercase tracking-[0.2em] text-green-500 mb-3">Instructions Reminder</h5>
+            <ul class="text-[11px] text-zinc-400 space-y-3 font-medium leading-tight text-left">
+                <li class="flex gap-2">
+                    <i class="fas fa-envelope text-green-500 mt-0.5 w-3"></i> 
+                    <span><strong class="text-zinc-200">Step 1:</strong> Fill out the email that just opened with the required info.</span>
+                </li>
+                <li class="flex gap-2">
+                    <i class="fas fa-qrcode text-green-500 mt-0.5 w-3"></i> 
+                    <span><strong class="text-zinc-200">Step 2:</strong> Scan the QR below or copy the cashtag to pay the total amount.</span>
+                </li>
+                <li class="flex gap-2">
+                    <i class="fas fa-sticky-note text-green-500 mt-0.5 w-3"></i> 
+                    <span><strong class="text-zinc-200">Step 3:</strong> Add the required amount to pay, and put your <strong class="text-white italic">Name</strong> in the CashApp note.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="text-center mb-4">
+            <div class="bg-white p-3 rounded-2xl inline-block shadow-lg">
+                <img src="CashAppQR.jpg" alt="QR" class="w-48 h-48">
+            </div>
+        </div>
+
+        <div class="space-y-3 mb-6 px-2 text-center">
+            <p class="text-[9px] text-red-500 font-black uppercase tracking-wider leading-tight">
+                Order will not be shipped unless full payment is received and confirmed.
+            </p>
+            <p class="text-[9px] text-green-500 font-bold uppercase tracking-widest leading-tight">
+                Please make sure you sent the order email before closing this window!
+            </p>
+        </div>
+
+        <div class="border-t border-zinc-800 pt-4 mb-4 text-center">
+            <p id="payment-total-display" class="text-2xl font-black text-white mb-2"></p>
+            
+            <p class="text-[10px] text-white font-medium uppercase tracking-widest leading-relaxed mb-2">
+                You will receive an email back once payment is confirmed and a shipping label has been created!
+            </p>
+            
+            <p class="text-green-500 font-black italic uppercase tracking-tighter text-lg mt-1">Thank you for your Support!</p>
+        </div>
+
+        <button onclick="document.getElementById('paymentOverlay').classList.add('hidden'); document.getElementById('paymentOverlay').classList.remove('flex');" class="w-full py-4 bg-zinc-800 rounded-full font-bold uppercase text-white text-[10px] tracking-widest hover:bg-zinc-700 transition-all border border-zinc-700">
+            Close Window
+        </button>
     </div>
+</div>
 </body>
 </html>
 
