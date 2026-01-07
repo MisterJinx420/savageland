@@ -1314,15 +1314,30 @@
 
         function viewProduct(category, strainName) {
     const categoryData = productData[category];
+    if (!categoryData) return;
+
     currentProduct = categoryData.find(s => s.name === strainName);
     currentCategory = category;
+    currentReviewStrain = strainName;
     
     if (!currentProduct) {
         console.error("Strain not found:", strainName);
         return;
     }
+
+    // --- REAL AVERAGE CALCULATION ---
+    const reviews = (typeof allReviews !== 'undefined' && allReviews[strainName]) ? allReviews[strainName] : [];
+    const reviewCount = reviews.length;
+    const averageRating = reviewCount > 0 
+        ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviewCount).toFixed(1) 
+        : "0.0";
     
+    // Generate star string based on average (e.g., 4.0 = ★★★★☆)
+    const starDisplay = "★".repeat(Math.round(averageRating)) + "☆".repeat(5 - Math.round(averageRating));
+    // --------------------------------
+
     const content = document.getElementById('detail-content');
+    if (!content) return;
     
     let sizeSelectorHTML = '';
     if (currentProduct.options) {
@@ -1336,7 +1351,6 @@
         `;
     }
 
-    // THE BACKTICK BELOW IS REQUIRED
     content.innerHTML = `
         <div class="mb-8">
             <button onclick="smartBack()" class="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors group uppercase text-xs font-bold tracking-widest">
@@ -1353,11 +1367,21 @@
                      alt="${currentProduct.name}"
                      onerror="this.src='SLE.png'">
             </div>
+
             <div class="space-y-12 text-white text-left">
                 <div>
-                    <span class="text-green-500 font-bold uppercase tracking-widest text-sm mb-2 block">${currentCategory} Collection</span>
-                    <h2 class="text-5xl md:text-6xl font-black uppercase italic tracking-tighter mb-4">${currentProduct.name}</h2>
-                    <p id="detail-price-display" class="text-3xl font-black text-white">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-green-500 font-bold uppercase tracking-widest text-sm block">${currentCategory} Collection</span>
+                        
+                        <div class="flex items-center gap-1 bg-zinc-900 px-3 py-1 rounded-full border border-zinc-800">
+                            <span class="text-yellow-500 text-xs">${starDisplay}</span>
+                            <span class="text-[9px] font-black text-white">${averageRating}</span>
+                            <span class="text-[7px] text-zinc-500 ml-1">(${reviewCount})</span>
+                        </div>
+                    </div>
+
+                    <h2 class="text-5xl md:text-6xl font-black uppercase italic tracking-tighter mb-4 leading-none">${currentProduct.name}</h2>
+                    <p id="detail-price-display" class="text-3xl font-black text-white italic">
                         $${(currentProduct.options ? currentProduct.options[0].price : (currentProduct.price || 50.00)).toFixed(2)}
                     </p>
                 </div>
@@ -1367,7 +1391,6 @@
                         <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-1">Lineage</span>
                         <span class="text-white font-bold">${currentProduct.lineage || 'N/A'}</span>
                     </div>
-
                     <div class="bg-zinc-900/50 p-6 rounded-3xl border border-zinc-800">
                         <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-1">Terpene Profile</span>
                         <span class="text-white font-bold">${currentProduct.terpenes || 'Savage Land Exotics'}</span>
@@ -1376,7 +1399,7 @@
 
                 <div class="bg-zinc-900/50 p-8 rounded-3xl border border-zinc-800">
                     <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest block mb-2">Strain Description</span>
-                    <p class="text-zinc-300 leading-relaxed">${currentProduct.description || 'Exclusive Savage Land Exotics cultivar.'}</p>
+                    <p class="text-zinc-300 leading-relaxed text-sm">${currentProduct.description || 'Exclusive Savage Land Exotics cultivar.'}</p>
                 </div>
 
                 <div class="pt-8 border-t border-zinc-800">
@@ -1389,6 +1412,31 @@
                         </div>
                         <button onclick="addToCart()" class="btn-primary flex-1 py-5 rounded-full font-black uppercase tracking-[0.2em] shadow-xl text-white">Add to Cart</button>
                     </div>
+                </div>
+
+                <div class="mt-12 pt-12 border-t border-zinc-800">
+                    <h3 class="text-3xl font-black uppercase italic text-white mb-8 tracking-tighter">Tribe Reviews</h3>
+                    <div class="bg-black/50 p-8 rounded-[2rem] border border-zinc-800 mb-12 shadow-2xl">
+                        <h4 class="text-[10px] text-green-500 font-black uppercase tracking-[0.3em] mb-6">Leave a legacy:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <input type="text" id="reviewer-name" placeholder="YOUR NAME" class="w-full p-4 rounded-2xl bg-zinc-900 border border-zinc-800 text-white font-bold focus:border-green-500 outline-none transition-all">
+                            <div class="flex flex-col justify-center">
+                                <label class="block text-[10px] text-zinc-500 font-black uppercase tracking-widest mb-2 text-left">Strain Rating:</label>
+                                <div id="star-rating-container" class="flex items-center gap-2">
+                                    <button onclick="setRating(1)" class="star-btn text-2xl text-zinc-700 hover:text-green-500 transition-all">★</button>
+                                    <button onclick="setRating(2)" class="star-btn text-2xl text-zinc-700 hover:text-green-500 transition-all">★</button>
+                                    <button onclick="setRating(3)" class="star-btn text-2xl text-zinc-700 hover:text-green-500 transition-all">★</button>
+                                    <button onclick="setRating(4)" class="star-btn text-2xl text-zinc-700 hover:text-green-500 transition-all">★</button>
+                                    <button onclick="setRating(5)" class="star-btn text-2xl text-zinc-700 hover:text-green-500 transition-all">★</button>
+                                    <span id="rating-label" class="ml-3 text-[10px] text-green-500 font-black uppercase tracking-widest italic"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <textarea id="reviewer-comment" placeholder="SHARE YOUR EXPERIENCE..." class="w-full p-4 rounded-2xl bg-zinc-900 border border-zinc-800 text-white font-bold mb-6 h-32 focus:border-green-500 outline-none"></textarea>
+                        <button onclick="submitReview()" class="btn-primary w-full py-5 rounded-full font-black uppercase tracking-[0.2em] text-sm shadow-xl">Post Review</button>
+                    </div>
+                    <div id="comments-display" class="space-y-8 pb-12">
+                        </div>
                 </div>
             </div>
         </div>
@@ -1501,12 +1549,12 @@ function renderProducts() {
     const grid = document.getElementById('product-grid');
     let data = productData[currentCategory] || [];
 
+    // 1. Filter Logic
     if (currentTraitFilter !== 'all') {
         data = data.filter(strain => {
             const name = (strain.name || "").toLowerCase();
             const desc = (strain.description || "").toLowerCase();
             const lineage = (strain.lineage || "").toLowerCase();
-            // This line is now correctly mapped to 'terpenes'
             const terpene = (strain.terpenes || "").toLowerCase(); 
             
             let searchTerms = [currentTraitFilter]; 
@@ -1535,35 +1583,77 @@ function renderProducts() {
         });
     }
 
+    // 2. Generate HTML with Real Rating Calculation
     grid.innerHTML = data.map((strain, index) => {
+        // --- REAL AVERAGE CALCULATION ---
+        const reviews = (typeof allReviews !== 'undefined' && allReviews[strain.name]) ? allReviews[strain.name] : [];
+        const reviewCount = reviews.length;
+        const averageRating = reviewCount > 0 
+            ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviewCount).toFixed(1) 
+            : "0.0";
+        
+        // Generate Star String
+        const starDisplay = "★".repeat(Math.round(averageRating)) + "☆".repeat(5 - Math.round(averageRating));
+        // --------------------------------
+
         const priceDisplay = strain.options 
             ? `From $${strain.options[0].price.toFixed(2)}` 
             : `$${(strain.price || 50.00).toFixed(2)}`;
 
         return `
-            <div class="seed-card rounded-2xl overflow-hidden group cursor-pointer" onclick="viewProduct('${currentCategory}', '${strain.name.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')">
-                <div class="h-64 overflow-hidden relative bg-zinc-800 flex items-center justify-center p-8">
+            <div class="seed-card opacity-100 rounded-2xl overflow-hidden group cursor-pointer bg-zinc-900 border border-zinc-800 hover:border-green-500 transition-all duration-300" 
+                 onclick="viewProduct('${currentCategory}', '${strain.name.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')"
+                 style="opacity: 1; visibility: visible;">
+                <div class="h-64 overflow-hidden relative bg-black/50 flex items-center justify-center p-8">
                     <img src="${strain.img}" 
-                         class="max-w-full max-h-full object-contain group-hover:scale-110 transition duration-500" 
+                         class="max-w-full max-h-full object-contain group-hover:scale-105 transition duration-700" 
                          alt="${strain.name}"
                          onerror="this.src='SLE.png'">
+                    
+                    <div class="absolute top-3 right-3 bg-black/80 backdrop-blur-md px-2 py-1 rounded-lg border border-white/10 flex items-center gap-1">
+                        <span class="text-yellow-500 text-[9px]">${starDisplay}</span>
+                        <span class="text-[9px] font-black text-white">${averageRating}</span>
+                    </div>
                 </div>
-                <div class="p-6 text-white">
-                    <h4 class="font-bold text-lg mb-4 uppercase italic tracking-tighter">${strain.name}</h4>
+
+                <div class="p-6 text-white text-left">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[8px] text-zinc-500 font-black uppercase tracking-widest italic">
+                            ${reviewCount} Tribe Reviews
+                        </span>
+                    </div>
+
+                    <h4 class="font-bold text-lg mb-4 uppercase italic tracking-tighter group-hover:text-green-500 transition-colors">${strain.name}</h4>
+                    
                     <div class="flex justify-between items-center">
                         <span class="text-xl font-black text-green-500">${priceDisplay}</span>
-                        <span class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">View Details</span>
+                        <div class="flex items-center gap-2">
+                             <span class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">Details</span>
+                             <i class="fas fa-arrow-right text-[10px] text-green-500"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         `;
     }).join('');
     
+    // 3. Handle Empty Results
     if (data.length === 0 && currentTraitFilter !== 'all') {
-        grid.innerHTML = `<div class="col-span-full text-center py-20 text-zinc-500 uppercase font-bold tracking-widest">No strains found matching the "${currentTraitFilter}" profile.</div>`;
+        grid.innerHTML = `
+            <div class="col-span-full text-center py-32 border-2 border-dashed border-zinc-800 rounded-[3rem]">
+                <p class="text-zinc-500 uppercase font-bold tracking-widest">No matching profiles found.</p>
+                <button onclick="filterByTrait('all')" class="mt-4 text-green-500 text-xs font-black uppercase underline">Show All</button>
+            </div>`;
     }
 
-    gsap.from(".seed-card", { duration: 0.6, opacity: 0, y: 30, stagger: 0.05 });
+    // 4. Safe Animation
+    if (typeof gsap !== 'undefined') {
+        gsap.killTweensOf(".seed-card");
+        gsap.fromTo(".seed-card", 
+            { opacity: 0, y: 20 }, 
+            { duration: 0.4, opacity: 1, y: 0, stagger: 0.05, ease: "power1.out" }
+        );
+    }
 }
 		<!-- Terp Class End -->
 
@@ -1758,6 +1848,20 @@ window.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     }).catch(err => {
         console.error('Could not copy text: ', err);
+    });
+}
+	
+	<!-- Strain Review Script -->
+	function submitReview() {
+    const formData = new FormData();
+    formData.append('image', document.getElementById('review-image').files[0]);
+    formData.append('name', document.getElementById('reviewer-name').value);
+    formData.append('comment', document.getElementById('reviewer-comment').value);
+    // ... add the rest of your fields
+    
+    fetch('submit_review.php', {
+        method: 'POST',
+        body: formData // No need for headers, FormData handles it!
     });
 }
 	
