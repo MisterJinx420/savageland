@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -880,7 +881,12 @@
 </footer>
 
     <script>
-        // 1. STATE & DATA
+        // Initialize or load existing reviews from the browser's local storage
+		let allReviews = {};
+		let currentReviewStrain = ""; // This holds the name of the strain currently open
+		let currentRating = 5;       // This holds the star rating for the new review
+		
+		// 1. STATE & DATA
         let currentCategory = '';
         let currentProduct = null;
         let cart = JSON.parse(localStorage.getItem('sle_cart')) || [];
@@ -1312,7 +1318,7 @@
             }
         }
 
-        function viewProduct(category, strainName) {
+       function viewProduct(category, strainName) {
     const categoryData = productData[category];
     if (!categoryData) return;
 
@@ -1332,7 +1338,6 @@
         ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviewCount).toFixed(1) 
         : "0.0";
     
-    // Generate star string based on average (e.g., 4.0 = ★★★★☆)
     const starDisplay = "★".repeat(Math.round(averageRating)) + "☆".repeat(5 - Math.round(averageRating));
     // --------------------------------
 
@@ -1435,13 +1440,20 @@
                         <textarea id="reviewer-comment" placeholder="SHARE YOUR EXPERIENCE..." class="w-full p-4 rounded-2xl bg-zinc-900 border border-zinc-800 text-white font-bold mb-6 h-32 focus:border-green-500 outline-none"></textarea>
                         <button onclick="submitReview()" class="btn-primary w-full py-5 rounded-full font-black uppercase tracking-[0.2em] text-sm shadow-xl">Post Review</button>
                     </div>
-                    <div id="comments-display" class="space-y-8 pb-12">
-                        </div>
+                    <div id="comments-display" class="space-y-8 pb-12"></div>
                 </div>
             </div>
         </div>
-    `; // THE BACKTICK ABOVE IS REQUIRED
+    `;
+    
     showPage('product-detail');
+    
+    // Trigger the reviews to render after the page is visible
+    setTimeout(() => {
+        if (typeof renderReviews === 'function') {
+            renderReviews();
+        }
+    }, 50);
 }
 
 
@@ -1851,18 +1863,114 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 }
 	
-	<!-- Strain Review Script -->
+	/* --- COMPLETE STRAIN REVIEW SYSTEM --- */
+
+// 1. THIS FUNCTION SAVES THE REVIEW
 	function submitReview() {
+    const nameInput = document.getElementById('reviewer-name');
+    const commentInput = document.getElementById('reviewer-comment');
+    const rating = currentRating; 
+
+    if (!nameInput.value || !commentInput.value) {
+        alert("The Tribe needs your name and comment!");
+        return;
+    }
+
+    // Prepare for PHP (Future)
     const formData = new FormData();
-    formData.append('image', document.getElementById('review-image').files[0]);
-    formData.append('name', document.getElementById('reviewer-name').value);
-    formData.append('comment', document.getElementById('reviewer-comment').value);
-    // ... add the rest of your fields
+    formData.append('name', nameInput.value);
+    formData.append('comment', commentInput.value);
+    formData.append('rating', rating);
+    formData.append('strain', currentReviewStrain);
     
+    if(document.getElementById('review-image')?.files[0]) {
+        formData.append('image', document.getElementById('review-image').files[0]);
+    }
+
+    /* --- DISABLED LOCAL STORAGE FOR TESTING ---
+    if (!allReviews[currentReviewStrain]) allReviews[currentReviewStrain] = [];
+    allReviews[currentReviewStrain].push({
+        name: nameInput.value,
+        comment: commentInput.value,
+        rating: rating,
+        date: new Date().toLocaleDateString()
+    });
+    localStorage.setItem('sle_reviews', JSON.stringify(allReviews));
+    -------------------------------------------- */
+
+    // SEND TO PHP (This stays active for the real host)
     fetch('submit_review.php', {
         method: 'POST',
-        body: formData // No need for headers, FormData handles it!
+        body: formData
+    })
+    .then(response => {
+        if(response.ok) {
+            alert("Legacy recorded! Your review is live.");
+            renderReviews(); 
+        } else {
+            alert("Review system is in Preview Mode. Data is not being saved yet.");
+        }
+    })
+    .catch(err => {
+        console.log("PHP not found yet.");
+        alert("Review system is in Preview Mode. Data will not be saved until the site is live.");
     });
+
+    // REFRESH THE PAGE VIEW
+    renderReviews(); 
+    renderProducts(); 
+    
+    // Clear inputs
+    nameInput.value = '';
+    commentInput.value = '';
+}
+
+// 2. THIS FUNCTION SHOWS THE REVIEWS (The missing part!)
+function renderReviews() {
+    const display = document.getElementById('comments-display');
+    if (!display) return;
+
+    // Pull from our global memory using the current strain name
+    const reviews = (typeof allReviews !== 'undefined' && allReviews[currentReviewStrain]) 
+        ? allReviews[currentReviewStrain] 
+        : [];
+
+    // If no reviews exist, show the "No Tribe" empty state
+    if (reviews.length === 0) {
+        display.innerHTML = `
+            <div class="text-center py-12 border-2 border-dashed border-zinc-800 rounded-[2rem] opacity-60">
+                <i class="fas fa-comment-slash text-zinc-800 text-2xl mb-4"></i>
+                <p class="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em]">No Tribe reviews yet.</p>
+                <p class="text-zinc-600 text-[8px] uppercase mt-2 font-bold">Be the first to leave a legacy.</p>
+            </div>`;
+        return;
+    }
+
+    // If reviews exist, map them into styled cards
+    display.innerHTML = reviews.map(rev => {
+        // Calculate stars for this specific review
+        const starRating = parseInt(rev.rating) || 5;
+        const starIcons = "★".repeat(starRating) + "☆".repeat(5 - starRating);
+        
+        return `
+            <div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-[2rem] text-left mb-4 shadow-xl">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h5 class="text-white font-black uppercase italic tracking-tighter text-lg">${rev.name}</h5>
+                        <div class="text-yellow-500 text-[10px] tracking-widest">
+                            ${starIcons}
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-zinc-600 font-bold uppercase tracking-widest">${rev.date || 'Savage Tribe'}</span>
+                </div>
+                <p class="text-zinc-400 text-sm italic leading-relaxed">"${rev.comment}"</p>
+                <div class="mt-4 pt-4 border-t border-white/5 flex items-center gap-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                    <span class="text-[7px] text-zinc-500 font-black uppercase tracking-[0.2em]">Verified Genetic Legacy</span>
+                </div>
+            </div>
+        `;
+    }).join('');
 }
 	
 	</script>
